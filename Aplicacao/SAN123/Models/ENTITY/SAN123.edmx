@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SAN123_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAR_Cargo">
+          <Key>
+            <PropertyRef Name="CAR_ID" />
+          </Key>
+          <Property Name="CAR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CAR_DESCRICAO" Type="varchar" MaxLength="200" />
+          <Property Name="CAR_DataCadastro" Type="datetime" />
+          <Property Name="CAR_DataAlteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DES_Desempenho">
+          <Key>
+            <PropertyRef Name="DES_ID" />
+          </Key>
+          <Property Name="DES_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRC_ID" Type="int" />
+          <Property Name="USU_ID" Type="int" />
+          <Property Name="DSF_ID" Type="int" />
+          <Property Name="DSD_ID" Type="int" />
+          <Property Name="DES_Valor" Type="float" Nullable="false" />
+          <Property Name="DES_DataCadastro" Type="datetime" />
+          <Property Name="DES_DataAlteracao" Type="datetime" />
+          <Property Name="DES_Anotacao" Type="varchar(max)" />
+          <Property Name="DSK_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="DSD_DesempenhoDescricao">
+          <Key>
+            <PropertyRef Name="DSD_ID" />
+          </Key>
+          <Property Name="DSD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DSD_Nome" Type="varchar" MaxLength="100" />
+          <Property Name="DSD_Display" Type="varchar" MaxLength="100" />
+          <Property Name="DSD_Prefixo" Type="varchar" MaxLength="50" />
+          <Property Name="DSD_Sufixo" Type="varchar" MaxLength="50" />
+          <Property Name="DSD_DataCadastro" Type="datetime" />
+          <Property Name="DSD_DataAlteracao" Type="datetime" />
+          <Property Name="DSD_Anotacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DSF_DesempenhoFase">
+          <Key>
+            <PropertyRef Name="DSF_ID" />
+          </Key>
+          <Property Name="DSF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DSF_Fase" Type="varchar" MaxLength="100" />
+          <Property Name="DSF_DataCadastro" Type="datetime" />
+          <Property Name="DSF_DataAlteracao" Type="datetime" />
+          <Property Name="DSF_Anotacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DSK_DesempenhoKpi">
+          <Key>
+            <PropertyRef Name="DSK_ID" />
+          </Key>
+          <Property Name="DSK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DSK_Display" Type="varchar" MaxLength="200" />
+          <Property Name="DSK_DataCadastro" Type="datetime" />
+          <Property Name="DSK_DataAlteracao" Type="datetime" />
+          <Property Name="DSK_Anotacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GRC_GrupoCompeticao">
+          <Key>
+            <PropertyRef Name="GRC_ID" />
+          </Key>
+          <Property Name="GRC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRC_Nome" Type="varchar" MaxLength="200" />
+          <Property Name="GRC_Display" Type="varchar" MaxLength="200" />
+          <Property Name="GRC_DataCadastro" Type="datetime" />
+          <Property Name="GRC_DataAlteracao" Type="datetime" />
+          <Property Name="GRC_Anotacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="LAU_LogAutenticacaoUsuario">
+          <Key>
+            <PropertyRef Name="LAU_ID" />
+          </Key>
+          <Property Name="LAU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LAU_AcessoIP" Type="varchar" MaxLength="20" />
+          <Property Name="LAU_Ambiente" Type="varchar" MaxLength="10" />
+          <Property Name="LAU_DadosComplementares" Type="varchar(max)" />
+          <Property Name="LAU_DataCadastro" Type="datetime" />
+          <Property Name="USU_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="RKG_RankingGrupo">
+          <Key>
+            <PropertyRef Name="RKG_ID" />
+          </Key>
+          <Property Name="RKG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GRC_ID" Type="int" />
+          <Property Name="USU_ID" Type="int" />
+          <Property Name="RKG_Posicao" Type="int" Nullable="false" />
+          <Property Name="RKG_CriterioDesempate" Type="float" Nullable="false" />
+          <Property Name="RKG_DataCadastro" Type="datetime" />
+          <Property Name="RKG_DataAlteracao" Type="datetime" />
+          <Property Name="RKG_Anotacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="USU_Usuario">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USU_Nome" Type="varchar" MaxLength="200" />
+          <Property Name="USU_CPF" Type="varchar" MaxLength="11" />
+          <Property Name="USU_CAR_ID" Type="int" Nullable="false" />
+          <Property Name="USU_Login" Type="varchar" MaxLength="11" />
+          <Property Name="USU_Senha" Type="varchar(max)" />
+          <Property Name="USU_EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="USU_Telefone" Type="varchar" MaxLength="14" />
+          <Property Name="USU_DataCadastro" Type="datetime" />
+          <Property Name="USU_DataAlteracao" Type="datetime" />
+          <Property Name="USU_Anotacao" Type="varchar(max)" />
+          <Property Name="USU_DataAceiteRegulamento" Type="datetime" />
+          <Property Name="USU_AcessoFake" Type="bit" Nullable="false" />
+          <Property Name="USU_Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="DES_DSF_FK">
+          <End Role="DSF_DesempenhoFase" Type="Self.DSF_DesempenhoFase" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSF_DesempenhoFase">
+              <PropertyRef Name="DSF_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DES_GRC_FK">
+          <End Role="GRC_GrupoCompeticao" Type="Self.GRC_GrupoCompeticao" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRC_GrupoCompeticao">
+              <PropertyRef Name="GRC_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="GRC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DES_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO_CARGO">
+          <End Role="CAR_Cargo" Type="Self.CAR_Cargo" Multiplicity="1" />
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAR_Cargo">
+              <PropertyRef Name="CAR_ID" />
+            </Principal>
+            <Dependent Role="USU_Usuario">
+              <PropertyRef Name="USU_CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DES_DSD">
+          <End Role="DSD_DesempenhoDescricao" Type="Self.DSD_DesempenhoDescricao" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSD_DesempenhoDescricao">
+              <PropertyRef Name="DSD_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DES_DSK">
+          <End Role="DSK_DesempenhoKpi" Type="Self.DSK_DesempenhoKpi" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSK_DesempenhoKpi">
+              <PropertyRef Name="DSK_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LAU_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="0..1" />
+          <End Role="LAU_LogAutenticacaoUsuario" Type="Self.LAU_LogAutenticacaoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="LAU_LogAutenticacaoUsuario">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RKG_GRC_FK">
+          <End Role="GRC_GrupoCompeticao" Type="Self.GRC_GrupoCompeticao" Multiplicity="0..1" />
+          <End Role="RKG_RankingGrupo" Type="Self.RKG_RankingGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRC_GrupoCompeticao">
+              <PropertyRef Name="GRC_ID" />
+            </Principal>
+            <Dependent Role="RKG_RankingGrupo">
+              <PropertyRef Name="GRC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RKG_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="0..1" />
+          <End Role="RKG_RankingGrupo" Type="Self.RKG_RankingGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="RKG_RankingGrupo">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SAN123_ModelStoreContainer">
+          <EntitySet Name="CAR_Cargo" EntityType="Self.CAR_Cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DES_Desempenho" EntityType="Self.DES_Desempenho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSD_DesempenhoDescricao" EntityType="Self.DSD_DesempenhoDescricao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSF_DesempenhoFase" EntityType="Self.DSF_DesempenhoFase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSK_DesempenhoKpi" EntityType="Self.DSK_DesempenhoKpi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRC_GrupoCompeticao" EntityType="Self.GRC_GrupoCompeticao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LAU_LogAutenticacaoUsuario" EntityType="Self.LAU_LogAutenticacaoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RKG_RankingGrupo" EntityType="Self.RKG_RankingGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USU_Usuario" EntityType="Self.USU_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="DES_DSF_FK" Association="Self.DES_DSF_FK">
+            <End Role="DSF_DesempenhoFase" EntitySet="DSF_DesempenhoFase" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DES_GRC_FK" Association="Self.DES_GRC_FK">
+            <End Role="GRC_GrupoCompeticao" EntitySet="GRC_GrupoCompeticao" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DES_USU_FK" Association="Self.DES_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_CARGO" Association="Self.FK__USUARIO_CARGO">
+            <End Role="CAR_Cargo" EntitySet="CAR_Cargo" />
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DES_DSD" Association="Self.FK_DES_DSD">
+            <End Role="DSD_DesempenhoDescricao" EntitySet="DSD_DesempenhoDescricao" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DES_DSK" Association="Self.FK_DES_DSK">
+            <End Role="DSK_DesempenhoKpi" EntitySet="DSK_DesempenhoKpi" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="LAU_USU_FK" Association="Self.LAU_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="LAU_LogAutenticacaoUsuario" EntitySet="LAU_LogAutenticacaoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="RKG_GRC_FK" Association="Self.RKG_GRC_FK">
+            <End Role="GRC_GrupoCompeticao" EntitySet="GRC_GrupoCompeticao" />
+            <End Role="RKG_RankingGrupo" EntitySet="RKG_RankingGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="RKG_USU_FK" Association="Self.RKG_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="RKG_RankingGrupo" EntitySet="RKG_RankingGrupo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SAN123_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAR_Cargo">
+          <Key>
+            <PropertyRef Name="CAR_ID" />
+          </Key>
+          <Property Name="CAR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CAR_DESCRICAO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CAR_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="CAR_DataAlteracao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="USU_Usuario" Relationship="Self.FK__USUARIO_CARGO" FromRole="CAR_Cargo" ToRole="USU_Usuario" />
+        </EntityType>
+        <EntityType Name="DES_Desempenho">
+          <Key>
+            <PropertyRef Name="DES_ID" />
+          </Key>
+          <Property Name="DES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRC_ID" Type="Int32" />
+          <Property Name="USU_ID" Type="Int32" />
+          <Property Name="DSF_ID" Type="Int32" />
+          <Property Name="DES_Valor" Type="Double" Nullable="false" />
+          <Property Name="DES_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DES_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DES_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DSF_DesempenhoFase" Relationship="Self.DES_DSF_FK" FromRole="DES_Desempenho" ToRole="DSF_DesempenhoFase" />
+          <NavigationProperty Name="GRC_GrupoCompeticao" Relationship="Self.DES_GRC_FK" FromRole="DES_Desempenho" ToRole="GRC_GrupoCompeticao" />
+          <NavigationProperty Name="USU_Usuario" Relationship="Self.DES_USU_FK" FromRole="DES_Desempenho" ToRole="USU_Usuario" />
+          <Property Name="DSD_ID" Type="Int32" />
+          <Property Name="DSK_ID" Type="Int32" />
+          <NavigationProperty Name="DSD_DesempenhoDescricao" Relationship="SAN123_Model.FK_DES_DSD" FromRole="DES_Desempenho" ToRole="DSD_DesempenhoDescricao" />
+          <NavigationProperty Name="DSK_DesempenhoKpi" Relationship="SAN123_Model.FK_DES_DSK" FromRole="DES_Desempenho" ToRole="DSK_DesempenhoKpi" />
+        </EntityType>
+        <EntityType Name="DSD_DesempenhoDescricao">
+          <Key>
+            <PropertyRef Name="DSD_ID" />
+          </Key>
+          <Property Name="DSD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DSD_Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DSD_Display" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DSD_Prefixo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DSD_Sufixo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DSD_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DSD_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DSD_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DES_Desempenho" Relationship="SAN123_Model.FK_DES_DSD" FromRole="DSD_DesempenhoDescricao" ToRole="DES_Desempenho" />
+        </EntityType>
+        <EntityType Name="DSF_DesempenhoFase">
+          <Key>
+            <PropertyRef Name="DSF_ID" />
+          </Key>
+          <Property Name="DSF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DSF_Fase" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DSF_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DSF_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DSF_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DES_Desempenho" Relationship="Self.DES_DSF_FK" FromRole="DSF_DesempenhoFase" ToRole="DES_Desempenho" />
+        </EntityType>
+        <EntityType Name="DSK_DesempenhoKpi">
+          <Key>
+            <PropertyRef Name="DSK_ID" />
+          </Key>
+          <Property Name="DSK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DSK_Display" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DSK_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DSK_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DSK_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DES_Desempenho" Relationship="SAN123_Model.FK_DES_DSK" FromRole="DSK_DesempenhoKpi" ToRole="DES_Desempenho" />
+        </EntityType>
+        <EntityType Name="GRC_GrupoCompeticao">
+          <Key>
+            <PropertyRef Name="GRC_ID" />
+          </Key>
+          <Property Name="GRC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRC_Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GRC_Display" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GRC_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="GRC_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="GRC_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DES_Desempenho" Relationship="Self.DES_GRC_FK" FromRole="GRC_GrupoCompeticao" ToRole="DES_Desempenho" />
+          <NavigationProperty Name="RKG_RankingGrupo" Relationship="Self.RKG_GRC_FK" FromRole="GRC_GrupoCompeticao" ToRole="RKG_RankingGrupo" />
+        </EntityType>
+        <EntityType Name="RKG_RankingGrupo">
+          <Key>
+            <PropertyRef Name="RKG_ID" />
+          </Key>
+          <Property Name="RKG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GRC_ID" Type="Int32" />
+          <Property Name="USU_ID" Type="Int32" />
+          <Property Name="RKG_Posicao" Type="Int32" Nullable="false" />
+          <Property Name="RKG_CriterioDesempate" Type="Double" Nullable="false" />
+          <Property Name="RKG_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="RKG_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="RKG_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GRC_GrupoCompeticao" Relationship="Self.RKG_GRC_FK" FromRole="RKG_RankingGrupo" ToRole="GRC_GrupoCompeticao" />
+          <NavigationProperty Name="USU_Usuario" Relationship="Self.RKG_USU_FK" FromRole="RKG_RankingGrupo" ToRole="USU_Usuario" />
+        </EntityType>
+        <EntityType Name="USU_Usuario">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USU_Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="USU_CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="USU_CAR_ID" Type="Int32" Nullable="false" />
+          <Property Name="USU_Login" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="USU_Senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="USU_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USU_Telefone" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="USU_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="USU_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="USU_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAR_Cargo" Relationship="Self.FK__USUARIO_CARGO" FromRole="USU_Usuario" ToRole="CAR_Cargo" />
+          <NavigationProperty Name="DES_Desempenho" Relationship="Self.DES_USU_FK" FromRole="USU_Usuario" ToRole="DES_Desempenho" />
+          <NavigationProperty Name="RKG_RankingGrupo" Relationship="Self.RKG_USU_FK" FromRole="USU_Usuario" ToRole="RKG_RankingGrupo" />
+          <Property Name="USU_DataAceiteRegulamento" Type="DateTime" Precision="3" />
+          <Property Name="USU_AcessoFake" Type="Boolean" Nullable="false" />
+          <Property Name="USU_Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LAU_LogAutenticacaoUsuario" Relationship="SAN123_Model.LAU_USU_FK" FromRole="USU_Usuario" ToRole="LAU_LogAutenticacaoUsuario" />
+        </EntityType>
+        <Association Name="FK__USUARIO_CARGO">
+          <End Role="CAR_Cargo" Type="Self.CAR_Cargo" Multiplicity="1" />
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAR_Cargo">
+              <PropertyRef Name="CAR_ID" />
+            </Principal>
+            <Dependent Role="USU_Usuario">
+              <PropertyRef Name="USU_CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DES_DSF_FK">
+          <End Role="DSF_DesempenhoFase" Type="Self.DSF_DesempenhoFase" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSF_DesempenhoFase">
+              <PropertyRef Name="DSF_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DES_GRC_FK">
+          <End Role="GRC_GrupoCompeticao" Type="Self.GRC_GrupoCompeticao" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRC_GrupoCompeticao">
+              <PropertyRef Name="GRC_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="GRC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DES_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="0..1" />
+          <End Role="DES_Desempenho" Type="Self.DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RKG_GRC_FK">
+          <End Role="GRC_GrupoCompeticao" Type="Self.GRC_GrupoCompeticao" Multiplicity="0..1" />
+          <End Role="RKG_RankingGrupo" Type="Self.RKG_RankingGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRC_GrupoCompeticao">
+              <PropertyRef Name="GRC_ID" />
+            </Principal>
+            <Dependent Role="RKG_RankingGrupo">
+              <PropertyRef Name="GRC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RKG_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="0..1" />
+          <End Role="RKG_RankingGrupo" Type="Self.RKG_RankingGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="RKG_RankingGrupo">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SAN123_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAR_Cargo" EntityType="Self.CAR_Cargo" />
+          <EntitySet Name="DES_Desempenho" EntityType="Self.DES_Desempenho" />
+          <EntitySet Name="DSD_DesempenhoDescricao" EntityType="Self.DSD_DesempenhoDescricao" />
+          <EntitySet Name="DSF_DesempenhoFase" EntityType="Self.DSF_DesempenhoFase" />
+          <EntitySet Name="DSK_DesempenhoKpi" EntityType="Self.DSK_DesempenhoKpi" />
+          <EntitySet Name="GRC_GrupoCompeticao" EntityType="Self.GRC_GrupoCompeticao" />
+          <EntitySet Name="RKG_RankingGrupo" EntityType="Self.RKG_RankingGrupo" />
+          <EntitySet Name="USU_Usuario" EntityType="Self.USU_Usuario" />
+          <AssociationSet Name="FK__USUARIO_CARGO" Association="Self.FK__USUARIO_CARGO">
+            <End Role="CAR_Cargo" EntitySet="CAR_Cargo" />
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="DES_DSF_FK" Association="Self.DES_DSF_FK">
+            <End Role="DSF_DesempenhoFase" EntitySet="DSF_DesempenhoFase" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DES_GRC_FK" Association="Self.DES_GRC_FK">
+            <End Role="GRC_GrupoCompeticao" EntitySet="GRC_GrupoCompeticao" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DES_USU_FK" Association="Self.DES_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="RKG_GRC_FK" Association="Self.RKG_GRC_FK">
+            <End Role="GRC_GrupoCompeticao" EntitySet="GRC_GrupoCompeticao" />
+            <End Role="RKG_RankingGrupo" EntitySet="RKG_RankingGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="RKG_USU_FK" Association="Self.RKG_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="RKG_RankingGrupo" EntitySet="RKG_RankingGrupo" />
+          </AssociationSet>
+          <EntitySet Name="LAU_LogAutenticacaoUsuario" EntityType="SAN123_Model.LAU_LogAutenticacaoUsuario" />
+          <AssociationSet Name="LAU_USU_FK" Association="SAN123_Model.LAU_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="LAU_LogAutenticacaoUsuario" EntitySet="LAU_LogAutenticacaoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DES_DSD" Association="SAN123_Model.FK_DES_DSD">
+            <End Role="DSD_DesempenhoDescricao" EntitySet="DSD_DesempenhoDescricao" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DES_DSK" Association="SAN123_Model.FK_DES_DSK">
+            <End Role="DSK_DesempenhoKpi" EntitySet="DSK_DesempenhoKpi" />
+            <End Role="DES_Desempenho" EntitySet="DES_Desempenho" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LAU_LogAutenticacaoUsuario">
+          <Key>
+            <PropertyRef Name="LAU_ID" />
+          </Key>
+          <Property Name="LAU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LAU_AcessoIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LAU_Ambiente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LAU_DadosComplementares" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LAU_DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="USU_ID" Type="Int32" />
+          <NavigationProperty Name="USU_Usuario" Relationship="SAN123_Model.LAU_USU_FK" FromRole="LAU_LogAutenticacaoUsuario" ToRole="USU_Usuario" />
+        </EntityType>
+        <Association Name="LAU_USU_FK">
+          <End Type="SAN123_Model.USU_Usuario" Role="USU_Usuario" Multiplicity="0..1" />
+          <End Type="SAN123_Model.LAU_LogAutenticacaoUsuario" Role="LAU_LogAutenticacaoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="LAU_LogAutenticacaoUsuario">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DES_DSD">
+          <End Type="SAN123_Model.DSD_DesempenhoDescricao" Role="DSD_DesempenhoDescricao" Multiplicity="0..1" />
+          <End Type="SAN123_Model.DES_Desempenho" Role="DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSD_DesempenhoDescricao">
+              <PropertyRef Name="DSD_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DES_DSK">
+          <End Type="SAN123_Model.DSK_DesempenhoKpi" Role="DSK_DesempenhoKpi" Multiplicity="0..1" />
+          <End Type="SAN123_Model.DES_Desempenho" Role="DES_Desempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DSK_DesempenhoKpi">
+              <PropertyRef Name="DSK_ID" />
+            </Principal>
+            <Dependent Role="DES_Desempenho">
+              <PropertyRef Name="DSK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SAN123_ModelStoreContainer" CdmEntityContainer="SAN123_Entities">
+          <EntitySetMapping Name="CAR_Cargo">
+            <EntityTypeMapping TypeName="SAN123_Model.CAR_Cargo">
+              <MappingFragment StoreEntitySet="CAR_Cargo">
+                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+                <ScalarProperty Name="CAR_DESCRICAO" ColumnName="CAR_DESCRICAO" />
+                <ScalarProperty Name="CAR_DataCadastro" ColumnName="CAR_DataCadastro" />
+                <ScalarProperty Name="CAR_DataAlteracao" ColumnName="CAR_DataAlteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DES_Desempenho">
+            <EntityTypeMapping TypeName="SAN123_Model.DES_Desempenho">
+              <MappingFragment StoreEntitySet="DES_Desempenho">
+                <ScalarProperty Name="DSK_ID" ColumnName="DSK_ID" />
+                <ScalarProperty Name="DSD_ID" ColumnName="DSD_ID" />
+                <ScalarProperty Name="DES_ID" ColumnName="DES_ID" />
+                <ScalarProperty Name="GRC_ID" ColumnName="GRC_ID" />
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="DSF_ID" ColumnName="DSF_ID" />
+                <ScalarProperty Name="DES_Valor" ColumnName="DES_Valor" />
+                <ScalarProperty Name="DES_DataCadastro" ColumnName="DES_DataCadastro" />
+                <ScalarProperty Name="DES_DataAlteracao" ColumnName="DES_DataAlteracao" />
+                <ScalarProperty Name="DES_Anotacao" ColumnName="DES_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSD_DesempenhoDescricao">
+            <EntityTypeMapping TypeName="SAN123_Model.DSD_DesempenhoDescricao">
+              <MappingFragment StoreEntitySet="DSD_DesempenhoDescricao">
+                <ScalarProperty Name="DSD_ID" ColumnName="DSD_ID" />
+                <ScalarProperty Name="DSD_Nome" ColumnName="DSD_Nome" />
+                <ScalarProperty Name="DSD_Display" ColumnName="DSD_Display" />
+                <ScalarProperty Name="DSD_Prefixo" ColumnName="DSD_Prefixo" />
+                <ScalarProperty Name="DSD_Sufixo" ColumnName="DSD_Sufixo" />
+                <ScalarProperty Name="DSD_DataCadastro" ColumnName="DSD_DataCadastro" />
+                <ScalarProperty Name="DSD_DataAlteracao" ColumnName="DSD_DataAlteracao" />
+                <ScalarProperty Name="DSD_Anotacao" ColumnName="DSD_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSF_DesempenhoFase">
+            <EntityTypeMapping TypeName="SAN123_Model.DSF_DesempenhoFase">
+              <MappingFragment StoreEntitySet="DSF_DesempenhoFase">
+                <ScalarProperty Name="DSF_ID" ColumnName="DSF_ID" />
+                <ScalarProperty Name="DSF_Fase" ColumnName="DSF_Fase" />
+                <ScalarProperty Name="DSF_DataCadastro" ColumnName="DSF_DataCadastro" />
+                <ScalarProperty Name="DSF_DataAlteracao" ColumnName="DSF_DataAlteracao" />
+                <ScalarProperty Name="DSF_Anotacao" ColumnName="DSF_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSK_DesempenhoKpi">
+            <EntityTypeMapping TypeName="SAN123_Model.DSK_DesempenhoKpi">
+              <MappingFragment StoreEntitySet="DSK_DesempenhoKpi">
+                <ScalarProperty Name="DSK_ID" ColumnName="DSK_ID" />
+                <ScalarProperty Name="DSK_Display" ColumnName="DSK_Display" />
+                <ScalarProperty Name="DSK_DataCadastro" ColumnName="DSK_DataCadastro" />
+                <ScalarProperty Name="DSK_DataAlteracao" ColumnName="DSK_DataAlteracao" />
+                <ScalarProperty Name="DSK_Anotacao" ColumnName="DSK_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRC_GrupoCompeticao">
+            <EntityTypeMapping TypeName="SAN123_Model.GRC_GrupoCompeticao">
+              <MappingFragment StoreEntitySet="GRC_GrupoCompeticao">
+                <ScalarProperty Name="GRC_ID" ColumnName="GRC_ID" />
+                <ScalarProperty Name="GRC_Nome" ColumnName="GRC_Nome" />
+                <ScalarProperty Name="GRC_Display" ColumnName="GRC_Display" />
+                <ScalarProperty Name="GRC_DataCadastro" ColumnName="GRC_DataCadastro" />
+                <ScalarProperty Name="GRC_DataAlteracao" ColumnName="GRC_DataAlteracao" />
+                <ScalarProperty Name="GRC_Anotacao" ColumnName="GRC_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RKG_RankingGrupo">
+            <EntityTypeMapping TypeName="SAN123_Model.RKG_RankingGrupo">
+              <MappingFragment StoreEntitySet="RKG_RankingGrupo">
+                <ScalarProperty Name="RKG_ID" ColumnName="RKG_ID" />
+                <ScalarProperty Name="GRC_ID" ColumnName="GRC_ID" />
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="RKG_Posicao" ColumnName="RKG_Posicao" />
+                <ScalarProperty Name="RKG_CriterioDesempate" ColumnName="RKG_CriterioDesempate" />
+                <ScalarProperty Name="RKG_DataCadastro" ColumnName="RKG_DataCadastro" />
+                <ScalarProperty Name="RKG_DataAlteracao" ColumnName="RKG_DataAlteracao" />
+                <ScalarProperty Name="RKG_Anotacao" ColumnName="RKG_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USU_Usuario">
+            <EntityTypeMapping TypeName="SAN123_Model.USU_Usuario">
+              <MappingFragment StoreEntitySet="USU_Usuario">
+                <ScalarProperty Name="USU_Ativo" ColumnName="USU_Ativo" />
+                <ScalarProperty Name="USU_AcessoFake" ColumnName="USU_AcessoFake" />
+                <ScalarProperty Name="USU_DataAceiteRegulamento" ColumnName="USU_DataAceiteRegulamento" />
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="USU_Nome" ColumnName="USU_Nome" />
+                <ScalarProperty Name="USU_CPF" ColumnName="USU_CPF" />
+                <ScalarProperty Name="USU_CAR_ID" ColumnName="USU_CAR_ID" />
+                <ScalarProperty Name="USU_Login" ColumnName="USU_Login" />
+                <ScalarProperty Name="USU_Senha" ColumnName="USU_Senha" />
+                <ScalarProperty Name="USU_EMAIL" ColumnName="USU_EMAIL" />
+                <ScalarProperty Name="USU_Telefone" ColumnName="USU_Telefone" />
+                <ScalarProperty Name="USU_DataCadastro" ColumnName="USU_DataCadastro" />
+                <ScalarProperty Name="USU_DataAlteracao" ColumnName="USU_DataAlteracao" />
+                <ScalarProperty Name="USU_Anotacao" ColumnName="USU_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LAU_LogAutenticacaoUsuario">
+            <EntityTypeMapping TypeName="SAN123_Model.LAU_LogAutenticacaoUsuario">
+              <MappingFragment StoreEntitySet="LAU_LogAutenticacaoUsuario">
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="LAU_DataCadastro" ColumnName="LAU_DataCadastro" />
+                <ScalarProperty Name="LAU_DadosComplementares" ColumnName="LAU_DadosComplementares" />
+                <ScalarProperty Name="LAU_Ambiente" ColumnName="LAU_Ambiente" />
+                <ScalarProperty Name="LAU_AcessoIP" ColumnName="LAU_AcessoIP" />
+                <ScalarProperty Name="LAU_ID" ColumnName="LAU_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

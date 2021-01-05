@@ -1,0 +1,98 @@
+/* Add here all your CSS customizations */
+
+.bg_azulCapa {
+    background-color: #012746;
+}
+
+
+#busca_cadastro {
+    margin-left: -30px;
+    padding-top: 10px;
+}
+
+#cadas-cpf {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.custom-icon {
+	color: #01325a;
+}
+
+#login {
+    background: url(../img/BG_SAN149.png) no-repeat center center;
+    background-size: cover;
+}
+
+#login .btn-dark{
+	background-color: #01325a;
+}
+
+.bg-sanofi {
+    background-color: #01325a;
+}
+
+.bg-sanofi-amarelo {
+    background-color: #bcba00
+}
+
+.bg-sanofi-azul {
+	background-color: #485da1
+}
+
+.user-iteration-none {
+    pointer-events: none;
+	user-select: none
+}
+
+.va-middle {
+    vertical-align: middle;
+}
+
+.new-height{
+	height: 170px;
+}
+
+.regulamento ul {
+    list-style-type: none;
+}
+
+/* --- home --- */
+	.btn-gray{
+		background-color: #ccc!important;
+		color: #000!important;
+	}
+
+/* --- campanha --- */
+	.table td,
+	.table th{
+		padding: 5px;
+		vertical-align: middle!important;
+	}
+
+	#page-campanha .tabela-01 .table{
+		min-height: 308px;
+	}
+
+	#page-campanha .tabela-01 .total{
+		font-weight: bold;
+		height: 10px!important;
+	}
+
+	.testimonial.testimonial-with-quotes blockquote:after {
+		display: none!important;
+	}
+
+/* --- desempenho --- */
+	#page-desempenho .tab-content tbody td:first-child{
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+/* --- ranking --- */
+	#page-ranking .tab-content td:nth-child(2){
+		filter: blur(5px);
+	}
+	#page-ranking .tab-content tr.bg-warning td{
+		filter: blur(0px);	
+	}

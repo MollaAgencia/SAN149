@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Desempenho";
+    Layout = "~/Views/Shared/SiteShared.cshtml";
+}
+<div class="body">
+    <div role="main" id="page-desempenho" class="main">
+        <section class="section section-no-border section-light mb-0 mt-0s">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="font-weight-bold text-color-primary mb-0">Desempenho</h1>
+                        <!-- <h4 class="font-weight-bold text-color-quaternary">One is for you</h4> -->
+                        <p class="text-4">Confira sua performance na campanha. Arme sua jogada para marcar mais gols.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-gray section-no-border m-0">
+            <div class="container px-lg-5">
+                <div class="tabs text-center">
+                    <ul class="nav nav-tabs nav-justified flex-column flex-md-row">
+                        <li class="nav-item active">
+                            <a class="nav-link show active user-iteration-none" id="fase-q1" href="#q1" data-toggle="tab">Q1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link user-iteration-none" id="fase-q2" href="#q2" data-toggle="tab">Q2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link user-iteration-none" id="fase-q3" href="#q3" data-toggle="tab">Q3</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link user-iteration-none" id="fase-q4" href="#q4" data-toggle="tab">Q4</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="q1" class="tab-pane active show">
+                            <table class="table table-responsive-lg" id="tabela-desempenho-q1">
+                                @* Mensagem de Carregamento. Sai automaticamente após o término da chamada de desempenho *@
+                                <tbody>
+                                    <tr>
+                                        <td class="pt-4 mb-0">
+                                            <div class="d-flex justify-content-center va-middle mb-0">
+                                                <p class="mb-0 pt-4">Carregando...&nbsp;&nbsp;&nbsp;</p>
+                                                <img src="~/Content/img/loader/loader-ball.gif" width="50" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="q2" class="tab-pane">
+                            <table class="table table-responsive-lg" id="tabela-desempenho-q2">
+                                @* Mensagem de Carregamento. Sai automaticamente após o término da chamada de desempenho *@
+                                <tbody>
+                                    <tr>
+                                        <td class="pt-4 mb-0">
+                                            <div class="d-flex justify-content-center va-middle mb-0">
+                                                <p class="mb-0 pt-4">Carregando...&nbsp;&nbsp;&nbsp;</p>
+                                                <img src="~/Content/img/loader/loader-ball.gif" width="50" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="q3" class="tab-pane">
+                            <table class="table table-responsive-lg" id="tabela-desempenho-q3">
+                                @* Mensagem de Carregamento. Sai automaticamente após o término da chamada de desempenho *@
+                                <tbody>
+                                    <tr>
+                                        <td class="pt-4 mb-0">
+                                            <div class="d-flex justify-content-center va-middle mb-0">
+                                                <p class="mb-0 pt-4">Carregando...&nbsp;&nbsp;&nbsp;</p>
+                                                <img src="~/Content/img/loader/loader-ball.gif" width="50" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="q4" class="tab-pane">
+                            <table class="table table-responsive-lg" id="tabela-desempenho-q4">
+                                @* Mensagem de Carregamento. Sai automaticamente após o término da chamada de desempenho *@
+                                <tbody>
+                                    <tr>
+                                        <td class="pt-4 mb-0">
+                                            <div class="d-flex justify-content-center va-middle mb-0">
+                                                <p class="mb-0 pt-4">Carregando...&nbsp;&nbsp;&nbsp;</p>
+                                                <img src="~/Content/img/loader/loader-ball.gif" width="50" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-2 text-2 line-height-2 font-weight-bold">* Para fins de acompanhamento e apurações intermediárias, será sempre considerado o resultado acumulado até o período - denominado “Prêmio Calculado”. O Prêmio Calculado é o payout acumulado sem a aplicação dos tetos previstos na política de Remuneração Variável.</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/scripts/desempenho.js"></script>

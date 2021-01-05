@@ -1,0 +1,439 @@
+﻿@using MollaLibraryAPI.PessoaFisica;
+@using Aplicacao.Models.COMMON;
+@using Aplicacao.Models.ENTITY;
+
+@{
+    Layout = null;
+
+    //var usuario = values.PRP_UsuarioAutenticadoSite.PRP_DadosCadastrais;
+    //var complemento = values.PRP_UsuarioAutenticadoSiteComplemento;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Craques Sanofi</title>
+    <meta name="keywords" content="Craques Sanofi" />
+    <meta name="description" content="Craques Sanofi">
+    <meta name="author" content="agenciamolla.com.br">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <!-- Web Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/simple-line-icons/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/owl.carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/owl.carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/magnific-popup/magnific-popup.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/icofont/icofont.css">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/Content/css/theme.css">
+    <link rel="stylesheet" href="~/Content/css/theme-elements.css">
+    <!-- Current Page CSS -->
+    <link rel="stylesheet" href="~/Content/vendor/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="~/Content/vendor/rs-plugin/css/layers.css">
+    <link rel="stylesheet" href="~/Content/vendor/rs-plugin/css/navigation.css">
+    <link rel="stylesheet" href="~/Content/css/demo-gym.css">
+    <link rel="stylesheet" href="~/Content/css/skin-gym.css">
+    <link rel="stylesheet" href="~/Content/css/custom.css">
+    <!-- Head Libs -->
+    <script src="~/Content/vendor/modernizr/modernizr.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+</head>
+<body>
+    <input type="hidden" id="documento-usuario" @*value="@usuario.PRP_CPF"*@ />
+    <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
+        <div class="header-body border-bottom">
+            <div class="header-container container">
+                <div class="header-row">
+                    <div class="header-column">
+                        <div class="header-row">
+                            <div class="header-logo">
+                                <a href="~/Conteudo/Home">
+                                    <img alt="" width="110" height="110" data-sticky-width="82" data-sticky-height="82" data-sticky-top="40" src="~/Content/img/logo.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-column justify-content-end">
+                        <div class="header-row pt-3">
+                            <nav class="header-nav-top">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                                        <a class="nav-link pl-0 btn-contato" href="#" data-toggle="modal" data-target="#modal-contato"><i class="fas fa-angle-right"></i> Contato</a>
+                                    </li>
+                                    <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                                        <a class="nav-link" href="#" data-toggle="modal" data-target="#regulamento-modal"><i class="fas fa-angle-right"></i> Regulamento</a>
+                                    </li>
+                                    <li class="nav-item dropdown nav-item-left-border d-none d-sm-block nav-item-left-border-remove nav-item-left-border-md-show">
+                                        <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @*<img src="" class="flag flag-us" alt=""> @usuario.PRP_Nome*@
+                                            <i class="fas fa-angle-down"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownLanguage">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal_detalhesPerfil">Perfil</a>
+                                            <a class="dropdown-item" href="~/Login/Autenticacao">Sair</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-row">
+                            <div class="header-nav pt-1">
+                                <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+                                    <nav class="collapse">
+                                        <ul class="nav nav-pills" id="mainNav">
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Home">Home</a>
+                                            </li>
+                                            <li class="dropdown dropdown-mega">
+                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Campanha">Campanha</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="~/Desempenho/Desempenho">Desempenho</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="~/Ranking/Ranking">Ranking</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Novidades">Novidades</a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle emBreve" href="#">Destaques</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                @*<div id="img-prefil">
+                                        <img src="~/Content/img/persona.jpg" width="60" class="rounded-circle">
+                                    </div>*@
+
+                                <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer id="footer" class="bg-color-quaternary py-4">
+        <div class="container">
+            <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
+        </div>
+    </footer>
+
+    <!-- modal Contato -->
+    <div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0" id="ContatoModalLabel">Entre em Contato</h4>
+                    <button type="button" name="btn-fecha-contato" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="mb-0">CPF</label>
+                                <div class="input-group">
+                                    <input name="" id="contato_cpf" @*value="@usuario.PRP_CPF"*@ maxlength="14" class="form-control form-control-lg disabled" valid="" mask-cpf valida-cpf required>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="alertError" alert-cpf></div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="mb-0">E-mail</label>
+                                <div class="input-group">
+                                    <input name="" id="contato_email" @*value="@usuario.PRP_Email"*@ type="email" class="form-control form-control-lg disabled" valid="" valida-email required>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="alertError" alert-email></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group">
+                                <label class="mb-0">Nome</label>
+                                <div class="input-group">
+                                    <input name="" id="contato_nome" @*value="@usuario.PRP_Nome"*@ type="text" class="form-control form-control-lg disabled" valid="" valida-nome required>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="alertError" alert-nome></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group">
+                                <label class="mb-0">Assunto</label>
+                                <div class="input-group">
+                                    @*<input name="" id="contato_assunto" type="text" class="form-control form-control-lg" valid="" valida-assunto maxlength="20" required>*@
+                                    <select id="contato_assunto" class="form-control form-control-lg" valid valida-assunto-select required>
+                                        <option value="0">Selecione</option>
+                                        <option value="1">Dúvidas sobre Acesso/Cadastro</option>
+                                        <option value="2">Dúvidas sobre Resgates</option>
+                                        <option value="3">Dúvidas com relação a sua Pontuação</option>
+                                        <option value="4">Outros</option>
+                                    </select>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-info px-1" aria-hidden="true"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="alertError" alert-assunto></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group">
+                                <label class="mb-0">Mensagem</label>
+                                <div class="input-group">
+                                    <textarea name="" id="contato_mensagem" rows="4" style="resize: none;" class="form-control form-control-lg" valid="" valida-mensagem required></textarea>
+                                </div>
+                                <div class="alertError" alert-mensagem></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="alert_contato" class="text-center mt-4"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" name="btn-fecha-contato" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
+                    <button type="button" name="btn_contato" class="btn btn-dark text-white">Enviar <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detalhes Perfil -->
+    <div class="modal fade" id="modal_detalhesPerfil" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-blue" id="modalPerfil">Detalhes do meu Perfil</h4>
+                    <button id="btn-fechar-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <div class="form-group">
+                                <label class="mb-0">CPF</label>
+                                <div class="input-group">
+                                    <input name="" id="perfil-cpf" @*value="@usuario.PRP_CPF"*@ type="text" valid="true" class="form-control form-control-lg" mask-cpf required disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-0">Nome</label>
+                                <div class="input-group">
+                                    <input name="" id="perfil-nome" @*value="@usuario.PRP_Nome"*@ type="text" valid="true" class="form-control form-control-lg" valida-nome required disabled>
+                                </div>
+                                <div class="alertError" alert-nome></div>
+                            </div>
+                            @*<div class="form-group">
+                                    <label class="mb-0">Celular</label>
+                                    <div class="input-group">
+                                        <input name="" id="perfil-celular" value="@complemento.PRP_Telefone" type="text" valid="true" class="form-control form-control-lg" mask-celular valida-celular maxlength="15" required disabled>
+                                    </div>
+                                    <div class="alertError" alert-celular></div>
+                                </div>*@
+                            <div class="form-group">
+                                <label class="mb-0">Email</label>
+                                <div class="input-group">
+                                    <input name="" id="perfil-email" @*value="@usuario.PRP_Email"*@ type="text" valid="true" class="form-control form-control-lg" valida-email required disabled>
+                                </div>
+                                <div class="alertError" alert-email></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="mb-0">Senha</label>
+                                    <div class="input-group">
+                                        <input name="" id="perfil-senha" type="password" @*value="@complemento.PRP_Senha"*@ valid="true" class="form-control form-control-lg" valida-senha valida-forca-senha required disabled>
+                                    </div>
+                                    <div class="alertError" alert-senha alert-forca-senha></div>
+                                </div>
+                                <div id="perfil-div-conf-senha" class="form-group col d-none">
+                                    <label class="mb-0">Confirmar senha</label>
+                                    <div class="input-group">
+                                        <input name="" id="perfil-conf-senha" type="password" @*value="@complemento.PRP_Senha"*@ valid="true" class="form-control form-control-lg" valida-confsenha required disabled>
+                                    </div>
+                                    <div class="alertError" alert-conf-senha></div>
+                                </div>
+                            </div>
+                            <div id="alert-perfil" class="text-center mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="div-editar">
+                        <button type="button" id="btn-editar" class="btn btn-dark text-white">Editar</button>
+                        <button type="button" id="btn-fechar" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
+                    </div>
+                    <div id="div-salvar" class="d-none">
+                        <button type="button" id="btn-salvar" class="btn btn-success text-white">Salvar</button>
+                        <button type="button" id="btn-cancelar" class="btn btn-danger text-white">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal Regulamento -->
+    <div class="modal fade show" id="regulamento-modal" tabindex="-1" role="dialog" aria-labelledby="regulamento-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="regulamento-titulo">Regulamentos</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="accordion">
+                        <div class="card mb-2">
+                            <div class="card-header p-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link text-4 text-uppercase">Campanha Craques Sanofi</button>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <div style="max-height: 720px; height: 720px">
+                                        <iframe src="~/Content/pdf/Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf" width="100%" height="100%">
+                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
+                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf">Download PDF</a>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-2">
+                            <div class="card-header p-0" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link text-4 text-uppercase collapsed">Aditivo ao Regulamento Campanha Craques Sanofi</button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <div style="max-height: 720px; height: 720px">
+                                        <iframe src="~/Content/pdf/Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf" width="100%" height="100%">
+                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
+                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf">Download PDF</a>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="card mb-2">
+                            <div class="card-header p-0" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link text-4 text-uppercase collapsed">Aditivo 2 ao Regulamento Campanha Craques Sanofi</button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body p-0">
+                                    <div style="max-height: 720px; height: 720px">
+                                        <iframe src="~/Content/pdf/3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf" width="100%" height="100%">
+                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
+                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf">Download PDF</a>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/jquery.appear/jquery.appear.min.js"></script>
+    <script src="~/Content/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+    <script src="~/Content/vendor/popper/umd/popper.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/common/common.min.js"></script>
+    <script src="~/Content/vendor/jquery.validation/jquery.validate.min.js"></script>
+    <script src="~/Content/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="~/Content/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+    <script src="~/Content/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+    <script src="~/Content/vendor/isotope/jquery.isotope.min.js"></script>
+    <script src="~/Content/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/vendor/vide/jquery.vide.min.js"></script>
+    <script src="~/Content/vendor/vivus/vivus.min.js"></script>
+    <script src="~/Content/vendor/instafeed/instafeed.min.js"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/Content/js/theme.js"></script>
+    <!-- Current Page Vendor and Views -->
+    <script src="~/Content/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- Current Page Vendor and Views -->
+    <script src="~/Content/js/views/view.contact.js"></script>
+    <!-- Demo -->
+    <script src="~/Content/js/demo-gym.js"></script>
+    <!-- Theme Custom -->
+    <script src="~/Content/js/mascaraValidacao.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+    <!-- Theme Initialization Files -->
+    <script src="~/Content/js/theme.init.js"></script>
+
+    <script>
+        $(".emBreve").bind('click',
+            function () {
+                Swal.fire('Em breve!');
+            });
+    </script>
+
+    <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+    <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-12345678-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    -->
+</body>
+</html>

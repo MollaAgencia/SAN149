@@ -1,0 +1,1462 @@
+﻿@{
+    ViewBag.Title = "Autenticacao";
+    Layout = "~/Views/Shared/LoginShared.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="body-sign">
+                <div class="center-sign">
+
+                    <div class="panel card-sign">
+                        <div class="card-title-sign mt-3 text-center">
+                            <h2 class="title text-uppercase font-weight-bold m-0 text-5 " style="padding: 10px;letter-spacing: 5px;background-color:#012746; color:#00efe9;">primeiro acesso</h2>
+                        </div>
+                        <div class="card-body" style="background-color:#003056;height: 184px;">
+                            <div id="form-login">
+                                <div class="form-group mb-3">
+                                    <div CLASS="MB-5"></div>
+                                    <div class="input-group">
+                                        <input name="" id="cadastrocpf" type="text" placeholder="DIGITE SEU CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
+                                        <span class="input-group-append">
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <div id="alert-login" class="d-flex">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-right">
+                                        <div id="btnlogin_Cadastro" class="btn font-weight-bold text-4 text-uppercase form-control mt-2" style="padding: 6px 10px;background-color:#00fff7;color:#02334d;">CADASTRE-SE AQUI</div>
+                                    </div>
+                                </div>
+                                <br />
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="MontaHTMLCadastro"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+
+        <!--Quando liberar o login tirar o d-none dessa bagaça e programar....-->
+        <div class="col-md-6 d-none">
+            <section class="body-sign">
+                <div class="center-sign">
+                    <img src="~/Content/img/logo.png" width="150" class="d-block mx-auto">
+                    <div class="panel card-sign">
+                        <div class="card-title-sign mt-3 text-right">
+                            <h2 class="title bg-dark text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Login</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="form-login">
+                                <div class="form-group mb-3">
+                                    <label class="mb-0">CPF</label>
+                                    <div class="input-group">
+                                        <input name="" id="login-cpf" type="text" class="form-control form-control-lg" mask-cpf maxlength="14">
+                                        <span class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="clearfix">
+                                        <label class="float-left mb-0">Senha</label>
+                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-colo-primary">Esqueceu sua senha?</a>
+                                    </div>
+                                    <div class="input-group">
+                                        <input name="" id="login-senha" type="password" class="form-control form-control-lg" />
+                                        <span class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <div id="alert-login" class="d-flex">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-2 col-8 text-right">
+                                        <button id="btn-login" class="btn btn-dark text-white text-uppercase form-control mt-2" type="button">Login</button>
+                                    </div>
+                                </div>
+                                <span class="mt-3 mb-3 line-thru text-center text-uppercase">
+                                    <span>ou</span>
+                                </span>
+                                <div class="mb-1 text-center">
+                                    <a class="btn btn-dark mb-3 ml-1 mr-1 text-color-light" data-toggle="modal" data-target="#cadastroModal">Cadastre-se </a>
+                                    <a class="btn btn-dark mb-3 ml-1 mr-1 text-color-light" data-toggle="modal" data-target="#modal-contato">Contato </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- modal Contato -->
+<div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-0" id="ContatoModalLabel">Entre em Contato</h4>
+                <button type="button" name="btn-fecha-contato" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="mb-0">CPF</label>
+                            <div class="input-group">
+                                <input name="" id="contato_cpf" value="" maxlength="14" class="form-control form-control-lg" valid="" mask-cpf valida-cpf required>
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="alertError" alert-cpf></div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="mb-0">E-mail</label>
+                            <div class="input-group">
+                                <input name="" id="contato_email" value="" type="email" class="form-control form-control-lg" valid="" valida-email required>
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="alertError" alert-email></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="form-group">
+                            <label class="mb-0">Nome</label>
+                            <div class="input-group">
+                                <input name="" id="contato_nome" value="" type="text" class="form-control form-control-lg" valid="" valida-nome required>
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="alertError" alert-nome></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="form-group">
+                            <label class="mb-0">Assunto</label>
+                            <div class="input-group">
+                                @*<input name="" id="contato_assunto" type="text" class="form-control form-control-lg" valid="" valida-assunto maxlength="20" required>*@
+                                <select id="contato_assunto" class="form-control form-control-lg" valid valida-assunto-select required>
+                                    <option value="0">Selecione</option>
+                                    <option value="1">Dúvidas sobre Acesso/Cadastro</option>
+                                    <option value="2">Dúvidas sobre Resgates</option>
+                                    <option value="3">Dúvidas com relação a sua Pontuação</option>
+                                    <option value="4">Outros</option>
+                                </select>
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-info px-1" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="alertError" alert-assunto></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="form-group">
+                            <label class="mb-0">Mensagem</label>
+                            <div class="input-group">
+                                <textarea name="" id="contato_mensagem" rows="4" style="resize: none;" class="form-control form-control-lg" valid="" valida-mensagem required></textarea>
+                            </div>
+                            <div class="alertError" alert-mensagem></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="alert_contato" class="text-center mt-4"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="btn-fecha-contato" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
+                <button type="button" name="btn_contato" class="btn btn-dark text-white">Enviar <i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal Cadastro -->
+<div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="cadastroModalLabel">Realize seu cadastro</h4>
+                <button id="btn-fechar-cadastro-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="form-cadastro"></div>
+                <div id="div-campos-cadastro" class="">
+                    <div class="form-group">
+                        <label class="mb-0">CPF <span class="required text-4">*</span></label>
+                        <div class="input-group">
+                            <input name="" id="cadas-CPF_" type="text" class="form-control form-control-lg" disabled="disabled" mask-cpf maxlength="14">
+                        </div>
+                        <div class="alertError" alert-nome></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0">Nome <span class="required text-4">*</span></label>
+                        <div class="input-group">
+                            <input name="" id="cadas-nome" type="text" class="form-control form-control-lg" disabled="disabled" valida-nome required>
+                        </div>
+                        <div class="alertError" alert-nome></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0">Email <span class="required text-4">*</span></label>
+                        <div class="input-group">
+                            <input name="" id="cadas-email" type="text" class="form-control form-control-lg" disabled="disabled" valida-email required>
+                        </div>
+                        <div class="alertError" alert-email></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-0">Celular <span class="required text-4">*</span></label>
+                        <div class="input-group">
+                            <input name="" id="cadas-celular" type="text" class="form-control form-control-lg"maxlength="15"  valida-telefone mask-telefone required>
+                        </div>
+                        <div class="alertError" alert-email></div>
+                    </div>
+                    <div class="form-row">
+                        <ul>
+                            Sua senha deve conter:
+                            <li>Mínimo de 6 caracteres, entre letras e números</li>
+                            <li>Letras maiúsculas e minúsculas</li>
+                            <li>Pelo menos 1 caractere especial (!, %, &, @@, #, $, ^, *, ?, _, ~)</li>
+                        </ul>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="mb-0">Senha <span class="required text-4">*</span></label>
+                            <div class="input-group">
+                                <input name="" id="cadas-senha" type="password" class="form-control form-control-lg" valida-senha valida-forca-senha required>
+                            </div>
+                            <div class="alertError" alert-senha alert-forca-senha></div>
+                        </div>
+                        <div class="form-group col">
+                            <label class="mb-0">Confirmar senha <span class="required text-4">*</span></label>
+                            <div class="input-group">
+                                <input name="" id="cadas-conf-senha" type="password" class="form-control form-control-lg" valida-confsenha required>
+                            </div>
+                            <div class="alertError" alert-conf-senha></div>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" valid="" id="regulamento" valida-checkbox required>
+                        <label class="form-check-label" name="checkbox" for="regulamento">Eu li e concordo com o <a class="text-primary" href="#" data-toggle="modal" data-target="#regulamento-modal"><u>regulamento</u></a> da campanha CRAQUES 2020. <span class="required text-4">*</span></label>
+                    </div>
+                </div>
+                    <div id="alert-cadastro" class="text-center mt-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <div id="msg_informativa"></div>
+                    <button type="button" id="btn-fechar-cadastro" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
+                    <div  id="btn_cadastrar_MTD" class="btn btn-dark text-white">CONFIRMAR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal EsqueciSenha -->
+<div class="modal fade" id="EsqueciSenhaModal" tabindex="-1" role="dialog" aria-labelledby="EsqueciSenhaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-0" id="EsqueciSenhaModalLabel">Esqueci a Senha</h4>
+                <button type="button" name="btn-fecha-esqueci-senha" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="form-group">
+                            <label>Digite seu CPF no campo abaixo que enviaremos o link para gerar uma nova senha para o e-mail cadastrado.</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0">CPF</label>
+                            <div class="input-group">
+                                <input name="" id="ipt-cpf" type="text" class="form-control form-control-lg" maxlength="14" valida-cpf mask-cpf required>
+                                <span class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="text-2"><i>Caso tenha problemas para acessar o e-mail cadastrado, entre em <a class='cur-pointer font-weight-bold' data-toggle='modal' data-target='#modal-contato' data-dismiss='modal'><u>Contato</u></a> conosco</i></div>
+                            <div class="alertError" alert-cpf></div>
+                            <div id="alert-esqueci-senha" class="text-center mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="btn-fecha-esqueci-senha" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
+                <button type="button" id="btn-esqueci-senha" class="btn btn-dark text-white">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal Regulamento -->
+<div class="modal fade show" id="regulamento-modal" tabindex="-1" role="dialog" aria-labelledby="regulamento-titulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="regulamento-titulo">Regulamento</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="max-height: 720px; height: 720px">
+                    <iframe src="../../Content/pdf/Regulamento.pdf" width="100%" height="100%">
+                        Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
+                        <a class="btn bg-sanofi-azul" href="../../Content/pdf/Regulamento.pdf">Download PDF</a>
+                    </iframe>
+                </div>
+                <!-- Regulamento feito diretamente na modal. Ainda não finalizado-->
+                <div class="d-none">
+
+                    <div class="row">
+                        <div class="col text-center">
+                            <a class="btn btn-dark text-white"><i class="fas fa-file-alt"></i> Exibir regulamento original</a>
+                        </div>
+                        <div class="col text-center">
+                            <a class="btn btn-dark text-white"><i class="fas fa-download"></i> Download regulamento original</a>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="container regulamento">
+                        <div class="text-center">
+                            <h3>REGULAMENTO DA CAMPANHA CRAQUES SANOFI 2020</h3>
+                        </div>
+                        <div class="accordion" id="regulamento-accordion">
+                            <!-- 1 - DISPOSIÇÕES INICIAIS -->
+                            <div class="card" id="diposicoes-iniciais">
+                                <div class="card-header bg-sanofi pb-2 cur-pointer" id="head-diposicoes-iniciais" data-toggle="collapse" data-target="#accordion-diposicoes-iniciais" aria-expanded="false" aria-controls="accordion-diposicoes-iniciais">
+                                    <h4 class="mx-2 mb-0 text-white font-weight-bold">
+                                        1 - DISPOSIÇÕES INICIAIS
+                                    </h4>
+                                </div>
+                                <div id="accordion-diposicoes-iniciais" class="collapse p-3" aria-labelledby="head-diposicoes-iniciais" data-parent="#regulamento-accordion">
+                                    <ul>
+                                        <!-- 1.1 - Abrangência -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.1
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <strong><u>Abrangência: </u></strong>&nbsp;A campanha de incentivo de 2020 (<strong>Craques Sanofi</strong>) abrange
+                                                        todo o território nacional brasileiro e se aplica, exclusivamente, aos empregados
+                                                        da força de vendas alocados nas seguintes áreas internas e/ou Business Units: One
+                                                        Trade, CHC, One Promotion, Genzyme e Pasteur (“Empregado(s)”).
+                                                    </p>
+                                                    <ul class="ml-n4">
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.1.1
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        Para o Empregado participar da campanha Craques Sanofi é necessário
+                                                                        estar no quadro de empregados da força de vendas da SANOFI por pelo
+                                                                        menos 06 (seis) meses e fazer parte da força de vendas no momento do
+                                                                        encerramento da campanha – 31 de dezembro de 2020.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.2 - Vigência -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.2
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.3 - Acesso e Disponibilização do Regulamento -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.3
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Acesso e Disponibilização do Regulamento: </u>&nbsp; Esse regulamento da Craques Sanofi
+                                                        estará disponível no Echosign, para todos os Empregados. É obrigação dos
+                                                        Empregados tomarem pleno conhecimento dos documentos, esclarecerem
+                                                        eventuais dúvidas e realizarem a assinatura eletrônica de todos os documentos.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.4 - Premiação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.4
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Premiação: </u>&nbsp;Para estar apto a receber o prêmio, o Empregado vencedor deverá,
+                                                        no momento de resgate da premiação, estar com o contrato de trabalho vigente
+                                                        e ativo. Não haverá premiação para Empregado com o contrato de trabalho já
+                                                        rescindido por qualquer razão, ou transferido para Sede administrativa/Fábrica no
+                                                        momento de resgate da premiação.
+                                                    </p>
+                                                    <ul class="ml-n4">
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.4.1
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        Caso o Empregado não possa participar da premiação (viagem ou
+                                                                        curso), por motivo de licença maternidade, paternidade, médica ou
+                                                                        doença na família (comprovada mediante laudo médico) o mesmo
+                                                                        receberá um voucher correspondente a premiação em questão, que
+                                                                        possibilitará ao Empregado usufruir do benefício. O Empregado deverá
+                                                                        alinhar com seu superior imediato o período que poderá utilizar o voucher,
+                                                                        devendo fazê-lo, preferencialmente, no período de férias. Caso o
+                                                                        Empregado opte por não participar da premiação, por outros motivos
+                                                                        particulares, não terá direito a qualquer prêmio, ressarcimento e/ou
+                                                                        indenização.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.5 - Avaliação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.5
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Avaliação: </u>&nbsp;Os Empregados serão avaliados através de métricas mencionadas
+                                                        neste regulamento, no período de vigência deste regulamento, de acordo com
+                                                        o cronograma a seguir:
+                                                    </p>
+                                                    <ul class="ml-n4">
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.1
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        <u>Times/equipes com ciclos trimestrais:</u> Apuração da pontuação
+                                                                        independente entre os ciclos, conforme abaixo:
+                                                                        <strong>1º Trimestre</strong> = Janeiro/Fevereiro/Março;
+                                                                        <strong>2º Trimestre</strong> = Abril/Maio/Junho;
+                                                                        <strong>3º Trimestre</strong> = Julho/Agosto/Setembro;
+                                                                        <strong>4º Trimestre</strong> = Outubro/Novembro/Dezembro
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.2
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        <u>Times/equipes com ciclos semestrais:</u> Apuração da pontuação
+                                                                        independente entre os ciclos, sendo <strong>1° Semestre</strong> = Janeiro à Junho de
+                                                                        2020; e <strong>2° Semestre</strong> = Julho à Dezembro de 2020. Cada ciclo semestral
+                                                                        terá o dobro da pontuação do ciclo trimestral padrão.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.3
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        <u>Times/equipes com ciclos anuais = </u> Apuração da pontuação no período
+                                                                        de Janeiro à Dezembro de 2020. Cada ciclo anual terá 4 vezes a
+                                                                        pontuação do ciclo trimestral padrão.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.4
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        Para fins de acompanhamento e apurações intermediárias, será sempre
+                                                                        considerado o resultado acumulado até o período - denominado “Prêmio
+                                                                        Calculado”. O Prêmio Calculado é o payout acumulado sem a aplicação
+                                                                        dos tetos previstos na Política de Remuneração Variável 2020.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.5
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        Para o período em que o Empregado estiver em job rotation, licença e/ou
+                                                                        afastamentos, a pontuação da Craques Sanofi será igual à zero, ou seja,
+                                                                        não haverá pontuação no período.
+                                                                    </p>
+                                                                    <ul class="ml-n4">
+                                                                        <li>
+                                                                            <div class="row">
+                                                                                <div class="col-1 p-0">
+                                                                                    <p>
+                                                                                        A
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-11">
+                                                                                    <p>
+                                                                                        Caso este período compreenda parte do ciclo, será considerado o
+                                                                                        cálculo de pontos pró-rata referente ao período que efetivamente
+                                                                                        houve atuação. (ex. ficou em licença nos meses Maio e Junho durante
+                                                                                        ciclo semestral = será considerado apenas 4/6 da pontuação do
+                                                                                        ciclo).
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="row">
+                                                                                <div class="col-1 p-0">
+                                                                                    <p>
+                                                                                        B
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-11">
+                                                                                    <p>
+                                                                                        Durante o gozo de férias será considerada a pontuação na íntegra.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.5.6
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        No caso de alterações de posição/cargo, o Empregado disputará os
+                                                                        prêmios da seguinte forma:
+                                                                    </p>
+                                                                    <ul class="ml-n4">
+                                                                        <li>
+                                                                            <div class="row">
+                                                                                <div class="col-1 p-0">
+                                                                                    <p>
+                                                                                        A
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-11">
+                                                                                    <p>
+                                                                                        Promoção dentro do mesmo time/equipe: o Empregado concorrerá no
+                                                                                        time/equipe com a posição/cargo que ele passou o maior tempo na
+                                                                                        vigência da campanha. Caso o período seja igual, será considerado na
+                                                                                        posição/cargo de origem.
+                                                                                        Nos casos em que for considerada a apuração na posição/cargo de
+                                                                                        destino, para ser elegível à premiação o Empregado deverá ter no
+                                                                                        mínimo 100% da cobertura do payout.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="row">
+                                                                                <div class="col-1 p-0">
+                                                                                    <p>
+                                                                                        B
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-11">
+                                                                                    <p>
+                                                                                        Transferência para outro time/equipe: o Empregado concorrerá no
+                                                                                        time/equipe com a posição/cargo que ele passou o maior tempo na
+                                                                                        vigência da campanha. Caso o período seja igual, será considerado na
+                                                                                        posição/cargo de origem.
+                                                                                        Nos casos em que for considerada a apuração na posição/cargo de
+                                                                                        destino, para ser elegível à premiação o Empregado deverá ter no
+                                                                                        mínimo 100% da cobertura do payout.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="row">
+                                                                                <div class="col-1 p-0">
+                                                                                    <p>
+                                                                                        C
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="col-11">
+                                                                                    <p>
+                                                                                        Outros casos não previstos serão avaliados e deliberados pelo Comitê de
+                                                                                        Campanha.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.5 - Avaliação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.6
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Alterações e Modificações no Regulamento:: </u>&nbsp;A SANOFI se reserva ao direito de
+                                                        modificar, incluir ou suprimir quaisquer itens, pontos e critérios aqui apresentadas.
+                                                        Quaisquer mudanças serão devidamente comunicadas aos Empregados.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.5 - Avaliação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.7
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Casos Omissos: </u>&nbsp;Casos não previstos neste Regulamento e exceções serão
+                                                        discutidos e deliberados pelo Comitê de Campanha envolvendo as áreas de SFE,
+                                                        Unidade de Negócio, RH, Jurídico e Finanças.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.5 - Avaliação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.8
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Canal de Comunicação:: </u>&nbsp;O Empregado tem à sua disposição treinamentos, uma
+                                                        equipe e um canal de comunicação (Help Rep) disponível para esclarecimento
+                                                        de dúvidas, sempre que for necessário.
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- 1.5 - Avaliação -->
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.9
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Arredondamento de valores:: </u>&nbsp;Para ajustes e arredondamento de valores será
+                                                        considerada a regra de arredondamento baseada na ABNT/NBR 5891/1977.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- 2 - MECÂNICA E PREMIÃÇÃO -->
+                            <div class="card" id="mecanica-e-premiacao">
+                                <div class="card-header bg-sanofi pb-2 cur-pointer" id="head-mecanica-e-premiacao" data-toggle="collapse" data-target="#accordion-mecanica-e-premiacao" aria-expanded="false" aria-controls="accordion-mecanica-e-premiacao">
+                                    <h4 class="mx-2 mb-0 text-white font-weight-bold">
+                                        2 - MECÂNICA E PREMIÃÇÃO
+                                    </h4>
+                                </div>
+                                <div id="accordion-mecanica-e-premiacao" class="collapse p-3" aria-labelledby="head-mecanica-e-premiacao" data-parent="#regulamento-accordion">
+                                    <ul>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        2.1
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <strong><u>Trigger: </u></strong>&nbsp;A premiação só será realizada a partir do atingimento do gatilho global
+                                                        Sanofi Brasil de Net Sales com base no orçamento vigente B20, F1.20 ou F2.20.
+                                                        (“Trigger”)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        2.2
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        A quantidade de vencedores acompanhará o percentual atingido do Trigger,
+                                                        conforme quadro abaixo:
+                                                    </p>
+                                                    <table class="table table-bordered">
+                                                        <thead class="bg-sanofi-azul text-white text-center">
+                                                            <tr>
+                                                                <th>ATINGIMENTO</th>
+                                                                <th>QUANTIDADE DE VENCEDORES</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Até 94%</td>
+                                                                <td>Não há vencedores</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Entre 95% e 99%</td>
+                                                                <td>Redução de 50% dos vencedores (quadro do item 2.4)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>100%</td>
+                                                                <td>Total de vencedores (quadro do item 2.3)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        2.3
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        A disputa e quantidade de vencedores respeitará a tabela abaixo:
+                                                    </p>
+                                                    <div class="accordion" id="accordion-2-3">
+                                                        <!-- ONE PROMOTION -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi-azul pb-2 cur-pointer" id="head-one-promotion" data-toggle="collapse" data-target="#one-promotion" aria-expanded="true" aria-controls="one-promotion">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    ONE PROMOTION
+                                                                </h5>
+                                                            </div>
+                                                            <div id="one-promotion" class="collapse" aria-labelledby="head-one-promotion" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi-azul text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>SAUDE FEMININA</td>
+                                                                                <td>78</td>
+                                                                                <td>7</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td rowspan="18">2</td>
+                                                                                <td rowspan="18">1</td>
+                                                                                <td>2</td>
+                                                                                <td rowspan="7">4</td>
+                                                                                <td rowspan="18">2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SNC</td>
+                                                                                <td>78</td>
+                                                                                <td>8</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CARDIO</td>
+                                                                                <td>75</td>
+                                                                                <td>7</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>ALERGO</td>
+                                                                                <td>75</td>
+                                                                                <td>8</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>GASTRO/ BIOMECANICA</td>
+                                                                                <td>70</td>
+                                                                                <td>7</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>ENDO</td>
+                                                                                <td>62</td>
+                                                                                <td rowspan="2">10</td>
+                                                                                <td rowspan="2">1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>DIABETES</td>
+                                                                                <td>38</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA ALERGO</td>
+                                                                                <td>10</td>
+                                                                                <td rowspan="3">1</td>
+                                                                                <td rowspan="11">2</td>
+                                                                                <td rowspan="11">1</td>
+                                                                                <td rowspan="11">2</td>
+                                                                                <td rowspan="11">1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA DUPIXENT</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA DOENÇAS RARAS</td>
+                                                                                <td>2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA GASTRO / BIOMECANICA</td>
+                                                                                <td>4</td>
+                                                                                <td rowspan="6">2</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA ATIVAÇÃO</td>
+                                                                                <td>4</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA AQUISIÇÃO</td>
+                                                                                <td>18</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA CARDIO</td>
+                                                                                <td>4</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA DIABETES</td>
+                                                                                <td>3</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA ENDO</td>
+                                                                                <td>3</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA SAÚDE FEMININA</td>
+                                                                                <td>6</td>
+                                                                                <td rowspan="2">1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>CONECTA SNC</td>
+                                                                                <td>4</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- PRIMARY CARE -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi-azul pb-2 cur-pointer" id="head-primary-care" data-toggle="collapse" data-target="#primary-care" aria-expanded="true" aria-controls="primary-care">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    PRIMARY CARE
+                                                                </h5>
+                                                            </div>
+
+                                                            <div id="primary-care" class="collapse" aria-labelledby="head-primary-care" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi-azul text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>HOSPITALAR</td>
+                                                                                <td>66</td>
+                                                                                <td>8</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>B2B</td>
+                                                                                <td>23</td>
+                                                                                <td>3</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- PASTEUR -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi-azul pb-2 cur-pointer" id="head-pasteur" data-toggle="collapse" data-target="#pasteur" aria-expanded="true" aria-controls="pasteur">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    PASTEUR
+                                                                </h5>
+                                                            </div>
+
+                                                            <div id="pasteur" class="collapse" aria-labelledby="head-pasteur" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi-azul text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>TELEVENDAS</td>
+                                                                                <td>1</td>
+                                                                                <td colspan="2" class="bg-sanofi-azul"></td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>KAM PUBLICO</td>
+                                                                                <td colspan="3" class="bg-sanofi-azul"></td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>VACINAS PRIVADO</td>
+                                                                                <td>12</td>
+                                                                                <td class="bg-sanofi-azul"></td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- GENZYME -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi-azul pb-2 cur-pointer" id="head-genzyme" data-toggle="collapse" data-target="#genzyme" aria-expanded="true" aria-controls="genzyme">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    GENZYME
+                                                                </h5>
+                                                            </div>
+
+                                                            <div id="genzyme" class="collapse" aria-labelledby="head-genzyme" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi-azul text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>FABRY</td>
+                                                                                <td>11</td>
+                                                                                <td rowspan="6" class="bg-sanofi-azul"></td>
+                                                                                <td rowspan="6">1</td>
+                                                                                <td rowspan="6">2</td>
+                                                                                <td rowspan="6">1</td>
+                                                                                <td rowspan="6">1</td>
+                                                                                <td rowspan="6">3</td>
+                                                                                <td rowspan="6">2</td>
+                                                                                <td rowspan="6">1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>GAUCHER & MPS</td>
+                                                                                <td>8</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>POMPE</td>
+                                                                                <td>8</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>ESCLEROSE MULTIPLA</td>
+                                                                                <td>6</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>DUPILUMABE</td>
+                                                                                <td>14</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>ONCOLOGIA</td>
+                                                                                <td>11</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ONE TRADE -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi-azul pb-2 cur-pointer" id="head-one-trade" data-toggle="collapse" data-target="#one-trade" aria-expanded="true" aria-controls="one-trade">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    ONE TRADE
+                                                                </h5>
+                                                            </div>
+
+                                                            <div id="one-trade" class="collapse" aria-labelledby="head-one-trade" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM *</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM *</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM *</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>SELL IN NRT PUBLICO</td>
+                                                                                <td rowspan="9" class="bg-sanofi-azul"></td>
+                                                                                <td>10</td>
+                                                                                <td rowspan="4" class="bg-sanofi-azul"></td>
+                                                                                <td rowspan="9" class="bg-sanofi-azul"></td>
+                                                                                <td rowspan="12">1</td>
+                                                                                <td rowspan="12">1</td>
+                                                                                <td rowspan="9" class="bg-sanofi-azul"></td>
+                                                                                <td rowspan="2">1</td>
+                                                                                <td rowspan="12">1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SELL IN NRT PRIVADO DISTRIBUIDORES</td>
+                                                                                <td>5</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SELL IN NRT PRIVADO KAM</td>
+                                                                                <td>5</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SELL IN NRT PRIVADO KAM</td>
+                                                                                <td>5</td>
+                                                                                @* TODO: *@
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- CHC -->
+                                                        <div class="card border">
+                                                            <div class="card-header bg-sanofi pb-2 cur-pointer" id="head-primary-care" data-toggle="collapse" data-target="#primary-care" aria-expanded="true" aria-controls="primary-care">
+                                                                <h5 class="mx-2 mb-0 text-white font-weight-bold">
+                                                                    PRIMARY CARE
+                                                                </h5>
+                                                            </div>
+
+                                                            <div id="primary-care" class="collapse" aria-labelledby="head-primary-care" data-parent="#accordion-2-3">
+                                                                <div class="card-body pt-2 pb-1">
+                                                                    <table class="table table-responsive table-bordered text-center">
+                                                                        <thead class="bg-sanofi text-white">
+                                                                            <tr>
+                                                                                <th rowspan="2">EQUIPE</th>
+                                                                                <th colspan="3">TRIMESTRAL</th>
+                                                                                <th colspan="3">SEMESTRAL</th>
+                                                                                <th colspan="3">ANUAL</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>REP / PROM. /CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                                <th>REP / PROM. / CONS.</th>
+                                                                                <th>GPM / GV / KAM*</th>
+                                                                                <th>GND / GR</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>HOSPITALAR</td>
+                                                                                <td>66</td>
+                                                                                <td>8</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>B2B</td>
+                                                                                <td>23</td>
+                                                                                <td>3</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>1</td>
+                                                                                <td>2</td>
+                                                                                <td>1</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.4
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Premiação: </u>&nbsp;Para estar apto a receber o prêmio, o Empregado vencedor deverá,
+                                                        no momento de resgate da premiação, estar com o contrato de trabalho vigente
+                                                        e ativo. Não haverá premiação para Empregado com o contrato de trabalho já
+                                                        rescindido por qualquer razão, ou transferido para Sede administrativa/Fábrica no
+                                                        momento de resgate da premiação.
+                                                    </p>
+                                                    <ul class="ml-n4">
+                                                        <li>
+                                                            <div class="row">
+                                                                <div class="col-1 p-0">
+                                                                    <p>
+                                                                        1.4.1
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-11">
+                                                                    <p>
+                                                                        Caso o Empregado não possa participar da premiação (viagem ou
+                                                                        curso), por motivo de licença maternidade, paternidade, médica ou
+                                                                        doença na família (comprovada mediante laudo médico) o mesmo
+                                                                        receberá um voucher correspondente a premiação em questão, que
+                                                                        possibilitará ao Empregado usufruir do benefício. O Empregado deverá
+                                                                        alinhar com seu superior imediato o período que poderá utilizar o voucher,
+                                                                        devendo fazê-lo, preferencialmente, no período de férias. Caso o
+                                                                        Empregado opte por não participar da premiação, por outros motivos
+                                                                        particulares, não terá direito a qualquer prêmio, ressarcimento e/ou
+                                                                        indenização.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.5
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.6
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.7
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.8
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <p>
+                                                        1.9
+                                                    </p>
+                                                </div>
+                                                <div class="col-11">
+                                                    <p>
+                                                        <u>Vigência: </u>&nbsp;Este regulamento é vigente a partir de 1 de janeiro de 2020 até 31 de
+                                                        dezembro de 2020.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/vendor/jquery/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+<script src="~/Content/vendor/pdfobject/pdfobject.js"></script>
+<script src="~/Content/js/custom.js" type="text/javascript"></script>
+<script src="~/Content/scripts/autenticacao.js" type="text/javascript"></script>
+<script src="~/Content/js/cadastro.js"></script>

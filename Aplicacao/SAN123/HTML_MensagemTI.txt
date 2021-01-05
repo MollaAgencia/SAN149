@@ -1,0 +1,55 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="br">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Mensagem TI MOLLA</title>
+</head>
+<body>
+	<table width="584" style="margin:0 auto;max-width:584px;font-family:Helvetica,Arial,Verdana,sans-serif;font-size:13px;line-height:18px;" >
+		<tbody>
+			<tr>
+				<td>
+					<table width="100%" style="background:#ff671f;border: 1px solid #000; padding:10px;border-top-width:10px;">
+						<tbody>
+							<tr>
+								<td align="center"><img width="30%" src="http://www.agenciamolla.com.br/img/logo-molla-topo.png" ></td>
+							</tr>
+						</tbody>
+					</table>
+					<table width="100%" cellpadding="24" style="background:#fff;border:1px solid #000;border-top:none;border-bottom:10px solid #000">
+						<tbody>
+							<tr>
+							
+								<td>
+									<p style="margin-top:0;margin-bottom:12px">Este e-mail foi enviado automaticamente pela equipe <b>TI MOLLA &reg;</b> .</p> 
+									<p style="margin-top:12px;margin-bottom:12px"><b>Pagina </b>: [Pagina] </p>
+									<p style="margin-top:12px;margin-bottom:12px"><b>Data   </b>: [Data] </p>
+									<p style="margin-top:12px;margin-bottom:12px"><b>Descricao   </b>: [Descricao] </p>
+									<p style="margin-top:12px;margin-bottom:12px"><b>ID Usuario   </b>: [Usuario]</p>
+									<span lang="pt-br" style="padding-top:16px;padding-right:40px;padding-bottom:16px;padding-left:10px;color:#292A96;font-size:14px">
+									<b> Mensagem Aplicacao</b>
+									</span>
+									<p> 
+										[Mensagem]
+									</p>
+									<span lang="pt-br" style="padding-top:16px;padding-right:40px;padding-bottom:16px;padding-left:10px;color:#292A96;font-size:14px">
+										<b> Mensagem Exception</b>
+									</span>
+									<p>
+										[Execao]
+									</p>
+								
+									
+									<!--<p style="margin-top:0;margin-bottom:12px">Obrigado,<br><strong>TI MOLLA &reg;</strong> </p>-->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

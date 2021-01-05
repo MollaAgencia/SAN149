@@ -1,0 +1,128 @@
+﻿@model MollaLibrary.COMMON.RetornoRequisicao
+@using MollaLibrary.ExtendMethods;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="~/Content/img/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/Content/img/favicon.png">*@
+
+    <title>AcessoFake</title>
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="~/Content/vendor/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/Content/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/Content/css/theme-admin.css" />
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/Content/css/skins/default-admin.css" />
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/Content/css/custom.css">
+    <!-- Head Libs -->
+    <script src="~/Content/vendor/modernizr/modernizr.min.js"></script>
+
+    <!-- Selec2 -->
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        .body-sign {
+            max-width: 800px;
+        }
+    </style>
+
+</head>
+<body id="login">
+    <div class="body-sign">
+        <div class="center-sign">
+
+            @using (Html.BeginForm("AcessoFakeRedirecionar", "Login", FormMethod.Post, new { enctype = "multipart/form-data", id = "Form_Login" }))
+            {
+                <div class="panel card-sign">
+                    <div class="card-title-sign text-right">
+                        <h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user-secret mr-2"></i>Acesso Corporativo</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="loginForm">
+                            <div class="form-group mb-3">
+                                <label class="mb-1">Usuários</label>
+                                <div class="input-group">
+
+                                    @Html.DropDownList("PRP_Usuarios", null, new { @class = "custom-select form-control", id = "sel_Usuarios" })
+                                    
+                                </div>
+                            </div>
+
+                            @if (Model.PRP_Status)
+                            {
+                                <div class="row">
+                                    <div class="offset-4 col-4 ">
+                                        <button id="btn_ObterValue" class="btn btn-primary text-white text-uppercase form-control mt-2" type="submit">Acessar</button>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.MTD_Mensagem(Model.PRP_TipoMensagem, Model.PRP_Mensagem)
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12" id="div_Mensagem">
+
+                                </div>
+                            </div>
+                            @Html.Hidden("Usuarios", "", new { id = "Usuarios" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.7.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.js"></script>*@
+
+    <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/i18n/pt-BR.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#sel_Usuarios').select2({
+                placeholder: 'Selecione uma opção',
+                language: "pt-br"
+
+            });
+
+            $('#btn_ObterValue').click(function (e) {
+                e.preventDefault();
+
+                let valorSelecionado = $('#sel_Usuarios').select2('val');
+                if (valorSelecionado != "0") {
+                    let $this = $(this);
+                    let parametros = {};
+                    parametros.Usuario = valorSelecionado;
+                    $('#Usuarios').val(valorSelecionado);
+                    $('#div_Mensagem').removeAttr('hidden');
+                    $('#div_Mensagem').html('<div class="alert alert-info text-center"><i class="fa  fa-spinner fa-spin"></i><span class= ""> Autenticando...</span></div>');
+                    $this.attr('disabled', 'disabled');
+
+                    $('#Form_Login').submit();
+                }
+
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1dcdfe45e01b45f0bc51952e4dc94cec" Name="Diagram1">
+        <EntityTypeShape EntityType="SAN123_Model.CAR_Cargo" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.DES_Desempenho" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.DSD_DesempenhoDescricao" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.DSF_DesempenhoFase" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.DSK_DesempenhoKpi" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.GRC_GrupoCompeticao" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.RKG_RankingGrupo" Width="4.125" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAN123_Model.USU_Usuario" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SAN123_Model.FK__USUARIO_CARGO" ManuallyRouted="false" />
+        <AssociationConnector Association="SAN123_Model.DES_DSF_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SAN123_Model.DES_GRC_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SAN123_Model.DES_USU_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SAN123_Model.RKG_GRC_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="SAN123_Model.RKG_USU_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SAN123_Model.LAU_LogAutenticacaoUsuario" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="SAN123_Model.LAU_USU_FK" />
+        <AssociationConnector Association="SAN123_Model.FK_DES_DSD" />
+        <AssociationConnector Association="SAN123_Model.FK_DES_DSK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
