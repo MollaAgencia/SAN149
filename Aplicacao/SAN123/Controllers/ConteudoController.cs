@@ -24,11 +24,10 @@ namespace Aplicacao.Controllers
         }
         public ActionResult Home()
         {
-            //if (values.PRP_UsuarioAutenticadoSite == null)
+            //if(Session["USU_CPF"] == null)
             //{
             //    return RedirectToAction("Autenticacao", "Login");
             //}
-
             return View();
         }
         public ActionResult Novidades()

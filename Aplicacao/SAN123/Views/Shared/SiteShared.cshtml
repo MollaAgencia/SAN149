@@ -13,9 +13,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Craques Sanofi</title>
-    <meta name="keywords" content="Craques Sanofi" />
-    <meta name="description" content="Craques Sanofi">
+    <title>Sanofi</title>
+    <meta name="keywords" content="Sanofi" />
+    <meta name="description" content="Sanofi">
     <meta name="author" content="agenciamolla.com.br">
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -49,12 +49,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </head>
 <body>
+    <a href="https://www.globo.com/" target="_blank">
+        <img src="~/Content/img/banner_desktop_01.png" class="img-fluid" />
+    </a>
     <input type="hidden" id="documento-usuario" @*value="@usuario.PRP_CPF"*@ />
-    <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
-        <div class="header-body border-bottom">
+    <header class="d-none" id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
+        <div class="header-body border-bottom ">
             <div class="header-container container">
                 <div class="header-row">
-                    <div class="header-column">
+                    <div class="header-column d-none">
                         <div class="header-row">
                             <div class="header-logo">
                                 <a href="~/Conteudo/Home">
@@ -63,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="header-column justify-content-end">
+                    <div class="header-column justify-content-end d-none">
                         <div class="header-row pt-3">
                             <nav class="header-nav-top">
                                 <ul class="nav nav-pills">
@@ -131,8 +134,7 @@
     <div>
         @RenderBody()
     </div>
-
-    <footer id="footer" class="bg-color-quaternary py-4">
+    <footer id="footer" class="bg-color-quaternary py-5">
         <div class="container">
             <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
         </div>
@@ -339,7 +341,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card mb-2">
                             <div class="card-header p-0" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <h5 class="mb-0">
@@ -357,7 +359,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                         <div class="card mb-2">
                             <div class="card-header p-0" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 <h5 class="mb-0">
