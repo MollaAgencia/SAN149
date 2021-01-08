@@ -16,7 +16,7 @@ namespace Aplicacao.Models.ENTITY
     public partial class SAN123_Entities : DbContext
     {
         public SAN123_Entities()
-            : base("name=SAN123_Entities")
+            : base("name=SAN149_Entities")
         {
         }
     

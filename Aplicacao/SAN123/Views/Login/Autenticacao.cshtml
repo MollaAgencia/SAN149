@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <section class="body-sign">
                 <div class="center-sign">
 
@@ -55,20 +55,18 @@
 
 
         <!--Quando liberar o login tirar o d-none dessa bagaça e programar....-->
-        <div class="col-md-6 d-none">
+        <div class="col-md-6">
             <section class="body-sign">
                 <div class="center-sign">
-                    <img src="~/Content/img/logo.png" width="150" class="d-block mx-auto">
                     <div class="panel card-sign">
-                        <div class="card-title-sign mt-3 text-right">
-                            <h2 class="title bg-dark text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Login</h2>
+                        <div class="card-title-sign mt-3 text-center">
+                            <h2 class="title text-uppercase font-weight-bold m-0 text-5 " style="padding: 10px;letter-spacing: 5px;background-color:#012746; color:#00efe9;"> Login</h2>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:#003056;height: 290px;">
                             <div id="form-login">
                                 <div class="form-group mb-3">
-                                    <label class="mb-0">CPF</label>
                                     <div class="input-group">
-                                        <input name="" id="login-cpf" type="text" class="form-control form-control-lg" mask-cpf maxlength="14">
+                                        <input name="" id="logincpf_" type="text"placeholder="CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
                                         <span class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fas fa-user"></i>
@@ -78,11 +76,10 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <div class="clearfix">
-                                        <label class="float-left mb-0">Senha</label>
-                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-colo-primary">Esqueceu sua senha?</a>
+                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-white">Esqueceu sua senha?</a>
                                     </div>
                                     <div class="input-group">
-                                        <input name="" id="login-senha" type="password" class="form-control form-control-lg" />
+                                        <input name="" id="loginsenha_" type="password" placeholder="SENHA" class="form-control form-control-lg" />
                                         <span class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fas fa-lock"></i>
@@ -95,20 +92,15 @@
                                         <div id="alert-login" class="d-flex">
 
                                         </div>
+                                        <div id="Msg_informativa_Login"></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="offset-2 col-8 text-right">
-                                        <button id="btn-login" class="btn btn-dark text-white text-uppercase form-control mt-2" type="button">Login</button>
+                                        <div id="btn_login_Acesso" class="btn font-weight-bold text-5 text-uppercase form-control mt-2"  style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">Login</div>
                                     </div>
                                 </div>
-                                <span class="mt-3 mb-3 line-thru text-center text-uppercase">
-                                    <span>ou</span>
-                                </span>
-                                <div class="mb-1 text-center">
-                                    <a class="btn btn-dark mb-3 ml-1 mr-1 text-color-light" data-toggle="modal" data-target="#cadastroModal">Cadastre-se </a>
-                                    <a class="btn btn-dark mb-3 ml-1 mr-1 text-color-light" data-toggle="modal" data-target="#modal-contato">Contato </a>
-                                </div>
+                               
                             </div>
                         </div>
 

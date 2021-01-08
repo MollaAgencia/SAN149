@@ -43,7 +43,7 @@ namespace Aplicacao.Models.SITE.Login
                 {
                     if (string.IsNullOrEmpty(usuario.USU_Senha))
                     {
-                                                
+
                         usuarioRetorno.PRP_Dados = new Usuario
                         {
                             PRP_Documento = usuario.USU_CPF,
@@ -315,53 +315,45 @@ namespace Aplicacao.Models.SITE.Login
 
         public RetornoRequisicao MTD_EsqueciSenhaEnvio(string pCpf)
         {
+            string st_json = "";
+            string key = "";
+ 
+            Cad_Cadastro usu = new Cad_Cadastro();
             RetornoRequisicao requisicao = new RetornoRequisicao();
             pCpf = pCpf.MTD_ApenasNumeros();
             try
             {
-                var usuario = EF.USU_Usuario.FirstOrDefault(u => u.USU_CPF.Equals(pCpf));
-                if (usuario == null)
+                MollaLibrary.DataSource.MicrosoftSqlServer sqlServer = new MollaLibrary.DataSource.MicrosoftSqlServer(Models.COMMON.values.PRP_StringConexao);
+                System.Data.SqlClient.SqlParameterCollection parameterCollection = sqlServer.InicializaSqlParameterCollection;
+                parameterCollection.Add("@pCPF", System.Data.SqlDbType.VarChar).Value = pCpf.MTD_ApenasNumeros();
+                System.Data.DataTable dtb_result = sqlServer.DbExecute("sp_site_EsqueceuSenha", parameterCollection, System.Data.CommandType.StoredProcedure);
+                if (dtb_result != null)
                 {
-                    requisicao.PRP_Mensagem = "Usuário não localizado. Entre em contato conosco <a class='text-uppercase cur-pointer font-weight-bold' data-toggle='modal' data-target='#ContatoModal' data-dismiss='modal'><u>clicando aqui</u></a>".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Info;
-                }
-                else if (!usuario.USU_Ativo)
-                {
-                    requisicao.PRP_Mensagem = "Usuário desativado da campanha, qualquer duvida entre em contato <a class='text-uppercase cur-pointer font-weight-bold' data-toggle='modal' data-target='#ContatoModal' data-dismiss='modal'><u>clicando aqui</u></a>.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Info;
-                }
-                else if (!usuario.USU_DataAceiteRegulamento.HasValue)
-                {
-                    requisicao.PRP_Mensagem = "Para alterar a senha é necessário primeiramente realizar o cadastro. <a class='text-uppercase cur-pointer font-weight-bold' data-toggle='modal' data-target='#preCadastroModal' data-dismiss='modal'><u>clicando aqui</u></a> para continuar".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Info;
-                }
-                else
-                {
-                    COMMON.Email.Email_Disparo disparo = new COMMON.Email.Email_Disparo();
-                    EsqueciSenha dados = new EsqueciSenha();
-                    dados.PRP_PitID = 10;
-                    dados.PRP_DataSolicitacao = DateTime.Now.MTD_DataHoraBrasil().ToString("yyyy-MM-dd HH:mm:ss");
-                    dados.PRP_HorasValidade = 48;
-                    dados.PRP_UsuarioID = usuario.USU_ID;
-                    dados.PRP_Login = usuario.USU_CPF;
-                    disparo.PRP_EmailDestinatario = usuario.USU_EMAIL;
-                    disparo.PRP_Assunto = "Esqueci a senha";
-                    string st_Chave = JsonUtil.Serialize(dados).MTD_CriptografiaReversivel(EnunsApp.en_Criptografia.Encriptar);
+                    foreach (System.Data.DataRow linha in dtb_result.Rows)
+                    {
+                        //usu.id = int.Parse(linha["id"].ToString());
+                        usu.NOME = linha["USU_NOME"].ToString();
+                        usu.EMAIL = linha["USU_Email"].ToString();
+                        usu.CPF = linha["USU_CPF"].ToString();
+                    }
 
-                    var item = disparo.MTD_DisparoEmailEsqueciSenha(usuario.USU_Nome, st_Chave);
-                    requisicao.PRP_Status = item.PRP_Status;
-                    requisicao.PRP_Mensagem = item.PRP_Mensagem;
+                    Models.COMMON.Email.Email_Disparo disparo = new Models.COMMON.Email.Email_Disparo();
+                    key = string.Format("{0}", (int)usu.id).MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Encriptar);
+                    disparo.PRP_EmailDestinatario = usu.EMAIL;
+                    requisicao.PRP_Status = true;
+                    requisicao.PRP_Mensagem = string.Format(@"Olá, foi enviado um link para recadastramento de sua senha para o e-mail cadastrado {0}.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
+                    disparo.MTD_DisparoEmailEsqueciSenha(usu.NOME, key);
                 }
-
+                else if (dtb_result == null)
+                {
+                    requisicao.PRP_Status = false;
+                    requisicao.PRP_Mensagem = string.Format(@"Olá, algo inesperado ocorreu tente novamente em instantes.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
-                requisicao.PRP_Mensagem = "falha ao enviar a requisição";
                 requisicao.PRP_Status = false;
+                requisicao.PRP_Mensagem = string.Format(@"Olá, algo inesperado ocorreu entre em contato com o Fale Conosco.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Danger);
             }
             return requisicao;
         }

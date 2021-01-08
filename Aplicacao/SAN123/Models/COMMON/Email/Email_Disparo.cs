@@ -10,13 +10,13 @@ namespace Aplicacao.Models.COMMON.Email
     {
         public Email_Disparo()
         {
-            //st_EmailRemetente = "mollaincentive@agenciamolla.com.br";
-            //st_EmailSmtpRemetente = "smtp.office365.com";
-            //st_EmailCredencialSenha = "@@iot2017@@";
-            //it_EmailSmtpPorta = 587;
-            //st_EmailUsuario = "mollaincentive@agenciamolla.com.br";
-            //EmailRemetenteAlias = "Contato VIG010";
-            MTD_ListaDadosConfiguracao();
+            st_EmailRemetente = "contato@meuportalgmills.com.br";
+            st_EmailSmtpRemetente = "email-ssl.com.br";
+            st_EmailCredencialSenha = "@@Iot2019@@";
+            it_EmailSmtpPorta = 587;
+            st_EmailUsuario = "contato@meuportalgmills.com.br";
+            EmailRemetenteAlias = "Contato GEN015";
+            //MTD_ListaDadosConfiguracao();
 
         }
 

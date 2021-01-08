@@ -117,3 +117,38 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
     }
 });
 
+
+$(document).on('click', '#btn_login_Acesso', function (event) {
+    var parametros = {};
+    parametros.CPF = $('#logincpf_').val();
+    parametros.Senha = $('#loginsenha_').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/Login/MTD_AcessoLogin',
+        data: JSON.stringify(parametros),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        beforeSend: function () {
+            $('#btn_login_Acesso').addClass('d-none');
+            $('#btn_login_Acesso').removeClass('d-none').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> acessando...</span>');
+            $('#Msg_informativa_Login').addClass('d-none');
+            $('.alertError').addClass('d-none');
+        },
+        success: function (returnValue) {
+            var jsonResult = JSON.parse(returnValue);
+            if (jsonResult[0].PRP_STATUS == true) {
+                $('#cadastroModal').modal("hide");
+                location.href = '/Conteudo/Home';
+            } else {
+                Swal.fire(
+                    'Login não encontrado!'
+                    
+                ).then(function () {
+                    location.href = '/Login/Autenticacao';
+                });
+            }
+        }
+    })
+
+});

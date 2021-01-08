@@ -24,39 +24,11 @@ namespace Aplicacao.Controllers
         {
             if (TempData["PPR_Requisicao"] == null)
             {
-
-
                 MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
-                try
-                {
-                    string st_Chave = chave.MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Decriptar);
-                    EsqueciSenha Dados = MollaLibrary.Web.JsonUtil.ConvertToObject<EsqueciSenha>(st_Chave);
-                    DateTime dt = DateTime.Parse(Dados.PRP_DataSolicitacao);
-                    TimeSpan ts = DateTime.Now.MTD_DataHoraBrasil() - dt;
-                    MollaLibrary.Web.SessionVar.Set<EsqueciSenha>("EsqueciSenhaDados", Dados);
-                    if (ts.TotalHours > Dados.PRP_HorasValidade)
-                    {
-                        requisicao.PRP_Status = false;
-                        requisicao.PRP_Mensagem = "A validade da solicitação expirou, por favor refaça o processo e tente novamente dentro do periodo indicado";
-                        requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
-                    }
-                    else
-                    {
-                        requisicao.PRP_Status = true;
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    requisicao.PRP_Mensagem = "A chave de segurança foi corrompida, por favor solicite a alteração da senha novamente";
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
-
-                }
-
+                string st_Chave = chave.MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Decriptar);
+                Session["GuardeiaChave"] = st_Chave;
                 TempData["PPR_Requisicao"] = requisicao;
             }
-
             return View();
         }
 
@@ -272,5 +244,57 @@ namespace Aplicacao.Controllers
             return Json(MollaLibrary.Web.JsonUtil.Serialize(retornoRequisicao));
         }
 
+        [HttpPost]
+        public ActionResult MTD_AcessoLogin(string CPF, string Senha)
+        {
+            List<Models.SITE.Cad_Cadastro> _ListCadLogin = new List<Models.SITE.Cad_Cadastro>();
+            string senhaCripto = Models.COMMON.values.Criptografar(Senha.Trim());
+            try
+            {
+                MollaLibrary.DataSource.MicrosoftSqlServer sqlServer = new MollaLibrary.DataSource.MicrosoftSqlServer(Models.COMMON.values.PRP_StringConexao);
+                System.Data.SqlClient.SqlParameterCollection sqlParameterCollection = sqlServer.InicializaSqlParameterCollection;
+                sqlParameterCollection.Add("@CPF", System.Data.SqlDbType.VarChar).Value = CPF.MTD_ApenasNumeros();
+                sqlParameterCollection.Add("@Senha", System.Data.SqlDbType.VarChar).Value = senhaCripto;
+                System.Data.DataTable dtb_result = sqlServer.DbExecute("sp_site_ValidaLogin", sqlParameterCollection, System.Data.CommandType.StoredProcedure);
+                if (dtb_result != null)
+                {
+                    foreach (System.Data.DataRow linha in dtb_result.Rows)
+                    {
+                        Models.SITE.Cad_Cadastro CadLogin = new Models.SITE.Cad_Cadastro();
+                        //cadastro.id = int.Parse(linha["id"].ToString());
+                        CadLogin.NOME = linha["USU_NOME"].ToString();
+                        CadLogin.CPF = linha["USU_CPF"].ToString();
+                        CadLogin.EMAIL = linha["USU_EMAIL"].ToString();
+                        CadLogin.CELULAR = linha["USU_CELULAR"].ToString();
+                        CadLogin.BU = linha["USU_BU"].ToString();
+
+                        Session["USU_Nome"] = CadLogin.NOME;
+                        Session["USU_CPF"] = CadLogin.CPF;
+                        Session["USU_EMAIL"] = CadLogin.EMAIL;
+                        Session["USU_BU"] = CadLogin.BU;
+                        CadLogin.PRP_STATUS = true;
+                        _ListCadLogin.Add(CadLogin);
+                    }
+                }
+                else
+                {
+                    Models.SITE.Cad_Cadastro CadLogin = new Models.SITE.Cad_Cadastro();
+                    CadLogin.PRP_STATUS = false;
+                    CadLogin.PRP_MENSAGEM = "Não foi localizado seu acesso, verifique novamente".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                    _ListCadLogin.Add(CadLogin);
+                }
+            }
+            catch (Exception ex)
+            {
+                Models.SITE.Cad_Cadastro CadLogin = new Models.SITE.Cad_Cadastro();
+                CadLogin.PRP_STATUS = false;
+                CadLogin.PRP_MENSAGEM = "Erro ao processar requisição".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Danger);
+                _ListCadLogin.Add(CadLogin);
+            }
+            return Json(MollaLibrary.Web.JsonUtil.Serialize(_ListCadLogin));
+        }
+
+        [HttpPost]
+        public JsonResult MTD_EsqueciSenha(string pCpf) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_EsqueciSenhaEnvio(pCpf)));
     }
 }
