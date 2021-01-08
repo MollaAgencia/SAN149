@@ -176,7 +176,7 @@ namespace Aplicacao.Controllers
                 {
                     Models.SITE.Cad_Cadastro cadastro = new Models.SITE.Cad_Cadastro();
                     cadastro.PRP_STATUS = false;
-                    cadastro.PRP_MENSAGEM = "Usuário não encontrado em nossa base".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Info);
+                    cadastro.PRP_MENSAGEM = "Usuário não encontrado em nossa base.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Info);
                     _listCadastro.Add(cadastro);
                 }
             }
@@ -261,7 +261,7 @@ namespace Aplicacao.Controllers
                 {
                     Models.SITE.Cad_Cadastro CadLogin = new Models.SITE.Cad_Cadastro();
                     CadLogin.PRP_STATUS = false;
-                    CadLogin.PRP_MENSAGEM = "Digite o seu CPF corretamente.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                    CadLogin.PRP_MENSAGEM = "Digite o CPF e/ou a senha corretamente.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
                     _ListCadLogin.Add(CadLogin);
                 }
             }
