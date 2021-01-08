@@ -3,33 +3,32 @@
     Layout = "~/Views/Shared/LoginShared.cshtml";
 }
 
-<div class="container">
+<div class="container px-md-0">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 px-md-0 px-xl-3 primeiro-acesso">
             <section class="body-sign">
                 <div class="center-sign">
 
-                    <div class="panel card-sign">
+                    <div class="panel card-sign ">
                         <div class="card-title-sign mt-3 text-center">
                             <h2 class="title text-uppercase font-weight-bold m-0 text-5 " style="padding: 10px;letter-spacing: 5px;background-color:#012746; color:#00efe9;">primeiro acesso</h2>
                         </div>
                         <div class="card-body" style="background-color:#003056;height: 290px;">
                             <div id="form-login">
-                                <div class="form-group mb-3">
-                                    <div CLASS="MB-5"></div>
+                                <div class="form-group mb-2 mb-md-3">
                                     <div class="input-group">
                                         <input name="" id="cadastrocpf" type="text" placeholder="DIGITE SEU CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
                                         <span class="input-group-append">
-
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user"></i>
+                                            </span>
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <div id="alert-login" class="d-flex">
-
-                                        </div>
+                                        <div id="alert-login" class="d-flex"></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -53,11 +52,11 @@
             </section>
         </div>
 
-
         <!--Quando liberar o login tirar o d-none dessa bagaça e programar....-->
-        <div class="col-md-6">
+        <div class="col-md-6 px-md-0 px-xl-3">
             <section class="body-sign">
                 <div class="center-sign">
+
                     <div class="panel card-sign">
                         <div class="card-title-sign mt-3 text-center">
                             <h2 class="title text-uppercase font-weight-bold m-0 text-5 " style="padding: 10px;letter-spacing: 5px;background-color:#012746; color:#00efe9;"> Login</h2>
@@ -75,9 +74,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-4">
-                                    <div class="clearfix">
-                                    </div>
+                                <div class="form-group mb-2 mb-md-3 mb-lg-4">
                                     <div class="input-group">
                                         <input name="" id="loginsenha_" type="password" placeholder="SENHA" class="form-control form-control-lg" />
                                         <span class="input-group-append">
@@ -89,9 +86,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <div id="alert-login" class="d-flex">
-
-                                        </div>
+                                        <div id="alert-login" class="d-flex"></div>
                                         <div id="Msg_informativa_Login"></div>
                                     </div>
                                 </div>
@@ -102,29 +97,20 @@
                                 </div>
 
                                 <div class="mb-lg-2"></div>
-                                <div class="row">
-                                    <div class="col-md-5  text-left">
-                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-white">Esqueceu sua senha?</a>
-                                    </div>
-                                    <div class="col-md-6 text-right">
-                                        <a href="#" id="linkContato" data-toggle="modal" data-target="#modalcontato_" class="float-right text-white">Fale Conosco</a>
-                                    </div>
+                                <div class="clearfix">
+                                    <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-left text-white">Esqueceu sua senha?</a>
+                                    
+                                    <a href="#" id="linkContato" data-toggle="modal" data-target="#modalcontato_" class="float-right text-white">Fale Conosco</a>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
-
             </section>
         </div>
     </div>
-
 </div>
-
-
 
 <!-- modal Contato -->
 <div class="modal fade" id="modalcontato_" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
@@ -1460,7 +1446,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="~/Content/vendor/jquery/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>

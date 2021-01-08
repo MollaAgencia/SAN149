@@ -57,42 +57,60 @@
     list-style-type: none;
 }
 
+#footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+body{
+	background-color: #01325a;
+}
+
+.card-body{
+	border-top-left-radius: 0px!important;
+}
 /* --- home --- */
-	.btn-gray{
-		background-color: #ccc!important;
-		color: #000!important;
+.btn-gray{
+	background-color: #ccc!important;
+	color: #000!important;
+}
+
+
+@media screen and (max-width: 768px) {
+	.card-sign input{
+		height: 40px;
+		font-size: 16px; 
+	}
+	.card-sign input ::placeholder{
+		font-size: 16px; 	
+	}
+	
+	.card-sign .card-body{
+		height: 260px!important;
+	}
+	.card-sign .card-body .text-5{
+		padding-top: 3px!important;
+		font-size: 17px!important;
+		margin-bottom: 9px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.body-sign{
+		height: auto;
 	}
 
-/* --- campanha --- */
-	.table td,
-	.table th{
-		padding: 5px;
-		vertical-align: middle!important;
+	.primeiro-acesso .card-body{
+		max-height: 170px!important;
 	}
+	.card-sign .card-body .text-5{
+		padding-top: 5px!important;
+		font-size: 15px!important;
+		margin-bottom: 10px;
+	}
+}
 
-	#page-campanha .tabela-01 .table{
-		min-height: 308px;
-	}
-
-	#page-campanha .tabela-01 .total{
-		font-weight: bold;
-		height: 10px!important;
-	}
-
-	.testimonial.testimonial-with-quotes blockquote:after {
-		display: none!important;
-	}
-
-/* --- desempenho --- */
-	#page-desempenho .tab-content tbody td:first-child{
-		text-transform: uppercase;
-		font-weight: bold;
-	}
-
-/* --- ranking --- */
-	#page-ranking .tab-content td:nth-child(2){
-		filter: blur(5px);
-	}
-	#page-ranking .tab-content tr.bg-warning td{
-		filter: blur(0px);	
-	}
+@media screen and (max-width: 375px) {
+	
+}
