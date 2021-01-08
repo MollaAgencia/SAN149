@@ -172,6 +172,8 @@
     <Content Include="Content\img\banner_desktop.png" />
     <Content Include="Content\img\banner_desktop_01.png" />
     <Content Include="Content\img\banner_mobile.jpg" />
+    <Content Include="Content\img\banner_site-celular.png" />
+    <Content Include="Content\img\banner_site-Tablet.png" />
     <Content Include="Content\img\BG_SAN149.png" />
     <Content Include="Content\img\campanha-01.jpg" />
     <Content Include="Content\img\campanha-02.jpg" />

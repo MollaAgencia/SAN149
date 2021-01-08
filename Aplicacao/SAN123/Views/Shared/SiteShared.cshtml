@@ -50,7 +50,17 @@
 </head>
 <body>
     <a href="https://www.survio.com/survey/d/R1G2J0K2H2I5E6R1C" class="banner" target="_blank">
-        <img src="~/Content/img/banner_desktop_01.png" class="img-fluid" />
+        <div class="d-none d-lg-block">
+            <img src="~/Content/img/banner_desktop_01.png" class="img-fluid" />
+        </div>
+        
+        <div class="d-none d-md-block d-lg-none">
+            <img src="~/Content/img/banner_site-Tablet.png" class="img-fluid" />
+        </div>
+        
+        <div class="d-block d-md-none">
+            <img src="~/Content/img/banner_site-celular.png" class="img-fluid" />
+        </div>
     </a>
     <input type="hidden" id="documento-usuario" @*value="@usuario.PRP_CPF"*@ />
     <header class="d-none" id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
@@ -134,7 +144,7 @@
     <div>
         @RenderBody()
     </div>
-    <footer id="footer" class="bg-color-quaternary py-5">
+    <footer id="footer" class="bg-color-quaternary py-4 py-lg-5">
         <div class="container">
             <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
         </div>
