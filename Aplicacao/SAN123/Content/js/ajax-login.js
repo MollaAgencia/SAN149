@@ -91,6 +91,53 @@ $('#btnFecharEsqueciSenha').bind('click', function() {
     $('#alert_EsqueciSenha').addClass('d-none');
 });
 
+$(document).on('click', '#btn_EsqueceuSenhaReset', function (event) {
+
+
+    var parametros = {};
+    parametros.senha = $('#pnovaSenhaReset').val();
+    parametros.confSenha = $('#confSenhaReset').val();
+
+    if (parametros.senha != parametros.confSenha) {
+        $('#MensagemErro').html('<p class="text-center alert alert-info">Necessário que as senhas sejam iguais!</p>');
+        return false;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/Login/MTD_AtualizaSenha',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(parametros),
+        beforeSend: function () {
+            $('#btn_login_Reset').attr('disabled', 'disabled');
+            $('#btn_login_Reset').html('<i class="fa fa-1x fa-spinner fa-spin"></i><span> Processando...</span>');
+        },
+        success: function (returnValue) {
+            var jsonResult = JSON.parse(returnValue);
+            if (jsonResult.PRP_Status == true) {
+                $('#btn_login_Reset').addClass('d-none');
+                swal.fire({
+                    title: "Atenção",
+                    text: "Senha alterada com sucesso!",
+                    type: "success"
+                }).then(function () {
+                    location.href = '/Login/Autenticacao';
+                });
+            } else {
+                swal.fire({
+                    title: "Atenção",
+                    text: "Falha em alterar sua senha, tente novamente em instantes!",
+                    type: "info"
+                }).then(function () {
+                    location.href = '/Login/Autenticacao';
+                });
+            }
+
+        }
+    });
+
+});
 
 
 /* --- AJAX Contato --- */

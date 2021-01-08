@@ -32,6 +32,37 @@ namespace Aplicacao.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult MTD_AtualizaSenha(string senha, string confSenha)
+        {
+            MollaLibrary.COMMON.RetornoRequisicao _Requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
+            string senhaCripto = Models.COMMON.values.Criptografar(senha.Trim());
+            try
+            {
+                MollaLibrary.DataSource.MicrosoftSqlServer sqlServer = new MollaLibrary.DataSource.MicrosoftSqlServer(Models.COMMON.values.PRP_StringConexao);
+                System.Data.SqlClient.SqlParameterCollection parameterCollection = sqlServer.InicializaSqlParameterCollection;
+                parameterCollection.Add("@pSenha", System.Data.SqlDbType.VarChar).Value = senhaCripto;
+                parameterCollection.Add("@pID", System.Data.SqlDbType.Int).Value = Session["GuardeiaChave"];
+                int dtb_result = sqlServer.DbExecuteNonQuery("sp_site_resetSenha", parameterCollection, System.Data.CommandType.StoredProcedure);
+                if (dtb_result > 0)
+                {
+                    _Requisicao.PRP_Status = true;
+                    _Requisicao.PRP_Mensagem = "Senha alterada com sucesso".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
+                }
+                else
+                {
+                    _Requisicao.PRP_Status = false;
+                    _Requisicao.PRP_Mensagem = "Erro ao alterar sua senha, tente novamente em instantes".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                }
+            }
+            catch (Exception ex)
+            {
+                _Requisicao.PRP_Status = false;
+                _Requisicao.PRP_Mensagem = "Erro ao alterar sua senha, tente novamente em instantes".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+            }
+            return Json(MollaLibrary.Web.JsonUtil.Serialize(_Requisicao));
+        }
+
         public ActionResult AcessoFake()
         {
             MollaLibrary.COMMON.RetornoRequisicao requisicao = null;
@@ -99,67 +130,7 @@ namespace Aplicacao.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult AlterarSenha(string pNovaSenha)
-        {
-            MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
-            try
-            {
-                if (Session["EsqueciSenhaDados"] == null)
-                {
-                    requisicao.PRP_Mensagem = "Sua sessão expirou, por favor refaça o processo.";
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
-                }
-                else
-                {
-                    EsqueciSenha Dados = MollaLibrary.Web.SessionVar.Get<EsqueciSenha>("EsqueciSenhaDados");
-
-
-                    var retorno = _loginService.MTD_AlterarSenha(Dados.PRP_Login, pNovaSenha);
-
-                    if (retorno.PRP_Status)
-                    {
-                        requisicao.PRP_Mensagem = "Senha alterada com sucesso";
-                        requisicao.PRP_Status = true;
-                        requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Success;
-
-
-                        bool bl_AcessoFake = false;
-                        MollaLibrary.COMMON.RetornoRequisicao requisicaoLogin = _loginService.MTD_Autenticacao(Dados.PRP_Login, pNovaSenha, out bl_AcessoFake);
-
-
-                        string texto = "";
-                        if (requisicaoLogin.PRP_Status && bl_AcessoFake == false)
-                        {
-
-
-                            return RedirectToAction("Home", new { controller = "Conteudo" });
-
-                        }
-                        else if (requisicaoLogin.PRP_Status)
-                        {
-                            return RedirectToAction("AcessoFake", new { controller = "Login", Area = "" });
-                        }
-                    }
-                    else
-                    {
-                        requisicao.PRP_Mensagem = retorno.PRP_Mensagem;
-                        requisicao.PRP_Status = false;
-                        requisicao.PRP_TipoMensagem = (MollaLibrary.EnunsApp.enum_TipoMensagem)retorno.PRP_TipoMensagem;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                requisicao.PRP_Mensagem = "Falha ao realizar a requisição";
-                requisicao.PRP_Status = false;
-                requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
-            }
-
-            TempData["PPR_Requisicao"] = requisicao;
-            return RedirectToAction("EsqueciSenha");
-        }
+       
 
         [HttpPost]
         public ActionResult MTD_CadastroParticipante(string CPF)

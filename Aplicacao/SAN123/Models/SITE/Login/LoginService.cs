@@ -338,7 +338,7 @@ namespace Aplicacao.Models.SITE.Login
                     }
 
                     Models.COMMON.Email.Email_Disparo disparo = new Models.COMMON.Email.Email_Disparo();
-                    key = string.Format("{0}", (int)usu.id).MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Encriptar);
+                    key = string.Format("{0}", usu.CPF).MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Encriptar);
                     disparo.PRP_EmailDestinatario = usu.EMAIL;
                     requisicao.PRP_Status = true;
                     requisicao.PRP_Mensagem = string.Format(@"Olá, foi enviado um link para recadastramento de sua senha para o e-mail cadastrado {0}.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);

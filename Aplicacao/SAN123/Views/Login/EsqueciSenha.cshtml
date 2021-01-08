@@ -29,7 +29,7 @@
                             <div class="form-group mb-3 @st_classe" id="pNovaSenha">
                                 <label>Nova Senha:</label>
                                 <div class="input-group">
-                                    <input name="pNovaSenha" data-obrigatorio="true" data-senha="true" valid="false" type="password" valida-senha valida-forca-senha class="form-control form-control-lg" />
+                                    <input name="pNovaSenha" id="pnovaSenhaReset" data-obrigatorio="true" data-senha="true" valid="false" type="password" valida-senha valida-forca-senha class="form-control form-control-lg" />
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fas fa-key"></i>
@@ -41,7 +41,7 @@
                             <div class="form-group mb-3 @st_classe" id="ConfSenha">
                                 <label>Confirmar Nova Senha:</label>
                                 <div class="input-group">
-                                    <input name="ConfSenha" data-obrigatorio="true" data-senhaConfirma="true" valid="false" type="password" valida-confSenha class="form-control form-control-lg" />
+                                    <input name="ConfSenha" id="confSenhaReset" data-obrigatorio="true" data-senhaConfirma="true" valid="false" type="password" valida-confSenha class="form-control form-control-lg" />
                                     <span class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fas fa-key"></i>
@@ -53,7 +53,7 @@
                             <div class="row @st_classe">
                                 <div class="col-md-12 center mb-3" id="btnEnviarSenha">
                                     <!-- <input id="ConfSenhaBtn" class="btn btn-primary pull-right" type="submit" value="Confirmar"> -->
-                                    <button id="btn-altera-senha" type="submit" disabled="disabled" class="btn btn-dark text-white center" onclick="mollalibaryController.confirmaEsqueciSenha(event)">Alterar Senha</button>
+                                    <div id="btn_EsqueceuSenhaReset" disabled="disabled" class="btn btn-dark text-white center">Alterar Senha</div>
                                 </div>
                             </div>
                             <div id="alert-altera-senha" class="text-center mt-3"></div>
@@ -81,9 +81,11 @@
     </div>
 
     <script src="~/Content/vendor/jquery/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
     <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/cadastro.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             function validaConfirmaSenha() {
                 var pNovaSenha = $('input[name="pNovaSenha" ]').prop('valid') ? $('input[name="pNovaSenha" ]').prop('valid') : false;
@@ -94,7 +96,7 @@
 
             validaConfirmaSenha();
 
-            $('input[name = "ConfSenha"]').keyup(function() {
+            $('input[name = "ConfSenha"]').keyup(function () {
 
                 if (validaConfirmaSenha()) {
                     $("#btn-altera-senha").prop('disabled', false);
