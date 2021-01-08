@@ -164,7 +164,7 @@ namespace Aplicacao.Models.COMMON.Email
                 EnviarEmail.PRP_SmtpHabilitaSsl = PRP_SmtpHabilitaSsl;
 
 
-                requisicao.PRP_Mensagem = "Contato enviado com sucesso. Em até 48 horas você receberá um contato da Central de Atendimento.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
+                requisicao.PRP_Mensagem = "Mensagem enviada. Em até 48 horas você receberá um contato da Central de Atendimento.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
                 requisicao.PRP_Status = true;
 
                 EnviarEmail.mtd_EnviarEmail();
