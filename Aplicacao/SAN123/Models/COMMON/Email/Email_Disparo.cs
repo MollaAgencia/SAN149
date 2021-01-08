@@ -10,12 +10,12 @@ namespace Aplicacao.Models.COMMON.Email
     {
         public Email_Disparo()
         {
-            st_EmailRemetente = "contato@meuportalgmills.com.br";
+            st_EmailRemetente = "contato@campanhaplaytowin.com.br";
             st_EmailSmtpRemetente = "email-ssl.com.br";
             st_EmailCredencialSenha = "@@Iot2019@@";
             it_EmailSmtpPorta = 587;
-            st_EmailUsuario = "contato@meuportalgmills.com.br";
-            EmailRemetenteAlias = "Contato GEN015";
+            st_EmailUsuario = "contato@campanhaplaytowin.com.br";
+            EmailRemetenteAlias = "Contato SAN149";
             //MTD_ListaDadosConfiguracao();
 
         }
@@ -153,19 +153,13 @@ namespace Aplicacao.Models.COMMON.Email
                 Models.COMMON.Email.Email_MensagemCompleta EnviarEmail = new Models.COMMON.Email.Email_MensagemCompleta();
                 EnviarEmail.PRP_EmailDestinatarios = new List<string>();
                 EnviarEmail.PRP_EmailAssunto = PRP_Assunto;
-                EnviarEmail.PRP_EmailCorpo = MTD_ObterHtmlContato(pNome, pMensagem, pEmail, pAssunto);
-                EnviarEmail.PRP_EmailDestinatarios.Add(EmailContato);
-                //TODO: 2019-07: Após teste retirar esses envios
-                if (!values.PRP_Ambiente.Equals("P"))
-                {
-                    EnviarEmail.PRP_EmailDestinatarios.Add("ti@agenciamolla.com.br");
-                }
+                EnviarEmail.PRP_EmailCorpo = MTD_ObterHtmlContato(pNome, pMensagem, "Fale Conosco", pEmail);
+                EnviarEmail.PRP_EmailDestinatarios.Add("contato@campanhaplaytowin.com.br");
                 EnviarEmail.PRP_EmailRemetente = PRP_EmailRemetente;
                 EnviarEmail.PRP_EmailRemetenteAlias = PRP_EmailRemetenteAlias;
                 EnviarEmail.PRP_SmtpEndereco = PRP_EmailSmtpRemetente;
                 EnviarEmail.PRP_CredencialSenha = PRP_EmailCredencialSenha;
                 EnviarEmail.PRP_RepplyToListEmail = pEmail;
-                EnviarEmail.PRP_EmailAssunto = pAssunto;
                 EnviarEmail.PRP_SmtpPorta = it_EmailSmtpPorta;
                 EnviarEmail.PRP_SmtpHabilitaSsl = PRP_SmtpHabilitaSsl;
 

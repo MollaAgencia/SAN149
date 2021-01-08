@@ -153,6 +153,7 @@ namespace Aplicacao.Controllers
                         cadastro.CPF = linha["USU_CPF"].ToString();
                         cadastro.CPFMASCK = CPFMASCA;
                         cadastro.EMAIL = linha["USU_EMAIL"].ToString();
+                        cadastro.Ativo = bool.Parse(linha["USU_ATIVO"].ToString());
 
                         Session["USU_Nome"] = cadastro.NOME;
                         Session["USU_CPF"] = cadastro.CPF;
@@ -160,13 +161,22 @@ namespace Aplicacao.Controllers
                         Session["USU_EMAIL"] = cadastro.EMAIL;
                         cadastro.PRP_STATUS = true;
                         _listCadastro.Add(cadastro);
+
+                        if(cadastro.Ativo == true)
+                        {
+                            cadastro.PRP_STATUS = false;
+                            cadastro.PRP_MENSAGEM = " Usuário já cadastrado. Realize o seu Login.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Info);
+                            _listCadastro.Add(cadastro);
+                        }
                     }
+                    
                 }
+                
                 else
                 {
                     Models.SITE.Cad_Cadastro cadastro = new Models.SITE.Cad_Cadastro();
                     cadastro.PRP_STATUS = false;
-                    cadastro.PRP_MENSAGEM = "Usuário já cadastrado ou não encontrado, verifique o CPF digitado".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Info);
+                    cadastro.PRP_MENSAGEM = "Usuário não encontrado em nossa base".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Info);
                     _listCadastro.Add(cadastro);
                 }
             }
@@ -251,7 +261,7 @@ namespace Aplicacao.Controllers
                 {
                     Models.SITE.Cad_Cadastro CadLogin = new Models.SITE.Cad_Cadastro();
                     CadLogin.PRP_STATUS = false;
-                    CadLogin.PRP_MENSAGEM = "Não foi localizado seu acesso, verifique novamente".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                    CadLogin.PRP_MENSAGEM = "Digite o seu CPF corretamente.".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
                     _ListCadLogin.Add(CadLogin);
                 }
             }
@@ -267,5 +277,8 @@ namespace Aplicacao.Controllers
 
         [HttpPost]
         public JsonResult MTD_EsqueciSenha(string pCpf) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_EsqueciSenhaEnvio(pCpf)));
+
+        [HttpPost]
+        public JsonResult MTD_Contato(Contato pContato) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Contato(pContato)));
     }
 }

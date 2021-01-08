@@ -142,8 +142,8 @@ $(document).on('click', '#btn_login_Acesso', function (event) {
                 location.href = '/Conteudo/Home';
             } else {
                 Swal.fire(
-                    'Login não encontrado!'
-                    
+                    'Login inválido'
+                    , jsonResult[0].PRP_MENSAGEM
                 ).then(function () {
                     location.href = '/Login/Autenticacao';
                 });

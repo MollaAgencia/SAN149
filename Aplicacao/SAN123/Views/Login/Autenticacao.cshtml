@@ -13,7 +13,7 @@
                         <div class="card-title-sign mt-3 text-center">
                             <h2 class="title text-uppercase font-weight-bold m-0 text-5 " style="padding: 10px;letter-spacing: 5px;background-color:#012746; color:#00efe9;">primeiro acesso</h2>
                         </div>
-                        <div class="card-body" style="background-color:#003056;height: 184px;">
+                        <div class="card-body" style="background-color:#003056;height: 290px;">
                             <div id="form-login">
                                 <div class="form-group mb-3">
                                     <div CLASS="MB-5"></div>
@@ -66,7 +66,7 @@
                             <div id="form-login">
                                 <div class="form-group mb-3">
                                     <div class="input-group">
-                                        <input name="" id="logincpf_" type="text"placeholder="CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
+                                        <input name="" id="logincpf_" type="text" placeholder="CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
                                         <span class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fas fa-user"></i>
@@ -74,9 +74,9 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-group mb-3">
+
+                                <div class="form-group mb-4">
                                     <div class="clearfix">
-                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-white">Esqueceu sua senha?</a>
                                     </div>
                                     <div class="input-group">
                                         <input name="" id="loginsenha_" type="password" placeholder="SENHA" class="form-control form-control-lg" />
@@ -97,15 +97,27 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-2 col-8 text-right">
-                                        <div id="btn_login_Acesso" class="btn font-weight-bold text-5 text-uppercase form-control mt-2"  style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">Login</div>
+                                        <div id="btn_login_Acesso" class="btn font-weight-bold text-5 text-uppercase form-control mt-2" style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">Login</div>
                                     </div>
                                 </div>
-                               
+
+                                <div class="mb-lg-5"></div>
+                                <div class="row">
+                                    <div class="col-md-5 text-left">
+                                        <a href="#" id="linkEsqSenha" data-toggle="modal" data-target="#EsqueciSenhaModal" class="float-right text-white">Esqueceu sua senha?</a>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <a href="#" id="linkContato" data-toggle="modal" data-target="#modalcontato_" class="float-right text-white">Fale Conosco</a>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>
+
                 </div>
+
             </section>
         </div>
     </div>
@@ -115,11 +127,11 @@
 
 
 <!-- modal Contato -->
-<div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalcontato_" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title mt-0" id="ContatoModalLabel">Entre em Contato</h4>
+                <h4 class="modal-title mt-0" id="ContatoModalLabel">FALE CONOSCO</h4>
                 <button type="button" name="btn-fecha-contato" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
@@ -174,13 +186,8 @@
                         <div class="form-group">
                             <label class="mb-0">Assunto</label>
                             <div class="input-group">
-                                @*<input name="" id="contato_assunto" type="text" class="form-control form-control-lg" valid="" valida-assunto maxlength="20" required>*@
-                                <select id="contato_assunto" class="form-control form-control-lg" valid valida-assunto-select required>
-                                    <option value="0">Selecione</option>
-                                    <option value="1">Dúvidas sobre Acesso/Cadastro</option>
-                                    <option value="2">Dúvidas sobre Resgates</option>
-                                    <option value="3">Dúvidas com relação a sua Pontuação</option>
-                                    <option value="4">Outros</option>
+                                <select id="contato_assunto" class="form-control form-control-lg" >
+                                    <option value="Selecione">Selecione</option>
                                 </select>
                                 <span class="input-group-append">
                                     <span class="input-group-text">
@@ -208,8 +215,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" name="btn-fecha-contato" class="btn btn-danger text-white" data-dismiss="modal">Fechar</button>
-                <button type="button" name="btn_contato" class="btn btn-dark text-white">Enviar <i class="fas fa-paper-plane"></i></button>
+                <div name="btn-fecha-contato" class="btn btn-danger text-white" data-dismiss="modal">Fechar</div>
+                <div id="btn_contato" name="btn_contato" class="btn btn-dark text-white">Enviar <i class="fas fa-paper-plane"></i></div>
             </div>
         </div>
     </div>
@@ -310,14 +317,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title mt-0" id="EsqueciSenhaModalLabel">Esqueci a Senha</h4>
+                <h4 class="modal-title mt-0" id="EsqueciSenhaModalLabel">DIGITE SEU CPF PARA RESGATAR A SENHA.</h4>
                 <button type="button" name="btn-fecha-esqueci-senha" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12 col-md">
                         <div class="form-group">
-                            <label>Digite seu CPF no campo abaixo que enviaremos o link para gerar uma nova senha para o e-mail cadastrado.</label>
+                            <label>Vamos enviar um link para o seu e-mail corporativo.</label>
                         </div>
                         <div class="form-group">
                             <label class="mb-0">CPF</label>
@@ -329,7 +336,7 @@
                                     </span>
                                 </span>
                             </div>
-                            <div class="text-2"><i>Caso tenha problemas para acessar o e-mail cadastrado, entre em <a class='cur-pointer font-weight-bold' data-toggle='modal' data-target='#modal-contato' data-dismiss='modal'><u>Contato</u></a> conosco</i></div>
+                            <div class="text-2"><i>Caso tenha algum desafio para acessar o site da campanha,<a class='cur-pointer font-weight-bold' data-toggle='modal' data-target='#modalcontato_' data-dismiss='modal'><u>clique aqui</u></a> e fale conosco.</i></div>
                             <div class="alertError" alert-cpf></div>
                             <div id="alert-esqueci-senha" class="text-center mt-3"></div>
                         </div>
