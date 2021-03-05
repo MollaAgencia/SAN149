@@ -111,6 +111,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\default-admin.css" />
     <Content Include="Content\css\demo-gym.css" />
@@ -233,6 +237,7 @@
     <Content Include="Content\scripts\autenticacao.js" />
     <Content Include="Content\scripts\desempenho.js" />
     <Content Include="Content\scripts\ranking.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\afterresize\afterresize.js" />
     <Content Include="Content\vendor\afterresize\afterresize.min.js" />
     <Content Include="Content\vendor\afterresize\demo.js" />
@@ -410,6 +415,7 @@
     <Content Include="Content\vendor\vide\jquery.vide.min.js" />
     <Content Include="Content\vendor\vivus\vivus.js" />
     <Content Include="Content\vendor\vivus\vivus.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="HTMLcontatoInterno.txt" />
     <Content Include="HTMLEsqueciSenha.txt" />
@@ -470,6 +476,13 @@
     <Content Include="Content\pdf\Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf" />
     <Content Include="Content\pdf\Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf" />
     <Content Include="Content\pdf\3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.7-vsdoc.js" />
     <Content Include="Models\ENTITY\SAN123.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -481,6 +494,8 @@
       <DependentUpon>SAN123.edmx</DependentUpon>
       <LastGenOutput>SAN123.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\i18n\af.js" />
     <Content Include="Scripts\i18n\ar.js" />
     <Content Include="Scripts\i18n\az.js" />
@@ -542,6 +557,7 @@
     <Content Include="Scripts\i18n\zh-TW.js" />
     <Content Include="Scripts\jquery-1.7.js" />
     <Content Include="Scripts\jquery-1.7.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Web.config" />
@@ -637,6 +653,9 @@
     <Content Include="Views\Conteudo\Novidades.cshtml" />
     <Content Include="Views\Conteudo\Destaques.cshtml" />
     <Content Include="Views\Ranking\Ranking.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Conteudo\Aguarde.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

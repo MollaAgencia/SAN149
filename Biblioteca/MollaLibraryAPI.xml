@@ -1,0 +1,712 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MollaLibraryAPI</name>
+    </assembly>
+    <members>
+        <member name="T:MollaLibraryAPI.COMMON.DadosEmailRetorno">
+            <summary>
+            contém as informações de retorno de dados do e-mail
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.EnunsAPP">
+            <summary>
+            Classe que contem TODOS os enuns da biblioteca
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.EnunsAPP.enum_TipoMensagem">
+            <summary>
+            Indica que tipo de mensagem deve ser exibida | Utilizar em conjunto com a requisição da MollaLibrary |
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.enum_TipoMensagem.Success">
+            <summary>
+            Requisição realizada com sucesso
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.enum_TipoMensagem.Alert">
+            <summary>
+            Houve alguma inconsistencia na requisição
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.enum_TipoMensagem.Danger">
+            <summary>
+            Houve uma falha (Exception) durante a requisição
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.enum_TipoMensagem.Info">
+            <summary>
+            Houve alguma inconsistencia na requisição
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.EnunsAPP.CRUD_Acao">
+            <summary>
+            Indica qual ação será realizada para a requisição de crud
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.CRUD_Acao.Cadastro">
+            <summary>
+            realiza o cadastro do usário na base
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.CRUD_Acao.Edicao">
+            <summary>
+            Altera as informações de acordo os valores informados
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.CRUD_Acao.Cadastro_Edicao">
+            <summary>
+            Caso exista será realizado uma alteração, se não existir será realizado um cadastro.
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.CRUD_Acao.Exclusao">
+            <summary>
+            Desativa o usuário da base ou de um PIT especifico
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa">
+            <summary>
+            Contem os tipos de pessoa
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa.Fisica">
+            <summary>
+            Indica um usuário que realiza a autenticacao via CPF
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa.Juridica">
+            <summary>
+            Indica que o usuário irá realizar a autenticacao via CNPJ
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno">
+            <summary>
+            Contém os tipos de retorno possivel do serviço, caso tenha a necessidade de realizar alguma ação personalizada.
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Requisicao_Exception">
+            <summary>
+            Indica que houve uma exceção na requisição
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Requisicao_Sucesso">
+            <summary>
+            Indica que a requisição foi realizada com sucesso
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Requisicao_SemDados">
+            <summary>
+            Indica que a requisição foi realizada com sem erros porém não há dados para retornar
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Usuario_AutenticacaoSenhaIncorreta">
+            <summary>
+            O Login do usuário solicitado está devidamente cadastrado na Base e relacionado com o PIT porem a senha esta errada
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Usuario_Cadastrado">
+            <summary>
+            Indica que o usuário foi cadastrado com sucesso | Retorno de CRUD
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Usuario_Desativado">
+            <summary>
+            Indica que o usuário não esta ativo no projeto solicitado
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Usuario_NaoEncontrado">
+            <summary>
+            Indica que o usuário não foi encontrado ou na base ou para o projeto solicitado
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Validacao_CnpjInvalido">
+            <summary>
+            Indica que o CNPJ informado é invalido | Utilizado no CRUD
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Validacao_CpfInvalido">
+            <summary>
+            Indica que o CPF informado é invalido | Utilizado no CRUD
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.Validacao_EmailInvalido">
+            <summary>
+            Indica que o e-mail informado está invalido | Utilizado no CRUD
+            </summary>
+        </member>
+        <member name="F:MollaLibraryAPI.COMMON.EnunsAPP.TiposRetorno.ExistenteBase">
+            <summary>
+            Indica que o cadastro que esta sendo solicitado já exite para o projeto solicitado
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.Metodos">
+            <summary>
+            Classe que contém todos os métodos comuns para toda a biblioteca
+            </summary>
+        </member>
+        <member name="M:MollaLibraryAPI.COMMON.Metodos.#ctor(System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="pURL">URL da API Exemplo: http://minhaURL.com.br</param>
+        </member>
+        <member name="M:MollaLibraryAPI.COMMON.Metodos.MTD_Email_ObterDados(System.String)">
+            <summary>
+            Obtem os dados de configuração para o disparo do e-mail
+            </summary>
+            <param name="pPIT">Código do projeto</param>
+            <returns>Classe com os dados e informaçõa da requisição</returns>
+        </member>
+        <member name="M:MollaLibraryAPI.COMMON.Metodos.MTD_LogAcessoPagina(MollaLibraryAPI.COMMON.Pessoas.LogAcessoPagina)">
+            <summary>
+            Metodo para realizar o Log de acesso a pagina quando for requisitada
+            </summary>
+            <param name="parametro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibraryAPI.COMMON.Metodos.Serialize(System.Object)">
+            <summary>
+            Serializa uma objeto em uma string Json
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros">
+            <summary>
+            Contem os parametros de autenticação
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.PIT">
+            <summary>
+            Código do projeto
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.Login">
+            <summary>
+            Login que será utilizado para realizar a autenticação | Apenas numeros
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.Senha">
+            <summary>
+            Senha para autenticação
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.PRP_IpAcesso">
+            <summary>
+            Ip do usuário no momento da autenticação
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.PRP_Ambiente">
+            <summary>
+            Ambiente em que o usuário solicitou a autenticação
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros.PRP_DadosNavegador">
+            <summary>
+            Dados do navegador utilizado no momento da solicitação
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares">
+            <summary>
+            Contém as propriedades necessárias para as informações especificas de cada PIT 
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_ComplementoID">
+            <summary>
+            Idenificador unico do complemento cadastrado
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_ComplementoPitID">
+            <summary>
+            Identificador Unico (PK) do PIT que a informação complementar pertence
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_ComplementoPessoaID">
+            <summary>
+            Indentificador Unico (PK) do usuário a quem essa informação pertence
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_Display">
+            <summary>
+            Valor 
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_Valor">
+            <summary>
+            Valor que o usuário informou 
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_Unico">
+            <summary>
+            indica se a informação é unica ou pode se repetir
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.CRUD_DadosComplementares.PRP_OrdemExibicao">
+            <summary>
+            Indica em qual ordem essa informação será exibida
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.Pessoas.LogAcessoPagina">
+            <summary>
+            Classe que contém as propriedades necessárias para Realizar o log de acesso a cada pagina
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.LogAcessoPagina.PRP_IdentificadorAcesso">
+            <summary>
+            Chave primaria do acesso do usuário
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho">
+            <summary>
+            Classe que Representa o PIT para a autenticação do usuário, que é comum aos dois tipo de pessoas
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_Identificador">
+            <summary>
+            Identificador do relacionamento entre Pessoa Fisica e PIT
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_Projeto">
+            <summary>
+            Código unico cadastrado na base
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_Nome">
+            <summary>
+            Nome da campanha (Projeto)
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_Senha">
+            <summary>
+            Senha Criptografada de forma irreversivel que esta na base de dados.
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_AceiteRegulamento">
+            <summary>
+            Indica se o usuário precisa realizar o aceite do regulamento no primeiro acesso
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_AceiteRegulamentoData">
+            <summary>
+            Data em que o aceite do regulamento foi realizado (quando necessario)
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_AlterarSenhaPrimeiroAcesso">
+            <summary>
+            Indica se o usuario terá que alterar a senha no primeiro acesso
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_AlterarSenhaPrimeiroAcessoData">
+            <summary>
+            Data em que a data foi alterada pela primeira vez (quando necessario)
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_PreencherPreCadastro">
+            <summary>
+            Indica se o usuário terá que preencher um pré-Cadastro
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_PreencherPreCadastroData">
+            <summary>
+            Data em que o pré-Cadastro foi finalizado com sucesso.
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.Pessoas.PedidoInternoTrabalho.PRP_AcessoFake">
+            <summary>
+            Indica se o usuário terá acesso ao modulo "Acesso Fake"
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.COMMON.RetornoRequisicao">
+            <summary>
+            Classe para informar o retorno de uma requisição de processamento
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.RetornoRequisicao.PRP_Status">
+            <summary>
+            Indica se a requisição foi realizada com sucesso
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.RetornoRequisicao.PRP_Mensagem">
+            <summary>
+            Mensagem pertinente a requisição
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.RetornoRequisicao.PRP_TipoMensagem">
+            <summary>
+            Indica o Tipo da mensagem | Success = 1 | Alert = 2 | Danger = 3 | Info = 4 |
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.COMMON.RetornoRequisicao.PRP_RetornoTipo">
+            <summary>
+            Especifica de forma enumerada o retorno do serviço (caso o essa explicação não seja apropriada olhe a nomenclatura dos itens ou solicitem um redator)
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD.PRP_Acao">
+            <summary>
+            Indica o Tipo de ação que será realizada
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.CRUD_Retorno">
+            <summary>
+            Classe para com o status da requisição
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioCPF">
+            <summary>
+            CPF que será cadastrado no sistema | Caso seja um usuário teste a validação de CPF não será aplicada
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioDataNascimento">
+            <summary>
+            data de nascimento do usuario | campo não obrigatório | Passar no formato yyyy-MM-dd (variavelDateTime.ToString("yyyy-MM-dd"))
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioSexo">
+            <summary>
+            Indica Sexo do usuário | Campo não Obrigatório | Passar apenas M ou F
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioEmail">
+            <summary>
+            Indicar um E-mail valido de preferencia.
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioTeste">
+            <summary>
+            Indica se o usuário em questão é para testes | true = usuário teste ; false = Usuário da campanha
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_Pessoa.PRP_UsuarioAtivo">
+            <summary>
+            Indica se o usuário esta ativo ou não em toda a base
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaLista.PRP_Requisicao">
+            <summary>
+            Dados sobre a requisição do usuário
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaLista.PRP_Dados">
+            <summary>
+            Lista dos dados do usuário
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PIT">
+            <summary>
+            Sigla do projeto
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PitAceiteRegulamento">
+            <summary>
+            Indica se o usuário terá que aceitar o regulamento no primeiro Acesso
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PitAlterarSenhaPrimeiroAcesso">
+            <summary>
+            Indica se o usuário terá que alterar a senha no primeiro acesso
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PitRealizarPreCadastro">
+            <summary>
+            Indica se o usuário terá que realizar algum tipo de cadastro antes de acessar o site
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PitSenha">
+            <summary>
+            Senha que será utilizada para autenticação | Essa senha é case sensitive, ou seja letras maiusculas e minusculas são diferentes
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_PitAtivo">
+            <summary>
+            Indica se o usuário está ativo ou não para o PIT solicitado
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.CRUD_PessoaPIT.PRP_IdentificadorPessoaPIT">
+            <summary>
+            Identificador do relacionamento Pessoa Fisica com o PIT do projeto
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.DadosCadastrais">
+            <summary>
+            Dados de cadastros que são unicos para o usuário na base 
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_Identificador">
+            <summary>
+            Chave Primaria do usuário na base
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_Nome">
+            <summary>
+            Nome do usuário Cadastrado na base
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_CPF">
+            <summary>
+            CPF do usuário cadastrado na base | Apenas numeros
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_Login">
+            <summary>
+            Login do usuário cadastrado na base | A principio será o CPF
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_Email">
+            <summary>
+            Email do usuário cadastrado na base
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.DadosCadastrais.PRP_UsuarioTeste">
+            <summary>
+            Indica se o usuário é para teste ou um participante real da(s) campanha(s)
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.Metodos">
+            <summary>
+            Classe que contem Todos os métodos referente a pessoa Fisica
+            </summary>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.#ctor(System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="pURL">URL da API Exemplo: http://minhaURL.com.br</param>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_Autenticacao(MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros)">
+            <summary>
+            Metodo realiza a autenticação do usuário | não tratamento de erro
+            </summary>
+            <param name="pParametros">Login do usuário par ao sistema</param>
+            <returns>As informações pertinentes a autenticação do usuário</returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_ObterPessoa(System.String,System.String)">
+            <summary>
+            Obtem as informações de um usário para um determinado PIT
+            </summary>
+            <param name="pCPF">CPF do usuário</param>
+            <param name="pPit">Sigla em que a busca deverá ser efetuada</param>
+            <returns>Informações do CPF solicitado</returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_ObterDadosCRUD(System.String,System.String)">
+            <summary>
+            Obtem os dados de cadastro do usuário solicitado, caso não tenha irá retornar os dados complementares solicitados
+            </summary>
+            <param name="pCPF"></param>
+            <param name="pPIT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_CRUD(MollaLibraryAPI.PessoaFisica.CRUD)">
+            <summary>
+            Realiza o Cadastro, Atualização e Exclusão (Desativação) do usuário.
+            </summary>
+            <param name="parametros">Classe que contém os dados de cadastro</param>
+            <returns>Classe com o status da requisição</returns>
+        </member>
+        <! -- Comentário XML mal formado ignorado para o membro "M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_AlterarSenha(System.String,System.String,System.String)" -->
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_AceiteRegulamento(System.String,System.String)">
+            <summary>
+            Cadastra a data para relizar o aceite do regulamento
+            </summary>
+            <param name="pCPF">CPF do usuário que ira aceitar o regulamento</param>
+            <param name="pPIT">Sigla do projeto em que o usuáro esta cadastrado</param>
+            <returns>Status da requisição</returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.MTD_ListaUsuarios(System.String)">
+            <summary>
+            Lista todos os usuários cadastrados na base de um projeto
+            </summary>
+            <param name="pPIT">Código do prjeto que deve ser listado</param>
+            <returns>Dados da requisição</returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.Metodos.Serialize(System.Object)">
+            <summary>
+            Serializa uma objeto em uma string Json
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.Pessoa">
+            <summary>
+            Contém as informações do usuário cadastrado
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.Pessoa.PRP_DadosCadastrais">
+            <summary>
+            Contem os dados de cadastro que são unicos para todas as campanhas
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.Pessoa.PRP_PedidoInternoTrabalho">
+            <summary>
+            Dados do PIT em que o usuário esta cadastrado
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.Pessoa.PRP_IdentificadorLogAcesso">
+            <summary>
+            Contem a chave Primaria do log de acesso ao sistema
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.PessoaRetorno">
+            <summary>
+            Classe para obter as informações de uma unica pessoa
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.PessoaRetorno.PRP_Requisicao">
+            <summary>
+            Status da requisição solicitada
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.PessoaRetorno.PRP_Dados">
+            <summary>
+            Dados da pessoa
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaFisica.PessoasRetorno">
+            <summary>
+            Classe para obter informações de uma lista de pessoas
+            </summary>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaFisica.PessoasRetorno.#ctor">
+            <summary>
+            Inicializa todas as propriedades da classe
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.PessoasRetorno.PRP_Requisicao">
+            <summary>
+            Status da requisição solicitada
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaFisica.PessoasRetorno.PRP_Dados">
+            <summary>
+            Dados da pessoa
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD.PRP_Acao">
+            <summary>
+            Indica qual ação deve ser realizada
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD.PRP_Pessoa">
+            <summary>
+            INformações unicas do usuário do tipo PJ
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD.PRP_PIT">
+            <summary>
+            Informações do PIT em que o usuário está inserido no sistema
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD.PRP_DadosComplementares">
+            <summary>
+            Lista de dados complementares para cada projeto
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaJuridica.CRUD_DadosCampanhaPIT">
+            <summary>
+            Classe que contém as informações do PIT para o usuário
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD_DadosCampanhaPIT.PRP_PIT">
+            <summary>
+            Sigla do projeto
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.CRUD_DadosCampanhaPIT.PRP_Ativo">
+            <summary>
+            Indica se o usuário esta ativo
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.DadosCadastrais.PRP_Identificador">
+            <summary>
+            Chave Primaria do relacionamento usuário PIT
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.DadosCadastrais.PRP_UsuarioTeste">
+            <summary>
+            Indica se o usuário é para teste ou realmente participa da(s) campanha(s)
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaJuridica.Metodos">
+            <summary>
+            Classe que contém todos os 
+            </summary>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaJuridica.Metodos.#ctor(System.String)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="pURL">URL da API Exemplo: http://minhaURL.com.br</param>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaJuridica.Metodos.MTD_Autenticacao(MollaLibraryAPI.COMMON.Pessoas.AutenticacaoParametros)">
+            <summary>
+            Realiza a autenticação do Usuário PJ no sistema
+            </summary>
+            <param name="parametros"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaJuridica.Metodos.MTD_ObterDadosCRUD(System.String,System.String)">
+            <summary>
+            Obtem os dados do usuário para realizar a alteração
+            </summary>
+            <param name="pCNPJ"></param>
+            <param name="pPIT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibraryAPI.PessoaJuridica.Metodos.Serialize(System.Object)">
+            <summary>
+            Serializa uma objeto em uma string Json
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaJuridica.PessoaJuridica">
+            <summary>
+            Classe que contém as informações mecessárias no momento da autenticação do usuário do tipo pessoa Juridica
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.PessoaJuridica.PRP_DadosCadastrais">
+            <summary>
+            Contem os dados de cadastro que são unicos para todas as campanhas
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.PessoaJuridica.PRP_PedidoInternoTrabalho">
+            <summary>
+            Informações referente a campanha do usuário
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.PessoaJuridica.PRP_IdentificadorLogAcesso">
+            <summary>
+            Contem a chave Primaria do log de acesso ao sistema
+            </summary>
+        </member>
+        <member name="T:MollaLibraryAPI.PessoaJuridica.PessoaRetorno">
+            <summary>
+            Classe para o retorno da pessoa Fisica (dados de autenticação)
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.PessoaRetorno.PRP_Requisicao">
+            <summary>
+            Indica o status da requisição
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.PessoaJuridica.PessoaRetorno.PRP_Dados">
+            <summary>
+            Dados da pessoa solicitada.
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.Pessoa.Pessoa.PRP_PedidoInternoTrabalho">
+             <summary>
+            Contém as informações pertinentes ao PIT em que o usuário esta cadastrado
+             </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.Pessoa.Pessoa.PRP_IdentificadorLogAcesso">
+            <summary>
+            Contem a chave Primaria do log de acesso ao sistema
+            </summary>
+        </member>
+        <member name="P:MollaLibraryAPI.Pessoa.PessoaRetorno.PRP_Requisicao">
+            <summary>
+            Status da requisição solicitada
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -26,8 +26,12 @@ namespace Aplicacao.Controllers
         {
             //if(Session["USU_CPF"] == null)
             //{
-            //    return RedirectToAction("Autenticacao", "Login");
+                return RedirectToAction("Aguarde", "Conteudo");
             //}
+           // return View();
+        }
+        public ActionResult Aguarde()
+        {
             return View();
         }
         public ActionResult Novidades()

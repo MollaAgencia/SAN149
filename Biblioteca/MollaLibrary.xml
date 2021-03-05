@@ -1,0 +1,560 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MollaLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:MollaLibrary.COMMON.RetornoRequisicao">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.COMMON.RetornoRequisicao.PRP_Mensagem">
+            <summary>
+            Mensagem de retorno
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.COMMON.RetornoRequisicao.PRP_Status">
+            <summary>
+            Status da requisição
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.COMMON.RetornoRequisicao.PRP_TipoMensagem">
+            <summary>
+            Indica o Tipo da mensagem para para o HTML
+            </summary>
+        </member>
+        <member name="T:MollaLibrary.DataSource.MicrosoftSqlServer">
+            <summary>
+            Classe Para interagir com bases SQL Server
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.DataSource.MicrosoftSqlServer.m_Connection">
+            <summary>
+            Objeto Connection
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.DataSource.MicrosoftSqlServer.m_Command">
+            <summary>
+            Objeto Comand
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftSqlServer.Connection">
+            <summary>
+            Retorna um objeto SqlConnection
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftSqlServer.Command">
+            <summary>
+            Retorna um objeto SqlCommand
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftSqlServer.dblsConected">
+            <summary>
+            Retorna se a conexão esta Aberta
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftSqlServer.InicializaSqlParameterCollection">
+            <summary>
+            Retorna uma nova instancia de um SqlParameterCollection
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftSqlServer.st_strCnn">
+            <summary>
+            retorna a string de conexão que esta no webConfig
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.AbrirConexao">
+            <summary>
+            Verifica a Conexão do banco de dados
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.TratarParametros(System.Data.SqlClient.SqlParameterCollection)">
+            <summary>
+            Converte os parametros genericos para os parametros utilizado no banco de dados
+            </summary>
+            <param name="param">Coleção de Parametros</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.VerificarParametros(System.Data.SqlClient.SqlParameterCollection)">
+            <summary>
+            Converte os parametros genericos para os parametros utilizado no banco de dados
+            </summary>
+            <param name="param">Coleção de Parametros</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecuteNonQuery(System.String)">
+            <summary>
+            Verifica a conexão e Executa o comando no banco de dados.
+            INSERT, UPDATE e Delete
+            </summary>
+            <param name="pCommand">String de Comando</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecuteNonQuery(System.String,System.Data.SqlClient.SqlParameterCollection)">
+            <summary>
+            Executa um comando no banco de dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <param name="param">Coleção de Parametros do Comando</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecuteNonQuery(System.String,System.Data.CommandType)">
+            <summary>
+            Executa um comando no banco de dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <param name="type">Tipo de Comando</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecuteNonQuery(System.String,System.Data.SqlClient.SqlParameterCollection,System.Data.CommandType)">
+            <summary>
+            Executa um comando no banco de dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <param name="param">Coleção de Parametros do comando</param>
+            <param name="type">Tipo de Comando</param>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecuteReader(System.String)">
+            <summary>
+            Executa um select e retorna um dataReader
+            </summary>
+            <param name="pCommand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecute(System.String)">
+            <overloads>Possui 4 overloads</overloads>
+            <summary>
+            Executa um comando no banco de dados que retorna dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <returns>DataTable com os Valores</returns>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecute(System.String,System.Data.SqlClient.SqlParameterCollection)">
+            <summary>
+            Executa um comando no banco de dados que retorna dados
+            </summary>
+            <param name="pCommand">String do Comando</param>
+            <param name="param">Coleção de Parametros</param>
+            <returns>DataTable com os Valores</returns>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecute(System.String,System.Data.CommandType)">
+            <summary>
+            Executa um comando no banco de dados que retorna dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <param name="type">Coleção de Parametros</param>
+            <returns>DataTable com os Valores</returns>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftSqlServer.DbExecute(System.String,System.Data.SqlClient.SqlParameterCollection,System.Data.CommandType)">
+            <summary>
+            Executa um comando no banco de dados que retorna dados
+            </summary>
+            <param name="pCommand">String de Comando</param>
+            <param name="param">Coleção de Parametros</param>
+            <param name="type">Tipo de Comando</param>
+            <returns>DataTable com os Valores</returns>
+        </member>
+        <member name="T:MollaLibrary.DataSource.MicrosoftExcel">
+            <summary>
+            Classe para obter valores de uma planilha Excel (*.xls)
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.DataSource.MicrosoftExcel.#ctor(System.String)">
+            <summary>
+            Contrutor: obrigatório informar o caminho do arquivo
+            </summary>
+            <param name="pCaminhoArquivo"></param>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftExcel.PRP_worksheets">
+            <summary>
+            Lista todas as planilhas que existem no arquivo Excel
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftExcel.PRP_CaminhoArquivo">
+            <summary>
+            Armazena o caminho do arquivo
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.DataSource.MicrosoftExcel.PRP_ConnectionString">
+            <summary>
+            Contem a string de conexão para o oarquivo excel
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.EnunsApp.enum_TipoMensagem.Success">
+            <summary>
+            Mensagem de sucesso para o usuário | 1
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.EnunsApp.enum_TipoMensagem.Alert">
+            <summary>
+            Mensagem de alerta para o usuário | 2
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.EnunsApp.enum_TipoMensagem.Danger">
+            <summary>
+            Mensagem de erro para o usuário | 3
+            </summary>
+        </member>
+        <member name="F:MollaLibrary.EnunsApp.enum_TipoMensagem.Info">
+            <summary>
+            Mensagem de informação para o usuário | 4
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_DataTableToList``1(System.Data.DataTable)">
+            <summary>
+            Retorna um List de uma determinada classe | Mas as propriedades tem que ter o mesmo nome que no DataTable se não vai dar ruim,
+            Caso contrario utilize o Método MDT_DataTableForList
+            </summary>
+            <typeparam name="T">Classe que será convertida</typeparam>
+            <param name="table">Será atribuido a um DataTable, esse parametro já esta no esquema</param>
+            <returns>Lista da classe que foi solicitada</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_DataTableToClass``1(System.Data.DataTable,System.Int32)">
+            <summary>
+            Retorna uma determinada classe de acordo com o tipo informado. | Mas as propriedades tem que ter o mesmo nome que no DataTable se não vai dar ruim,
+            Caso contrario Utilize o Método MTD_DataRowForClass 
+            </summary>
+            <typeparam name="T">Tipo da classe</typeparam>
+            <param name="table">erá atribuido a um DataTable, esse parametro já esta no esquema</param>
+            <param name="RowIndex">index da linha que deseja converter para a classe</param>
+            <returns>classe que foi solicitada ou null</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_AdicionarCasasDecimais(System.Decimal,System.Int32,System.String,System.String)">
+            <summary>
+            Adiciona zeros a esquerda para completar 
+            </summary>
+            <param name="Valor">Valor a ser padronizado</param>
+            <param name="Qtde">quantidade de digitos que tem quer ser exibido</param>
+            <returns>Quantidade de digitos a ser exibido | Só será adicionado zeros a esquerda se o a quantidade for menor que a informada, caso contrario o numero será retornodo na integra</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_GetDescription(System.Enum)">
+            <summary>
+            Usar com a classe [System.ComponentModel.Description("Sua mensagem")]
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_RedimensionaImagemProporcionalmente(System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            Redimensiona proporcionalmente a imagem para o maxWidth e maxHeight informados.
+            </summary>
+            <param name="image"></param>
+            <param name="maxWidth"></param>
+            <param name="maxHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_NomeMes(System.Int32,System.Int32)">
+            <summary>
+            Obtem o mês com base no numero infirmado
+            </summary>
+            <param name="valor">Numero de 1 a 12</param>
+            <param name="pQuantidadeCaracteres">Quantidade de caracteres que precisa ser retornado</param>
+            <returns>texto com o nome do mês</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_ApenasNumeros(System.String)">
+            <summary>
+            Obtem o HTML já no esquema para exibir a mensagem
+            </summary>
+            <param name="Valor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_MensagemHTML(System.String,MollaLibrary.EnunsApp.enum_TipoMensagem)">
+            <summary>
+            
+            </summary>
+            <param name="valor"></param>
+            <param name="TipoMensagem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_Validacao(System.String,MollaLibrary.EnunsApp.en_Validacoes)">
+            <summary>
+            Realiza a validação de
+            </summary>
+            <param name="valor"></param>
+            <param name="TipoValidacao"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_CriptografiaIrreversivel(System.String)">
+            <summary>
+            Realiza a criptografi de forma Irreversivel 
+            </summary>
+            <param name="Valor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_CriptografiaReversivel(System.String,MollaLibrary.EnunsApp.en_Criptografia)">
+            <summary>
+            Encripta ou Descripta a string | Caso de erro é porque a string foi alterada
+            </summary>
+            <param name="Valor"></param>
+            <param name="Tipo">Qual ação será realizada</param>
+            <returns>String com a ação desejada</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_FormataValores(System.String,MollaLibrary.EnunsApp.en_Formatacoes)">
+            <summary>
+            adiciona a formatação para textos que contenham apenas numeros
+            </summary>
+            <param name="value">Texto que será formatado (Apenas numeros)</param>
+            <param name="Formato">Formatação que será atribuida ao valor CPF,CNPJ ou CEP</param>
+            <returns>String formatada no esquema</returns>
+        </member>
+        <member name="M:MollaLibrary.ExtendMethods.ExtendMethods.MTD_UTF8(System.String)">
+            <summary>
+            Converte para o padrão UTF 8 a sintring
+            </summary>
+            <param name="Valor"></param>
+            <returns>String no esquema UTF 8</returns>
+        </member>
+        <member name="T:MollaLibrary.Seguranca.PadraoSenhas.SANOFI">
+            <summary>
+            Padrão de senha da Sanofi
+            </summary>
+        </member>
+        <member name="T:MollaLibrary.Utils.LogAlteracao">
+            <summary>
+            Classe que contém as informações de log de alteração de um registro no banco
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_NomeTabela">
+            <summary>
+            vai pegar o mesmo nome da classe
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_NomeColuna">
+            <summary>
+            Será o nome da propriedade | Sugestão: Manter o mesmo nome da base
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_DisplayColuna">
+            <summary>
+            Nome amigavel para o usuário | Um nome que o usuário final entenda do que se trata
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_De">
+            <summary>
+            Valor Antigo
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_Para">
+            <summary>
+            Valor Novo
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_Por">
+            <summary>
+            Dados do usuário que realizou a alteração
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_Em">
+            <summary>
+            Data que a alteracção foi realizada
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Utils.LogAlteracao.PRP_IdentificadorItem">
+            <summary>
+            Chave primaria do registro alterado
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.Utils.LogAlteracao.MTD_LogAlteracao(System.Object,System.Object,System.String,System.Int32)">
+            <summary>
+            Retorna uma lista com todas as alterações realizadas comparando os valores dos arquivos | Importante: colocar o [System.ComponentModel.DataAnnotations.Display(Name = "")] na propriedade; as classes terem as mesmas propriedades(nome e tipo)
+            Não funciona para campo DateTime, pois tem muitos parametros implicitos que tornam o comparativo complicado
+            </summary>
+            <param name="pDadoBase">Registro original da base de dados</param>
+            <param name="pDadoAlterado">Registro alterado pelo usuário</param>
+            <param name="AlteradoPor">Todos os dados de quem esta alterando o registro</param>
+            <param name="pIdentificadorRegistro">Identificador do Registro que será alterado</param>
+            <returns>Lista com as informações alteradas</returns>
+        </member>
+        <member name="T:MollaLibrary.Utils.Validacoes">
+            <summary>
+            Classe realiza validação de informações do usuário
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.Utils.Validacoes.MTD_ValidarCPF(System.String)">
+            <summary>
+            Valida o CPF. Se o CPF for valido retorna true caso contrario false
+            </summary>
+            <param name="p_CPF"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Validacoes.MTD_ValidaEmail(System.String)">
+            <summary>
+            Valida o Email. Se o Email for valido retorno true caso contrario false
+            </summary>
+            <param name="pEmail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Util.MTD_ObterApenasNumeros(System.String)">
+            <summary>
+            Obtem apenas numeros de uma string
+            </summary>
+            <param name="pString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Util.MTD_RetornaCor(System.String)">
+            <summary>
+            Retorna um objeto Color quando um valor hexa for passado.
+            Mais indicado para Form APP. EX = MTD_RetornaCor("#DCDCDC")
+            </summary>
+            <param name="pCorHexaDecimal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Util.MTD_FormataValorMonetario(System.Char,System.String)">
+            <summary>
+            Formata o numero adicionado o caracter informado, é para ser usado na digitação.
+            Mais apropriado para FormApp.
+            Ex:
+            string st_texto = string.IsNullOrWhiteSpace(txt_valorTotal.Text) ? "" : txt_valorTotal.Text;
+            e.Handled = true;
+            txt_valorTotal.Text = "";
+            txt_valorTotal.Text = Utils.Format.FormataValorMonetario(e.KeyChar, st_texto);
+            txt_valorTotal.SelectionStart = txt_valorTotal.Text.Length + 1;
+             txt_valorTotal.Update();
+            </summary>
+            <param name="pcaracter">Numero a ser adicionado</param>
+            <param name="ptexto">Numero antigo</param>
+            <returns>numero atual</returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Util.MTD_ListarArquivos(System.String)">
+            <summary>
+            Lista Todos os nomes dos arquivos de um diretótio
+            </summary>
+            <param name="pCaminhoDiretorio">Caminho do diretório</param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Utils.Util.MTD_ListarArquivos(System.String,System.String)">
+            <summary>
+            Lista todos os arquivos de um diretório pela extensão
+            </summary>
+            <param name="pCaminhoDiretorio">Caminho do diretório</param>
+            <param name="pExtensao">Extensão do arquivo</param>
+            <returns></returns>
+        </member>
+        <member name="T:MollaLibrary.Web.JsonUtil">
+            <summary>
+            Classe estatica de auxilio a integração com Json
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.Web.JsonUtil.Serialize(System.Object)">
+            <summary>
+            Serializa uma objeto em uma string Json
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Web.JsonUtil.SerializeToDatatable(System.Object)">
+            <summary>
+            Serializa para gerar uma tabela
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Web.JsonUtil.ConvertToObject``1(System.String)">
+            <summary>
+            Converte um json em um objeto equivalente
+            </summary>
+            <typeparam name="T">Classe que será transformada em Objeto</typeparam>
+            <param name="jsonString">JSON que será convertido em Objeto</param>
+            <returns>Objeto com as propriedades preenchidas</returns>
+        </member>
+        <member name="T:MollaLibrary.Web.SessionVar">
+            <summary>
+            Classe estatica para manipular valores de 
+            Sessão quando usamos Jquery em um webMethod
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.Web.SessionVar.Get``1(System.String)">
+            <summary>
+            obtem um tipo generico contido em uma sessão
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Web.SessionVar.Set``1(System.String,``0)">
+            <summary>
+            Insere um valor qualquer em uma sessão
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:MollaLibrary.Web.SessionVar.GetString(System.String)">
+            <summary>
+            Obtem uma string do valor contido em uma determinada Sessão
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MollaLibrary.Web.SessionVar.SetString(System.String,System.String)">
+            <summary>
+            Insere uma string em uma sessão
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:MollaLibrary.Web.Email.mtd_EnviarEmail">
+            <summary>
+            Envia E-mail's onde o email esta local
+            </summary>
+        </member>
+        <member name="M:MollaLibrary.Web.Email.mtd_EnviarEmail(System.IO.MemoryStream)">
+            <summary>
+            Envia um email e insere o anxo via array de bytes.
+            Bom para usar na web. Nesse caso não esquecer de colocar o nome na propriedade de anexo mas só o nome.
+            </summary>
+            <param name="MS"></param>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_SmtpEndereco">
+            <summary>
+            Endereço SMTP. Exemplo: Servidor do gmail = smtp.gmail.com
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_SmtpPorta">
+            <summary>
+            Um Int32 maior que zero que contém a porta a ser usado no host.
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_CredencialSenha">
+            <summary>
+            Senha para autenticar o envio do e-mail, que é a senha do email remetente
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailRemetente">
+            <summary>
+            Email que irá enviar o email e tambem quem irá autenticar o  envio da mensagem
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailDestinatarios">
+            <summary>
+            Lista de e-mails  que receberá o e-mail
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailCorpo">
+            <summary>
+            Mensagem do corpo do email
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailAssunto">
+            <summary>
+            Assuto do E-mail que será enviado
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailAnexos">
+            <summary>
+            Lista com o caminhos para os anexos do e-mail
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_SmtpHabilitaSsl">
+            <summary>
+            Especifica se a SmtpClient usa o Secure Sockets Layer (SSL) para criptografar a conexão.
+            </summary>
+        </member>
+        <member name="P:MollaLibrary.Web.Email.PRP_EmailPrioridade">
+            <summary>
+            Indica qual a prioridade do email, o default é normal
+            </summary>
+        </member>
+        <member name="T:MollaLibrary.Web.Email.EmailPrioridade">
+            <summary>
+            Indica qual o nivel de prioridade do e-mail
+            </summary>
+        </member>
+    </members>
+</doc>
