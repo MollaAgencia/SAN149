@@ -1,94 +1,35 @@
 ﻿
 /* --- AJAX Esqueci a senha --- */
-$('#btn_EsqueciSenha').bind('click', function (event) {
-    event.preventDefault();
+$('#btn-esqueci-senha').click(function () {
+    var param = {}
+    param.pCpf = $('#ipt-cpf').val();
+    if (param.pCpf) {
+        $.ajax({
+            type: 'POST',
+            url: '/Login/MTD_EsqueciSenha',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(param),
+            beforeSend: function () {
+                $('#btn-esqueci-senha').addClass('d-none');
+                $('#alert-esqueci-senha')
+                    .removeClass('d-none')
+                    .html("<span class='alert alert-default w-100 text-center'><i class='fa fa-1x fa-spinner fa-spin'></i> Processando... </span>");
+            },
+            success: function (returnValue) {
 
-    if ($('#ipt_cpf').val() == '') {
-        $('#alert_EsqueciSenha').removeClass('d-none').html('<span class="alert alert-danger py-2">Preencha o seu CPF.</span>');
-        return false;
-    }
-    
-    // Validar CPF
-        var cpf = $('#ipt_cpf').val();
-        cpf = cpf.replace('.', '');
-        cpf = cpf.replace('.', '');
-        cpf = cpf.replace('-', '');
+                var retorno = JSON.parse(returnValue);
 
-        if( cpf.length != 11 ||
-            cpf == '00000000000' ||
-            cpf == '11111111111' ||
-            cpf == '22222222222' ||
-            cpf == '33333333333' ||
-            cpf == '44444444444' ||
-            cpf == '55555555555' ||
-            cpf == '66666666666' ||
-            cpf == '77777777777' ||
-            cpf == '88888888888' ||
-            cpf == '99999999999' ){
-            $('#alert_EsqueciSenha').removeClass('d-none').html('<span class="alert alert-danger py-2">CPF inválido.</span>');
-            return false;
-        }
-        soma = 0;
-        for(i = 0; i < 9; i++){
-            soma += parseInt(cpf.charAt(i)) * (10 - i);
-        }   
-        resto = 11 - (soma % 11);
-        if(resto == 10 || resto == 11){
-            resto = 0;
-        }
-        if(resto != parseInt(cpf.charAt(9))){
-            $('#alert_EsqueciSenha').removeClass('d-none').html('<span class="alert alert-danger py-2">CPF inválido.</span>');
-            return false;
-        }
-        soma = 0;
-        for(i = 0; i < 10; i ++){
-            soma += parseInt(cpf.charAt(i)) * (11 - i);
-        }
-        resto = 11 - (soma % 11);
-        if(resto == 10 || resto == 11){
-            resto = 0;
-        }   
-        if(resto != parseInt(cpf.charAt(10))){
-            $('#alert_EsqueciSenha').removeClass('d-none').html('<span class="alert alert-danger py-2">CPF inválido.</span>');
-            return false;
-        }else{
-            $('#alert_EsqueciSenha').addClass('d-none');
-            // return true;
-        }
-
-    var parametros = {};
-    parametros.pCpf = $('#ipt_cpf').val();
-    
-    $.ajax({
-        type: 'POST',
-        url: '/Login/MTD_EsqueciSenha',
-        data: JSON.stringify(parametros),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        beforeSend: function () {
-            $('#divEnviarEsqueciSenha').addClass('d-none');
-            $('#alert_EsqueciSenha').removeClass('d-none').html('<span class="alert alert-info py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Enviando...</span>');
-        },
-        success: function (returnValue) {
-            var jsonResult = JSON.parse(returnValue);
-            if (jsonResult.PRP_Status == true) {
-                $('#btn_EsqueciSenha').removeAttr('disabled', 'disabled');
-                $('#alert_EsqueciSenha').removeClass('d-none').html(jsonResult.PRP_Mensagem);
-
-                $('#divFecharEsqueciSenha').removeClass('d-none');
-                $('#divEnviarEsqueciSenha').addClass('d-none');
-
-            } else {
-                $('#btn_EsqueciSenha').removeAttr('disabled', 'disabled');
-                $('#alert_EsqueciSenha').removeClass('d-none').html('<p class="alert alert-warning py-2">'+jsonResult.PRP_Mensagem+'</p>');
+                $("#alert-esqueci-senha").removeClass("d-none").html(retorno.PRP_Mensagem);
+            },
+            complete: function () {
             }
-        }
-    });
-});
-$('#btnFecharEsqueciSenha').bind('click', function() {
-    $('#divFecharEsqueciSenha').addClass('d-none');
-    $('#divEnviarEsqueciSenha').removeClass('d-none');
-    $('#alert_EsqueciSenha').addClass('d-none');
+        });
+    } else {
+        $("#alert-esqueci-senha")
+            .removeClass("d-none")
+            .html("<span class='alert alert-warning'>Insira seu CPF para continuar</span>");
+    }
 });
 
 $(document).on('click', '#btn_EsqueceuSenhaReset', function (event) {

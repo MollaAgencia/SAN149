@@ -12,11 +12,13 @@ namespace Aplicacao.Controllers
     {
         private readonly RankingService _rankingService = new RankingService();
 
+        //RANKING DESCONTINUADO, SERÁ TUDO CENTRALIZADO NO DESEMPENHO
+
         // GET: Ranking
-        public ActionResult Ranking()
-        {
-            return View();
-        }
+        //public ActionResult Ranking()
+        //{
+        //    return View();
+        //}
         //public JsonResult GetRanking(string documentoUsuario)
         //{
         //    return Json(_rankingService.GetRanking(documentoUsuario), JsonRequestBehavior.AllowGet);

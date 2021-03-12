@@ -21,18 +21,6 @@ namespace Aplicacao.Controllers
             return View();
         }
 
-        public ActionResult EsqueciSenha(string chave)
-        {
-            if (TempData["PPR_Requisicao"] == null)
-            {
-                MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
-                string st_Chave = chave.MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Decriptar);
-                Session["GuardeiaChave"] = st_Chave;
-                TempData["PPR_Requisicao"] = requisicao;
-            }
-            return View();
-        }
-
         [HttpPost]
         public JsonResult MTD_AtualizaSenha(string senha, string confSenha)
         {
@@ -144,8 +132,87 @@ namespace Aplicacao.Controllers
 
         public JsonResult MTD_AcessoLogin(string pCpf, string pSenha) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Autenticacao(pCpf, pSenha, out bool pAcessoFake)));
 
+        public JsonResult MTD_EsqueciSenha(string pCpf) => Json(Newtonsoft.Json.JsonConvert.SerializeObject(new LoginService().MTD_EsqueciSenhaEnvio(pCpf.MTD_ApenasNumeros())));
+
         [HttpPost]
-        public JsonResult MTD_EsqueciSenha(string pCpf) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_EsqueciSenhaEnvio(pCpf)));
+        public ActionResult EsqueciSenha(string chave)
+        {
+            if (TempData["PPR_Requisicao"] == null)
+            {
+                MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
+                try
+                {
+                    string st_Chave = chave.MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Decriptar);
+                    Models.SITE.Login.EsqueciSenha Dados = MollaLibrary.Web.JsonUtil.ConvertToObject<Models.SITE.Login.EsqueciSenha>(st_Chave);
+                    DateTime dt = DateTime.Parse(Dados.PRP_DataSolicitacao);
+                    TimeSpan ts = DateTime.Now.MTD_DataHoraBrasil() - dt;
+                    MollaLibrary.Web.SessionVar.Set<Models.SITE.Login.EsqueciSenha>("EsqueciSenhaDados", Dados);
+                    if (ts.TotalHours > Dados.PRP_HorasValidade)
+                    {
+                        requisicao.PRP_Status = false;
+                        requisicao.PRP_Mensagem = "A validade da solicitação expirou, por favor refaça o processo e tente novamente dentro do periodo indicado";
+                        requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
+                    }
+                    else
+                    {
+                        requisicao.PRP_Status = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    requisicao.PRP_Mensagem = "A chave de segurança foi corrompida, por favor solicite a alteração da senha novamente";
+                    requisicao.PRP_Status = false;
+                    requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
+                }
+
+                TempData["PPR_Requisicao"] = requisicao;
+            }
+
+
+            return View();
+        }
+
+        public ActionResult AlterarSenha(string pNovaSenha)
+        {
+            MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
+            try
+            {
+                if (Session["EsqueciSenhaDados"] == null)
+                {
+                    requisicao.PRP_Mensagem = "Sua sessão expirou, por favor refaça o processo.";
+                    requisicao.PRP_Status = false;
+                    requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
+                }
+                else
+                {
+                    Models.SITE.Login.EsqueciSenha Dados = MollaLibrary.Web.SessionVar.Get<Models.SITE.Login.EsqueciSenha>("EsqueciSenhaDados");
+                    string st_Senha = pNovaSenha.MTD_CriptografiaIrreversivel();
+
+                    db_SAN149Entities EF = new Models.ENTITY.db_SAN149Entities();
+
+                    LoginService metodos = new LoginService();
+
+                    var usuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID.Equals(Dados.PRP_UsuarioID));
+
+                    usuario.USU_Senha = pNovaSenha.MTD_CriptografiaIrreversivel();
+                    usuario.USU_DataAlteracao = DateTime.Now.MTD_DataHoraBrasil();
+                    EF.SaveChanges();
+
+                    requisicao.PRP_Mensagem = "Senha alterada com sucesso";
+                    requisicao.PRP_Status = true;
+                    requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Success;
+                }
+            }
+            catch (Exception ex)
+            {
+                requisicao.PRP_Mensagem = "Falha ao realizar a requisição";
+                requisicao.PRP_Status = false;
+                requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
+            }
+
+            TempData["PPR_Requisicao"] = requisicao;
+            return RedirectToAction("EsqueciSenha");
+        }
 
         [HttpPost]
         public JsonResult MTD_Contato(Contato pContato) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Contato(pContato)));

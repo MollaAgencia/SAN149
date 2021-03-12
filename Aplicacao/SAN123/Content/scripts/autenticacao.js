@@ -199,46 +199,6 @@
         }
 
     }
-
-    $('#btn-esqueci-senha').click(function() {
-
-        var param = {}
-
-        param.pCpf = $('#ipt-cpf').val();
-
-        if (param.pCpf) {
-
-            $.ajax({
-                type: 'POST',
-                url: '/Login/MTD_EsqueciSenha',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                data: JSON.stringify(param),
-                beforeSend: function () {
-                    $('#btn-esqueci-senha').addClass('d-none');
-                    $('#alert-esqueci-senha')
-                        .removeClass('d-none')
-                        .html("<span class='alert alert-default w-100 text-center'><i class='fa fa-1x fa-spinner fa-spin'></i> Processando... </span>");
-                },
-                success: function (returnValue) {
-
-                    var retorno = JSON.parse(returnValue);
-
-                    $("#alert-esqueci-senha").removeClass("d-none").html(retorno.PRP_Mensagem);
-                },
-                complete: function () {
-                }
-            });
-        } else {
-
-            $("#alert-esqueci-senha")
-                .removeClass("d-none")
-                .html("<span class='alert alert-warning'>Insira seu CPF para continuar</span>");
-
-        }
-
-    });
-
 }/* --- Chamadas AJAX --- */
 
 /* --- Manipulações do Formulário --- */{

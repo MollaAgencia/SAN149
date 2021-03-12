@@ -630,7 +630,6 @@
     <Content Include="Views\Login\AcessoFake.cshtml" />
     <Content Include="Views\Conteudo\Novidades.cshtml" />
     <Content Include="Views\Conteudo\Destaques.cshtml" />
-    <Content Include="Views\Ranking\Ranking.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Conteudo\Aguarde.cshtml" />
     <Content Include="Views\Shared\_SiteSharedNew.cshtml" />

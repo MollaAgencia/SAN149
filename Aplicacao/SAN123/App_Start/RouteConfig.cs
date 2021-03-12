@@ -13,18 +13,18 @@ namespace Aplicacao
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                 name: "EsqueciSenha",
+                 url: "EsqueciSenha/{chave}",
+                 defaults: new { controller = "Login", action = "EsqueciSenha", chave = UrlParameter.Optional }
+             );
+
             routes.MapRoute(
                 name: "Inicio",
                 url: "",
                 defaults: new { controller = "Login", action = "Autenticacao", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "EsqueciSenha",
-                url: "EsqueciSenha/{chave}",
-                defaults: new { controller = "Login", action = "EsqueciSenha", chave = UrlParameter.Optional }
-            );
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

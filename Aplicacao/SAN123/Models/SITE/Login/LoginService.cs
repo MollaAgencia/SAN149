@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Aplicacao.Models.COMMON;
 using Aplicacao.Models.COMMON.API;
+using Aplicacao.Models.COMMON.Email;
 using Aplicacao.Models.ENTITY;
 using MollaLibrary;
 using MollaLibrary.ExtendMethods;
@@ -101,49 +102,92 @@ namespace Aplicacao.Models.SITE.Login
             return retorno;
         }
 
-        public RetornoRequisicao MTD_EsqueciSenhaEnvio(string pCpf)
+        public RetornoRequisicao MTD_EsqueciSenhaEnvio(string pLogin)
         {
-            string st_json = "";
-            string key = "";
+            RetornoRequisicao ret = new RetornoRequisicao();
 
-            Cad_Cadastro usu = new Cad_Cadastro();
-            RetornoRequisicao requisicao = new RetornoRequisicao();
-            pCpf = pCpf.MTD_ApenasNumeros();
             try
             {
-                MollaLibrary.DataSource.MicrosoftSqlServer sqlServer = new MollaLibrary.DataSource.MicrosoftSqlServer(Models.COMMON.values.PRP_StringConexao);
-                System.Data.SqlClient.SqlParameterCollection parameterCollection = sqlServer.InicializaSqlParameterCollection;
-                parameterCollection.Add("@pCPF", System.Data.SqlDbType.VarChar).Value = pCpf.MTD_ApenasNumeros();
-                System.Data.DataTable dtb_result = sqlServer.DbExecute("sp_site_EsqueceuSenha", parameterCollection, System.Data.CommandType.StoredProcedure);
-                if (dtb_result != null)
+                var objUsuario = MTD_ObterUsuario(pLogin.Replace("-", "").Replace(".", ""));
+                if (objUsuario.PRP_Requisicao.PRP_Status == false)
                 {
-                    foreach (System.Data.DataRow linha in dtb_result.Rows)
-                    {
-                        //usu.id = int.Parse(linha["id"].ToString());
-                        usu.NOME = linha["USU_NOME"].ToString();
-                        usu.EMAIL = linha["USU_Email"].ToString();
-                        usu.CPF = linha["USU_CPF"].ToString();
-                    }
-
-                    Models.COMMON.Email.Email_Disparo disparo = new Models.COMMON.Email.Email_Disparo();
-                    key = string.Format("{0}", usu.CPF).MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Encriptar);
-                    disparo.PRP_EmailDestinatario = usu.EMAIL;
-                    requisicao.PRP_Status = true;
-                    requisicao.PRP_Mensagem = string.Format(@"Olá, foi enviado um link para recadastramento de sua senha para o e-mail cadastrado {0}.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
-                    disparo.MTD_DisparoEmailEsqueciSenha(usu.NOME, key);
+                    ret.PRP_TipoMensagem = (MollaLibrary.EnunsApp.enum_TipoMensagem)((int)objUsuario.PRP_Requisicao.PRP_TipoMensagem);
+                    ret.PRP_Mensagem = objUsuario.PRP_Requisicao.PRP_Mensagem;
+                    ret.PRP_Status = false;
+                    ret.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
                 }
-                else if (dtb_result == null)
+                else
                 {
-                    requisicao.PRP_Status = false;
-                    requisicao.PRP_Mensagem = string.Format(@"Olá, algo inesperado ocorreu tente novamente em instantes.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Alert);
+                    Email_Disparo disparo = new Email_Disparo();
+                    DadosUsuarioSessao Dados = objUsuario.PRP_Dados;
+                    EsqueciSenha dados = new EsqueciSenha();
+                    dados.PRP_DataSolicitacao = DateTime.Now.MTD_DataHoraBrasil().ToString("yyyy-MM-dd HH:mm:ss");
+                    dados.PRP_HorasValidade = 48;
+                    dados.PRP_UsuarioID = Dados.PRP_IdUsuario ;
+                    disparo.PRP_EmailDestinatario = Dados.PRP_Email;
+                    disparo.PRP_Assunto = "Esqueci a senha";
+                    string st_Chave = MollaLibrary.Web.JsonUtil.Serialize(dados).MTD_CriptografiaReversivel(MollaLibrary.EnunsApp.en_Criptografia.Encriptar);
+
+                    var item = disparo.MTD_DisparoEmailEsqueciSenha(Dados.PRP_NomeUsuario, st_Chave);
+                    ret.PRP_Status = item.PRP_Status;
+                    ret.PRP_Mensagem = item.PRP_Mensagem;
+                }
+            }
+            catch (Exception)
+            {
+                ret.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
+                ret.PRP_Mensagem = "falha ao enviar a requisição";
+                ret.PRP_Status = false;
+            }
+            return ret;
+        }
+
+        public dynamic MTD_ObterUsuario(string pLogin)
+        {
+            dynamic objRetorno = new System.Dynamic.ExpandoObject();
+            RetornoRequisicao ret = new RetornoRequisicao();
+            DadosUsuarioSessao objCadastro = new DadosUsuarioSessao();
+            try
+            {
+                using (db_SAN149Entities EF = new db_SAN149Entities())
+                {
+                    USU_Usuario objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_CPF.Equals(pLogin.Replace(".", "").Replace("/", "").Replace("-", "")));
+                    if (objUsuario == null)
+                    {
+                        ret.PRP_Mensagem = "Usuário não encontrado";
+                        ret.PRP_Status = false;
+                        ret.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
+                    }
+                    else if (!objUsuario.USU_Ativo)
+                    {
+                        ret.PRP_Status = false;
+                        ret.PRP_Mensagem = "O login solicitado está desativado.";
+                        ret.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
+                    }
+                    else
+                    {
+
+                        objCadastro.PRP_Celular = objUsuario.USU_Celular;
+                        objCadastro.PRP_CPF = objUsuario.USU_CPF;
+                        objCadastro.PRP_IdBU = objUsuario.UNG_ID;
+                        objCadastro.PRP_IdUsuario = objUsuario.USU_ID;
+                        objCadastro.PRP_NomeBU = objUsuario.UNG_UnidadeNegocio.UNG_Nome;
+                        objCadastro.PRP_NomeUsuario = objUsuario.USU_Nome;
+                        objCadastro.PRP_Email = objUsuario.USU_Email;
+                        objCadastro.PRP_CodSac = objUsuario.USU_CodSac;
+                        ret.PRP_Status = true;
+                        objRetorno.PRP_Dados = objCadastro;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                requisicao.PRP_Status = false;
-                requisicao.PRP_Mensagem = string.Format(@"Olá, algo inesperado ocorreu entre em contato com o Fale Conosco.", usu.EMAIL).MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Danger);
+                ret.PRP_Mensagem = "Falha ao realizar a requisição.";
+                ret.PRP_Status = false;
+                ret.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
             }
-            return requisicao;
+            objRetorno.PRP_Requisicao = ret;
+            return objRetorno;
         }
 
         public RetornoRequisicao MTD_Contato(Contato parametros)
