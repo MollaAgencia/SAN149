@@ -632,8 +632,9 @@
     <Content Include="Views\Conteudo\Destaques.cshtml" />
     <Content Include="Views\Ranking\Ranking.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Conteudo\Aguarde.cshtml" />
+    <Content Include="Views\Shared\_SiteSharedNew.cshtml" />
+    <Content Include="Views\Conteudo\ResgatePremios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

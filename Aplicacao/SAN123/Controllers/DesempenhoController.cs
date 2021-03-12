@@ -18,11 +18,5 @@ namespace Aplicacao.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public JsonResult GetDesempenho(string documentoUsuario)
-        //{
-        //    return Json(_desempenhoService.GetDesempenho(documentoUsuario), JsonRequestBehavior.AllowGet);
-        //}
-
     }
 }

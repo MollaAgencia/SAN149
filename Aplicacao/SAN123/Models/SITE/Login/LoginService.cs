@@ -206,10 +206,11 @@ namespace Aplicacao.Models.SITE.Login
                 if(objUsuario != null)
                 {
                     DadosPreCadastro dadosUsuario = new DadosPreCadastro();
-                    dadosUsuario.PRP_BU = objUsuario.UNG_UnidadeNegocio.UNG_Nome;
+                    dadosUsuario.PRP_IdBU = objUsuario.UNG_ID;
+                    dadosUsuario.PRP_NomeBU = objUsuario.UNG_UnidadeNegocio.UNG_Nome;
                     dadosUsuario.PRP_Celular = objUsuario.USU_Celular;
                     dadosUsuario.PRP_Cod_Sac = objUsuario.USU_CodSac;
-                    dadosUsuario.PRP_CPF = objUsuario.USU_CPF;
+                    dadosUsuario.PRP_CPF = objUsuario.USU_CPF.MTD_FormataValores(EnunsApp.en_Formatacoes.CPF);
                     dadosUsuario.PRP_NomeUsuario = objUsuario.USU_Nome;
                     dadosUsuario.PRP_PrimeiroAcesso = objUsuario.USU_PrimeiroAcesso;
                     dadosUsuario.PRP_EmailUsuario = objUsuario.USU_Email;
@@ -220,26 +221,26 @@ namespace Aplicacao.Models.SITE.Login
                     if (objUsuario.USU_PrimeiroAcesso == true && objUsuario.USU_DataAceite == null)
                     {                        
                         retornoUsuario.PRP_Requisicao.PRP_Status = true;
-                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario localizado. Completar cadastro.";
+                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario localizado. Completar cadastro.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
                         retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
                     }
-                    else if (objUsuario.USU_PrimeiroAcesso == false && objUsuario.USU_DataAceite != null && objUsuario.USU_Senha != null)
+                    else if (objUsuario.USU_PrimeiroAcesso == false && objUsuario.USU_DataAceite != null && objUsuario.USU_Senha == null)
                     {
                         retornoUsuario.PRP_Requisicao.PRP_Status = true;
-                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuário já cadastrado. Atualizar dados.";
+                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuário já cadastrado. Atualizar dados.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
                         retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Info;
                     }
                     else
                     {
                         retornoUsuario.PRP_Requisicao.PRP_Status = false;
-                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario já cadastrado. Efetuar login.";
+                        retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario já cadastrado. Efetuar login.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
                         retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
                     }                    
                 }
                 else
                 {
                     retornoUsuario.PRP_Requisicao.PRP_Status = false;
-                    retornoUsuario.PRP_Requisicao.PRP_Mensagem = "CPF não localizado em nossa base.";
+                    retornoUsuario.PRP_Requisicao.PRP_Mensagem = "CPF não localizado em nossa base.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
                     retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
                 }
 
@@ -247,7 +248,7 @@ namespace Aplicacao.Models.SITE.Login
             catch (Exception)
             {
                 retornoUsuario.PRP_Requisicao.PRP_Status = false;
-                retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Erro ao processar a sua requisição. Tente novamente mais tarde.";
+                retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Erro ao processar a sua requisição. Tente novamente mais tarde.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
                 retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
             }
             return retornoUsuario;
@@ -263,8 +264,10 @@ namespace Aplicacao.Models.SITE.Login
                     objUsuario.USU_Celular = pCelular.MTD_ApenasNumeros();
                     objUsuario.USU_Senha = pSenha.MTD_CriptografiaIrreversivel();
                     objUsuario.USU_DataAceite = DateTime.Now.MTD_DataHoraBrasil();
-                    objUsuario.USU_PrimeiroAcesso = false;
+                    objUsuario.USU_PrimeiroAcesso = false;                   
                     EF.SaveChanges();
+
+                    var retornoSessao = MTD_AlimentarSessao(objUsuario);
 
                     ret.PRP_Status = true;
                     ret.PRP_Mensagem = "Dados salvos com sucesso!";

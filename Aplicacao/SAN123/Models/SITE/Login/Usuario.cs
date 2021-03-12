@@ -24,7 +24,8 @@ namespace Aplicacao.Models.SITE.Login
         public string PRP_EmailUsuario { get; set; }
         public string PRP_Celular { get; set; }
         public bool PRP_PrimeiroAcesso { get; set; }
-        public string PRP_BU { get; set; }
+        public int PRP_IdBU { get; set; }
+        public string PRP_NomeBU { get; set; }
         public string PRP_Cod_Sac { get; set; }
     }
     public class DadosUsuarioSessao

@@ -25,21 +25,22 @@ $(document).on('click', '#btnlogin_Cadastro', function (event) {
                     $('#cadas-CPF').val(ret.OBJ_Usuario.PRP_CPF);
                     $('#cadas-nome').val(ret.OBJ_Usuario.PRP_NomeUsuario);
                     $('#cadas-email').val(ret.OBJ_Usuario.PRP_EmailUsuario);
-                    $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);                   
+                    $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);
+                    $('#cadas-unidadeNegocio').val(ret.OBJ_Usuario.PRP_NomeBU);
 
                     $('#cadastroModal').modal('show');
                 }
-                else if (PRP_Requisicao.PRP_TipoMensagem == 2) {
-                    $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                    $('#alert-cadastro').removeClass('d-none');
+                else if (ret.PRP_Requisicao.PRP_TipoMensagem == 2) {
+                    $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                    $('#MontaHTMLCadastro').removeClass('d-none');
                 }
-                else if (PRP_Requisicao.PRP_TipoMensagem == 3) {
-                    $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                    ('#alert-cadastro').removeClass('d-none');
+                else if (ret.PRP_Requisicao.PRP_TipoMensagem == 3) {
+                    $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                    ('#MontaHTMLCadastro').removeClass('d-none');
                 }
             } else {
-                $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                ('#alert-cadastro').removeClass('d-none');
+                $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                $('#MontaHTMLCadastro').removeClass('d-none');
             }
         }
     });

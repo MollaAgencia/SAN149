@@ -27,10 +27,13 @@ namespace Aplicacao.Controllers
         }
         public ActionResult Novidades()
         {
-
             return View();
         }
         public ActionResult Destaques()
+        {
+            return View();
+        }
+        public ActionResult ResgatePremios()
         {
             return View();
         }
