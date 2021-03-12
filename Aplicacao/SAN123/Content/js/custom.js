@@ -169,51 +169,39 @@ $('#btn-salvar').click(function () {
 $('button[name="btn_contato"]').bind('click', function (event) {
     event.preventDefault();
 
-    $('#contato_nome, #contato_email, #contato_cpf, #contato_assunto, #contato_mensagem').trigger('change');
+    $('#contato_mensagem').trigger('change');
+    var parametros = {};
+    parametros.pIdUsuario = parseInt($('#id-usuario').val());
+    parametros.pMensagem = $('#contato_mensagem').val();
 
-    if (validaCamposContato()) {
-        var parametros = {};
-        parametros.PRP_CPF = $('#contato_cpf').val();
-        parametros.PRP_Nome = $('#contato_nome').val();
-        parametros.PRP_Email = $('#contato_email').val();
-        parametros.PRP_Assunto = $("#contato_assunto option:selected").text();
-        parametros.PRP_Mensagem = $('#contato_mensagem').val();
-
-        $.ajax({
-            type: 'POST',
-            url: '/Login/MTD_Contato',
-            data: JSON.stringify(parametros),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            beforeSend: function () {
+    $.ajax({
+        type: 'POST',
+        url: '/Login/MTD_Contato',
+        data: JSON.stringify(parametros),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        beforeSend: function () {
+            $('button[name="btn_contato"]').addClass('disabled');
+            $('#alert_contato')
+                .removeClass('d-none')
+                .html('<span class="alert alert-info"><i class="fa fa-1x fa-spinner fa-spin"></i> Enviando...</span>');
+        },
+        success: function (returnValue) {
+            console.log(returnValue);
+            var jsonResult = JSON.parse(returnValue);
+            if (jsonResult.PRP_Status === true) {
+                $('#alert_contato').removeClass('d-none')
+                    .html(
+                        '<p class="alert alert-success py-2 m-0">Mensagem enviada!<br>Aguarde o retorno via e-mail ou telefone.</p>');
+                $('button[name="btn_contato"]').removeAttr('disabled', 'disabled');
+            } else {
                 $('button[name="btn_contato"]').addClass('disabled');
-                $('#alert_contato')
-                    .removeClass('d-none')
-                    .html('<span class="alert alert-info"><i class="fa fa-1x fa-spinner fa-spin"></i> Enviando...</span>');
-            },
-            success: function (returnValue) {
-                console.log(returnValue);
-                var jsonResult = JSON.parse(returnValue);
-                if (jsonResult.PRP_Status === true) {
-                    $('#alert_contato').removeClass('d-none')
-                        .html(
-                            '<p class="alert alert-success py-2 m-0">Mensagem enviada!<br>Aguarde o retorno via e-mail ou telefone.</p>');
-                    $('button[name="btn_contato"]').removeAttr('disabled', 'disabled');
-                } else {
-                    $('button[name="btn_contato"]').addClass('disabled');
-                    $('#alert_contato').removeClass('d-none')
-                        .html(
-                            '<p class="alert alert-warning py-2 m-0">Erro ao enviar mensagem!<br>Favor tentar novamente.</p>');
-                }
+                $('#alert_contato').removeClass('d-none')
+                    .html(
+                        '<p class="alert alert-warning py-2 m-0">Erro ao enviar mensagem!<br>Favor tentar novamente.</p>');
             }
-        });
-    } else {
-
-        $("#alert_contato")
-            .removeClass("d-none")
-            .html("<span class='alert alert-warning d-flex'>Ainda existem campos inválidos ou vazios. Preencha-os corretamente para continuar</span>");
-
-    }
+        }
+    });
 });
 
 $(".btn-contato").click(function () {

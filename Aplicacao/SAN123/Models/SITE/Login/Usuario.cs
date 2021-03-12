@@ -32,8 +32,10 @@ namespace Aplicacao.Models.SITE.Login
     {
         public int PRP_IdUsuario { get; set; }
         public string PRP_NomeUsuario { get; set; }
+        public string PRP_CodSac { get; set; }
         public string PRP_CPF { get; set; }
         public string PRP_Celular { get; set; }
+        public string PRP_Email { get; set; }
         public int PRP_IdBU { get; set; }
         public string PRP_NomeBU { get; set; }
     }

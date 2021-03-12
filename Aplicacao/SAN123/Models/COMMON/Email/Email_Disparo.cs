@@ -144,7 +144,7 @@ namespace Aplicacao.Models.COMMON.Email
             }
         }
 
-        public MollaLibrary.COMMON.RetornoRequisicao MTD_DisparoEmailContato(string pNome, string pAssunto, string pMensagem, string pEmail)
+        public MollaLibrary.COMMON.RetornoRequisicao MTD_DisparoEmailContato(string pNome, string pAssunto, string pCodSac, string pMensagem, string pEmail)
         {
             MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
             
@@ -153,7 +153,7 @@ namespace Aplicacao.Models.COMMON.Email
                 Models.COMMON.Email.Email_MensagemCompleta EnviarEmail = new Models.COMMON.Email.Email_MensagemCompleta();
                 EnviarEmail.PRP_EmailDestinatarios = new List<string>();
                 EnviarEmail.PRP_EmailAssunto = PRP_Assunto;
-                EnviarEmail.PRP_EmailCorpo = MTD_ObterHtmlContato(pNome, pMensagem, "Fale Conosco", pEmail);
+                EnviarEmail.PRP_EmailCorpo = MTD_ObterHtmlContato(pNome, pMensagem, pCodSac, pAssunto, pEmail);
                 EnviarEmail.PRP_EmailDestinatarios.Add("contato@campanhaplaytowin.com.br");
                 EnviarEmail.PRP_EmailRemetente = PRP_EmailRemetente;
                 EnviarEmail.PRP_EmailRemetenteAlias = PRP_EmailRemetenteAlias;
@@ -292,7 +292,7 @@ namespace Aplicacao.Models.COMMON.Email
             return requisicao;
         }
 
-        public string MTD_ObterHtmlContato(string pNome, string pMensagem, string pEmail, string pAssunto)
+        public string MTD_ObterHtmlContato(string pNome, string pMensagem, string pCodSac, string pAssunto, string pEmail)
         {
             string st_HTML = "";
             st_HTML = System.IO.File.ReadAllText(PRP_CaminhoContatoHTML);
@@ -301,6 +301,7 @@ namespace Aplicacao.Models.COMMON.Email
                 .Replace("[Data Solicitação]", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"))
                 .Replace("[Email]", pEmail)
                 .Replace("[Assunto]", pAssunto)
+                .Replace("[CodigoSac]", pCodSac)
                 .Replace("[Mensagem]", pMensagem)
                 ;
         }

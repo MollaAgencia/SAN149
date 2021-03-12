@@ -149,5 +149,7 @@ namespace Aplicacao.Controllers
 
         [HttpPost]
         public JsonResult MTD_Contato(Contato pContato) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Contato(pContato)));
+        [HttpPost]
+        public JsonResult MTD_ContatoUsuario(int pIdUsuario, string pMensagem) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_ContatoUsuario(pIdUsuario, pMensagem)));
     }
 }

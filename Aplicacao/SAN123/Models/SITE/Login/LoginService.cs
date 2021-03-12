@@ -30,7 +30,7 @@ namespace Aplicacao.Models.SITE.Login
 
             if (usuario != null && usuario.USU_Ativo)
             {
-                if(usuario.USU_PrimeiroAcesso == false && usuario.USU_Senha == null)
+                if (usuario.USU_PrimeiroAcesso == false && usuario.USU_Senha == null)
                 {
                     objRetorno.PRP_Status = true;
                     objRetorno.PRP_Mensagem = "Usuário deve atualizar o cadastro";
@@ -83,6 +83,8 @@ namespace Aplicacao.Models.SITE.Login
                 objSessao.PRP_IdUsuario = objUsuario.USU_ID;
                 objSessao.PRP_NomeBU = objUsuario.UNG_UnidadeNegocio.UNG_Nome;
                 objSessao.PRP_NomeUsuario = objUsuario.USU_Nome;
+                objSessao.PRP_Email = objUsuario.USU_Email;
+                objSessao.PRP_CodSac = objUsuario.USU_CodSac;
 
                 SessionVar.Set("AutenticacaoSite", objSessao);
                 retorno.PRP_Status = true;
@@ -103,7 +105,7 @@ namespace Aplicacao.Models.SITE.Login
         {
             string st_json = "";
             string key = "";
- 
+
             Cad_Cadastro usu = new Cad_Cadastro();
             RetornoRequisicao requisicao = new RetornoRequisicao();
             pCpf = pCpf.MTD_ApenasNumeros();
@@ -147,10 +149,44 @@ namespace Aplicacao.Models.SITE.Login
         public RetornoRequisicao MTD_Contato(Contato parametros)
         {
             COMMON.Email.Email_Disparo disparo = new COMMON.Email.Email_Disparo();
-            RetornoRequisicao retorno = disparo.MTD_DisparoEmailContato(pNome: parametros.PRP_Nome, pAssunto: parametros.PRP_Assunto, pEmail: parametros.PRP_Email, pMensagem: parametros.PRP_Mensagem);
+            RetornoRequisicao retorno = disparo.MTD_DisparoEmailContato(pNome: parametros.PRP_Nome, pAssunto: parametros.PRP_Assunto, pCodSac: parametros.PRP_CodigoSac, pEmail: parametros.PRP_Email, pMensagem: parametros.PRP_Mensagem);
             return retorno;
         }
 
+        public RetornoRequisicao MTD_ContatoUsuario(int pIdUsuario, string pMensagem)
+        {
+            RetornoRequisicao retorno = new RetornoRequisicao();
+            int idUsuario = values.PRP_UsuarioAutenticadoSite.PRP_IdUsuario;
+
+            if (idUsuario == pIdUsuario)
+            {
+                using (db_SAN149Entities EF = new db_SAN149Entities())
+                {
+                    var objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID == idUsuario);
+
+                    if (objUsuario != null)
+                    {
+                        COMMON.Email.Email_Disparo disparo = new COMMON.Email.Email_Disparo();
+                        retorno = disparo.MTD_DisparoEmailContato(pNome: objUsuario.USU_Nome, pAssunto: "Contato usuario: " + objUsuario.USU_Nome + ".", pCodSac: objUsuario.USU_CodSac , pEmail: objUsuario.USU_Email, pMensagem: pMensagem);
+                        return retorno;
+                    }
+                    else
+                    {
+                        retorno.PRP_Mensagem = "Erro ao obeter dados do usuário. Tente novamente mais tarde".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
+                        retorno.PRP_Status = false;
+                        retorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
+                        return retorno;
+                    }
+                }
+            }
+            else
+            {
+                retorno.PRP_Mensagem = "Falha ao processar a sua requisição. Tente novamente mais tarde".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
+                retorno.PRP_Status = false;
+                retorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
+                return retorno;
+            }
+        }
 
         public RetornoRequisicao MTD_AlterarSenha(string pLogin, string pSenha)
         {
@@ -203,7 +239,7 @@ namespace Aplicacao.Models.SITE.Login
             try
             {
                 var objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_CPF == pCPF);
-                if(objUsuario != null)
+                if (objUsuario != null)
                 {
                     DadosPreCadastro dadosUsuario = new DadosPreCadastro();
                     dadosUsuario.PRP_IdBU = objUsuario.UNG_ID;
@@ -219,7 +255,7 @@ namespace Aplicacao.Models.SITE.Login
                     retornoUsuario.OBJ_Usuario = dadosUsuario;
 
                     if (objUsuario.USU_PrimeiroAcesso == true && objUsuario.USU_DataAceite == null)
-                    {                        
+                    {
                         retornoUsuario.PRP_Requisicao.PRP_Status = true;
                         retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario localizado. Completar cadastro.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
                         retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
@@ -235,7 +271,7 @@ namespace Aplicacao.Models.SITE.Login
                         retornoUsuario.PRP_Requisicao.PRP_Status = false;
                         retornoUsuario.PRP_Requisicao.PRP_Mensagem = "Usuario já cadastrado. Efetuar login.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
                         retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
-                    }                    
+                    }
                 }
                 else
                 {
@@ -264,7 +300,7 @@ namespace Aplicacao.Models.SITE.Login
                     objUsuario.USU_Celular = pCelular.MTD_ApenasNumeros();
                     objUsuario.USU_Senha = pSenha.MTD_CriptografiaIrreversivel();
                     objUsuario.USU_DataAceite = DateTime.Now.MTD_DataHoraBrasil();
-                    objUsuario.USU_PrimeiroAcesso = false;                   
+                    objUsuario.USU_PrimeiroAcesso = false;
                     EF.SaveChanges();
 
                     var retornoSessao = MTD_AlimentarSessao(objUsuario);

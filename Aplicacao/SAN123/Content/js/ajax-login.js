@@ -203,6 +203,7 @@ $('#btn_contato').bind('click', function (event) {
     parametros.PRP_Email = $('#contato_email').val();
     parametros.PRP_Assunto = $('#contato_assunto').val();
     parametros.PRP_Mensagem = $('#contato_mensagem').val();
+    parametros.PRP_CodigoSac = $('#contato_codsac').val();
 
     $.ajax({
         type: 'POST',

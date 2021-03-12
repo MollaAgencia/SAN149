@@ -49,6 +49,7 @@
 </head>
 <body>
     <input type="hidden" id="documento-usuario" value="@usuario.PRP_CPF" />
+    <input type="hidden" id="id-usuario" value="@usuario.PRP_IdUsuario" />
     <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
         <div class="header-body border-bottom">
             <div class="header-container container">
@@ -135,10 +136,10 @@
     </div>
 
     @*<footer id="footer" class="bg-color-quaternary py-4">
-        <div class="container">
-            <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
-        </div>
-    </footer>*@
+            <div class="container">
+                <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
+            </div>
+        </footer>*@
 
     <!-- modal Contato -->
     <div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
@@ -150,72 +151,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label class="mb-0">CPF</label>
-                                <div class="input-group">
-                                    <input name="" id="contato_cpf" value="@usuario.PRP_CPF" maxlength="14" class="form-control form-control-lg disabled" valid="" mask-cpf valida-cpf required>
-                                    <span class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user"></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="alertError" alert-cpf></div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label class="mb-0">E-mail</label>
-                                <div class="input-group">
-                                    <input name="" id="contato_email" value="@usuario.PRP_Celular" type="email" class="form-control form-control-lg disabled" valid="" valida-email required>
-                                    <span class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="alertError" alert-email></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md">
-                            <div class="form-group">
-                                <label class="mb-0">Nome</label>
-                                <div class="input-group">
-                                    <input name="" id="contato_nome" value="@usuario.PRP_NomeUsuario" type="text" class="form-control form-control-lg disabled" valid="" valida-nome required>
-                                    <span class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-user"></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="alertError" alert-nome></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md">
-                            <div class="form-group">
-                                <label class="mb-0">Assunto</label>
-                                <div class="input-group">
-                                    @*<input name="" id="contato_assunto" type="text" class="form-control form-control-lg" valid="" valida-assunto maxlength="20" required>*@
-                                    <select id="contato_assunto" class="form-control form-control-lg" valid valida-assunto-select required>
-                                        <option value="0">Selecione</option>
-                                        <option value="1">Dúvidas sobre Acesso/Cadastro</option>
-                                        <option value="2">Dúvidas sobre Resgates</option>
-                                        <option value="3">Dúvidas com relação a sua Pontuação</option>
-                                        <option value="4">Outros</option>
-                                    </select>
-                                    <span class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-info px-1" aria-hidden="true"></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="alertError" alert-assunto></div>
-                            </div>
+                        <div class="col-12">
+                            <p>
+                                Olá, @usuario.PRP_NomeUsuario.<br />
+                                Estamos aqui para te apoiar. <br />
+                                Por isso, deixe sua mensagem pra gente. Em até 48h retornaremos pra você.<br />
+                                Importante: cadastre o e-mail <strong>contato@campanhaplaytowin.com.br</strong> para ele não caio no spam
+                            </p>
                         </div>
                     </div>
                     <div class="row">
@@ -280,21 +222,21 @@
                                 <div class="alertError" alert-email></div>
                             </div>
                             @*<div class="form-row">
-                                <div class="form-group col">
-                                    <label class="mb-0">Senha</label>
-                                    <div class="input-group">
-                                        <input name="" id="perfil-senha" type="password" value="@complemento.PRP_Senha" valid="true" class="form-control form-control-lg" valida-senha valida-forca-senha required disabled>
+                                    <div class="form-group col">
+                                        <label class="mb-0">Senha</label>
+                                        <div class="input-group">
+                                            <input name="" id="perfil-senha" type="password" value="@complemento.PRP_Senha" valid="true" class="form-control form-control-lg" valida-senha valida-forca-senha required disabled>
+                                        </div>
+                                        <div class="alertError" alert-senha alert-forca-senha></div>
                                     </div>
-                                    <div class="alertError" alert-senha alert-forca-senha></div>
-                                </div>
-                                <div id="perfil-div-conf-senha" class="form-group col d-none">
-                                    <label class="mb-0">Confirmar senha</label>
-                                    <div class="input-group">
-                                        <input name="" id="perfil-conf-senha" type="password" value="@complemento.PRP_Senha" valid="true" class="form-control form-control-lg" valida-confsenha required disabled>
+                                    <div id="perfil-div-conf-senha" class="form-group col d-none">
+                                        <label class="mb-0">Confirmar senha</label>
+                                        <div class="input-group">
+                                            <input name="" id="perfil-conf-senha" type="password" value="@complemento.PRP_Senha" valid="true" class="form-control form-control-lg" valida-confsenha required disabled>
+                                        </div>
+                                        <div class="alertError" alert-conf-senha></div>
                                     </div>
-                                    <div class="alertError" alert-conf-senha></div>
-                                </div>
-                            </div>*@
+                                </div>*@
                             <div id="alert-perfil" class="text-center mt-3"></div>
                         </div>
                     </div>

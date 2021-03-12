@@ -11,5 +11,6 @@ namespace Aplicacao.Models.SITE.Login
         public string PRP_Email { get; set; }
         public string PRP_Assunto { get; set; }
         public string PRP_Mensagem { get; set; }
+        public string PRP_CodigoSac { get; set; }
     }
 }
