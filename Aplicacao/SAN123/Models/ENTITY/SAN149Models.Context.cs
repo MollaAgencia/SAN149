@@ -13,10 +13,10 @@ namespace Aplicacao.Models.ENTITY
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SAN123_Entities : DbContext
+    public partial class db_SAN149Entities : DbContext
     {
-        public SAN123_Entities()
-            : base("name=SAN149_Entities")
+        public db_SAN149Entities()
+            : base("name=db_SAN149Entities")
         {
         }
     
@@ -25,14 +25,7 @@ namespace Aplicacao.Models.ENTITY
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CAR_Cargo> CAR_Cargo { get; set; }
-        public virtual DbSet<DES_Desempenho> DES_Desempenho { get; set; }
-        public virtual DbSet<DSD_DesempenhoDescricao> DSD_DesempenhoDescricao { get; set; }
-        public virtual DbSet<DSF_DesempenhoFase> DSF_DesempenhoFase { get; set; }
-        public virtual DbSet<DSK_DesempenhoKpi> DSK_DesempenhoKpi { get; set; }
-        public virtual DbSet<GRC_GrupoCompeticao> GRC_GrupoCompeticao { get; set; }
-        public virtual DbSet<RKG_RankingGrupo> RKG_RankingGrupo { get; set; }
+        public virtual DbSet<UNG_UnidadeNegocio> UNG_UnidadeNegocio { get; set; }
         public virtual DbSet<USU_Usuario> USU_Usuario { get; set; }
-        public virtual DbSet<LAU_LogAutenticacaoUsuario> LAU_LogAutenticacaoUsuario { get; set; }
     }
 }

@@ -12,11 +12,6 @@ namespace Aplicacao.Controllers
         // GET: ResgatePremios
         public ActionResult Index()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
-
             return View();
         }
     }

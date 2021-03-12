@@ -15,40 +15,6 @@ namespace Aplicacao.Models.COMMON
     {
         public string PRP_Telefone { get; set; }
         public string PRP_Senha { get; set; }
-
-
-        /// <summary>
-        /// Método resposavel por preencher os dados complementares especificos de cada projeto
-        /// </summary>
-        /// <param name="pUsuario"></param>
-        /// <returns></returns>
-        public static ComplementoDadosAcesso MTD_ObterDadosComplemento(USU_Usuario pUsuario)
-        {
-            ComplementoDadosAcesso complemento = new ComplementoDadosAcesso();
-            try
-            {
-                SAN123_Entities EF = new SAN123_Entities();
-
-                var usuario = EF.USU_Usuario.FirstOrDefault(u => u.USU_ID == pUsuario.USU_ID);
-
-                if (usuario != null)
-                {
-                    complemento.PRP_Telefone = usuario.USU_Telefone;
-                    complemento.PRP_Senha = usuario.USU_Senha;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Dictionary<string, string> Dados = new Dictionary<string, string>();
-                Dados.Add("pUsuario", pUsuario.USU_Login);
-                ex.MTD_EnviaEmailTI("Aplicacao.Models.COMMON.ComplementoDadosAcesso.MTD_ObterDadosComplemento", Dados);
-                throw ex;
-            }
-            
-
-            return complemento;
-        }
         /// <summary>
         /// Método resposavel por realizar o cadastro das informações especidicas de cada projeto
         /// </summary>

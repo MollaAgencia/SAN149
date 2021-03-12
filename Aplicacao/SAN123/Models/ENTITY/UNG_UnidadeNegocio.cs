@@ -12,18 +12,21 @@ namespace Aplicacao.Models.ENTITY
     using System;
     using System.Collections.Generic;
     
-    public partial class CAR_Cargo
+    public partial class UNG_UnidadeNegocio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CAR_Cargo()
+        public UNG_UnidadeNegocio()
         {
             this.USU_Usuario = new HashSet<USU_Usuario>();
         }
     
-        public int CAR_ID { get; set; }
-        public string CAR_DESCRICAO { get; set; }
-        public Nullable<System.DateTime> CAR_DataCadastro { get; set; }
-        public Nullable<System.DateTime> CAR_DataAlteracao { get; set; }
+        public int UNG_ID { get; set; }
+        public string UNG_Nome { get; set; }
+        public string UNG_Descricao { get; set; }
+        public bool UNG_Ativo { get; set; }
+        public System.DateTime UNG_DataCadastro { get; set; }
+        public Nullable<System.DateTime> UNG_DataAlteracao { get; set; }
+        public string UNG_Anotacao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USU_Usuario> USU_Usuario { get; set; }

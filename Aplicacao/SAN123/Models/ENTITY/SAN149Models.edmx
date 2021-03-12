@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_SAN149Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="UNG_UnidadeNegocio">
+          <Key>
+            <PropertyRef Name="UNG_ID" />
+          </Key>
+          <Property Name="UNG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UNG_Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UNG_Descricao" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UNG_Ativo" Type="bit" Nullable="false" />
+          <Property Name="UNG_DataCadastro" Type="datetime" Nullable="false" />
+          <Property Name="UNG_DataAlteracao" Type="datetime" />
+          <Property Name="UNG_Anotacao" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="USU_Usuario">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UNG_ID" Type="int" Nullable="false" />
+          <Property Name="USU_Nome" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="USU_CPF" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="USU_Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="USU_Celular" Type="nvarchar" MaxLength="11" />
+          <Property Name="USU_CodSac" Type="nvarchar" MaxLength="100" />
+          <Property Name="USU_Login" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="USU_Senha" Type="nvarchar" MaxLength="200" />
+          <Property Name="USU_FotoPerfil" Type="nvarchar" MaxLength="700" />
+          <Property Name="USU_DataAceite" Type="datetime" />
+          <Property Name="USU_PrimeiroAcesso" Type="bit" Nullable="false" />
+          <Property Name="USU_UsuarioTeste" Type="bit" Nullable="false" />
+          <Property Name="USU_AcessoFake" Type="bit" Nullable="false" />
+          <Property Name="USU_Ativo" Type="bit" Nullable="false" />
+          <Property Name="USU_DataCadastro" Type="datetime" Nullable="false" />
+          <Property Name="USU_DataAlteracao" Type="datetime" />
+          <Property Name="USU_Anotacao" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="USU_UNG_FK">
+          <End Role="UNG_UnidadeNegocio" Type="Self.UNG_UnidadeNegocio" Multiplicity="1" />
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNG_UnidadeNegocio">
+              <PropertyRef Name="UNG_ID" />
+            </Principal>
+            <Dependent Role="USU_Usuario">
+              <PropertyRef Name="UNG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_SAN149ModelStoreContainer">
+          <EntitySet Name="UNG_UnidadeNegocio" EntityType="Self.UNG_UnidadeNegocio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USU_Usuario" EntityType="Self.USU_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="USU_UNG_FK" Association="Self.USU_UNG_FK">
+            <End Role="UNG_UnidadeNegocio" EntitySet="UNG_UnidadeNegocio" />
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_SAN149Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UNG_UnidadeNegocio">
+          <Key>
+            <PropertyRef Name="UNG_ID" />
+          </Key>
+          <Property Name="UNG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UNG_Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UNG_Descricao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UNG_Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="UNG_DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UNG_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="UNG_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USU_Usuario" Relationship="db_SAN149Model.USU_UNG_FK" FromRole="UNG_UnidadeNegocio" ToRole="USU_Usuario" />
+        </EntityType>
+        <EntityContainer Name="db_SAN149Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UNG_UnidadeNegocio" EntityType="Self.UNG_UnidadeNegocio" />
+          <EntitySet Name="USU_Usuario" EntityType="db_SAN149Model.USU_Usuario" />
+          <AssociationSet Name="USU_UNG_FK" Association="db_SAN149Model.USU_UNG_FK">
+            <End Role="UNG_UnidadeNegocio" EntitySet="UNG_UnidadeNegocio" />
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="USU_Usuario">
+          <Key>
+            <PropertyRef Name="USU_ID" />
+          </Key>
+          <Property Name="USU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UNG_ID" Type="Int32" Nullable="false" />
+          <Property Name="USU_Nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="USU_CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="USU_Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="USU_Celular" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="USU_CodSac" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="USU_Login" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="USU_Senha" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="USU_FotoPerfil" Type="String" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Name="USU_DataAceite" Type="DateTime" Precision="3" />
+          <Property Name="USU_PrimeiroAcesso" Type="Boolean" Nullable="false" />
+          <Property Name="USU_UsuarioTeste" Type="Boolean" Nullable="false" />
+          <Property Name="USU_AcessoFake" Type="Boolean" Nullable="false" />
+          <Property Name="USU_Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="USU_DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USU_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="USU_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UNG_UnidadeNegocio" Relationship="db_SAN149Model.USU_UNG_FK" FromRole="USU_Usuario" ToRole="UNG_UnidadeNegocio" />
+        </EntityType>
+        <Association Name="USU_UNG_FK">
+          <End Type="db_SAN149Model.UNG_UnidadeNegocio" Role="UNG_UnidadeNegocio" Multiplicity="1" />
+          <End Type="db_SAN149Model.USU_Usuario" Role="USU_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNG_UnidadeNegocio">
+              <PropertyRef Name="UNG_ID" />
+            </Principal>
+            <Dependent Role="USU_Usuario">
+              <PropertyRef Name="UNG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_SAN149ModelStoreContainer" CdmEntityContainer="db_SAN149Entities">
+          <EntitySetMapping Name="UNG_UnidadeNegocio">
+            <EntityTypeMapping TypeName="db_SAN149Model.UNG_UnidadeNegocio">
+              <MappingFragment StoreEntitySet="UNG_UnidadeNegocio">
+                <ScalarProperty Name="UNG_ID" ColumnName="UNG_ID" />
+                <ScalarProperty Name="UNG_Nome" ColumnName="UNG_Nome" />
+                <ScalarProperty Name="UNG_Descricao" ColumnName="UNG_Descricao" />
+                <ScalarProperty Name="UNG_Ativo" ColumnName="UNG_Ativo" />
+                <ScalarProperty Name="UNG_DataCadastro" ColumnName="UNG_DataCadastro" />
+                <ScalarProperty Name="UNG_DataAlteracao" ColumnName="UNG_DataAlteracao" />
+                <ScalarProperty Name="UNG_Anotacao" ColumnName="UNG_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USU_Usuario">
+            <EntityTypeMapping TypeName="db_SAN149Model.USU_Usuario">
+              <MappingFragment StoreEntitySet="USU_Usuario">
+                <ScalarProperty Name="USU_Anotacao" ColumnName="USU_Anotacao" />
+                <ScalarProperty Name="USU_DataAlteracao" ColumnName="USU_DataAlteracao" />
+                <ScalarProperty Name="USU_DataCadastro" ColumnName="USU_DataCadastro" />
+                <ScalarProperty Name="USU_Ativo" ColumnName="USU_Ativo" />
+                <ScalarProperty Name="USU_AcessoFake" ColumnName="USU_AcessoFake" />
+                <ScalarProperty Name="USU_UsuarioTeste" ColumnName="USU_UsuarioTeste" />
+                <ScalarProperty Name="USU_PrimeiroAcesso" ColumnName="USU_PrimeiroAcesso" />
+                <ScalarProperty Name="USU_DataAceite" ColumnName="USU_DataAceite" />
+                <ScalarProperty Name="USU_FotoPerfil" ColumnName="USU_FotoPerfil" />
+                <ScalarProperty Name="USU_Senha" ColumnName="USU_Senha" />
+                <ScalarProperty Name="USU_Login" ColumnName="USU_Login" />
+                <ScalarProperty Name="USU_CodSac" ColumnName="USU_CodSac" />
+                <ScalarProperty Name="USU_Celular" ColumnName="USU_Celular" />
+                <ScalarProperty Name="USU_Email" ColumnName="USU_Email" />
+                <ScalarProperty Name="USU_CPF" ColumnName="USU_CPF" />
+                <ScalarProperty Name="USU_Nome" ColumnName="USU_Nome" />
+                <ScalarProperty Name="UNG_ID" ColumnName="UNG_ID" />
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

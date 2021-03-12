@@ -57,10 +57,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MollaLibrary">
-      <HintPath>..\..\..\..\..\Downloads\MollaLibrary.dll</HintPath>
+      <HintPath>..\..\Biblioteca\MollaLibrary.dll</HintPath>
     </Reference>
     <Reference Include="MollaLibraryAPI">
-      <HintPath>..\..\..\..\..\Downloads\MollaLibraryAPI.dll</HintPath>
+      <HintPath>..\..\Biblioteca\MollaLibraryAPI.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -426,13 +426,6 @@
     <Content Include="Content\css\fonts\star.eot" />
     <Content Include="Content\css\fonts\star.ttf" />
     <Content Include="Content\css\fonts\star.woff" />
-    <EntityDeploy Include="Models\ENTITY\SAN123.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SAN123.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ENTITY\SAN123.edmx.diagram">
-      <DependentUpon>SAN123.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\vendor\bootstrap-datepicker\css\bootstrap-datepicker.css.map" />
     <Content Include="Content\vendor\bootstrap-datepicker\css\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\vendor\bootstrap-datepicker\css\bootstrap-datepicker3.css.map" />
@@ -479,21 +472,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <EntityDeploy Include="Models\ENTITY\SAN149Models.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SAN149Models.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ENTITY\SAN149Models.edmx.diagram">
+      <DependentUpon>SAN149Models.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\ENTITY\SAN149Models.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAN149Models.edmx</DependentUpon>
+      <LastGenOutput>SAN149Models.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ENTITY\SAN149Models.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAN149Models.edmx</DependentUpon>
+      <LastGenOutput>SAN149Models.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.7-vsdoc.js" />
-    <Content Include="Models\ENTITY\SAN123.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SAN123.edmx</DependentUpon>
-      <LastGenOutput>SAN123.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ENTITY\SAN123.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SAN123.edmx</DependentUpon>
-      <LastGenOutput>SAN123.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\i18n\af.js" />
@@ -574,7 +574,6 @@
     </Compile>
     <Compile Include="Models\COMMON\API\IMetodosAPI.cs" />
     <Compile Include="Models\COMMON\API\MetodosAPI.cs" />
-    <Compile Include="Models\COMMON\API\PessoaFisica.cs" />
     <Compile Include="Models\COMMON\ComplementoDadosAcesso.cs" />
     <Compile Include="Models\COMMON\DropDownList.cs" />
     <Compile Include="Models\COMMON\Email\Email_Disparo.cs" />
@@ -583,47 +582,26 @@
     <Compile Include="Models\COMMON\EnumAPP.cs" />
     <Compile Include="Models\COMMON\ExtentionMethods.cs" />
     <Compile Include="Models\COMMON\Values.cs" />
-    <Compile Include="Models\ENTITY\CAR_Cargo.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\DES_Desempenho.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\DSD_DesempenhoDescricao.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\DSF_DesempenhoFase.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\DSK_DesempenhoKpi.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\GRC_GrupoCompeticao.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\LAU_LogAutenticacaoUsuario.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\RKG_RankingGrupo.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ENTITY\SAN123.Context.cs">
+    <Compile Include="Models\ENTITY\SAN149Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SAN123.Context.tt</DependentUpon>
+      <DependentUpon>SAN149Models.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ENTITY\SAN123.cs">
+    <Compile Include="Models\ENTITY\SAN149Models.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SAN123.tt</DependentUpon>
+      <DependentUpon>SAN149Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ENTITY\SAN123.Designer.cs">
+    <Compile Include="Models\ENTITY\SAN149Models.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SAN123.edmx</DependentUpon>
+      <DependentUpon>SAN149Models.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ENTITY\UNG_UnidadeNegocio.cs">
+      <DependentUpon>SAN149Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ENTITY\USU_Usuario.cs">
-      <DependentUpon>SAN123.tt</DependentUpon>
+      <DependentUpon>SAN149Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SITE\Cad_Cadastro.cs" />
     <Compile Include="Models\SITE\Desempenho\Desempenho.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using Aplicacao.Models.ENTITY;
+using Aplicacao.Models.SITE.Login;
 
 namespace Aplicacao.Models.COMMON
 {
@@ -48,9 +49,7 @@ namespace Aplicacao.Models.COMMON
         /// <summary>
         /// Contém os dados necessários de autenticação para Pessoa Fisica
         /// </summary>
-        public static MollaLibraryAPI.PessoaFisica.Pessoa PRP_UsuarioAutenticadoSite { get { return HttpContext.Current.Session["AutenticacaoSite"] == null ? null : (MollaLibraryAPI.PessoaFisica.Pessoa)HttpContext.Current.Session["AutenticacaoSite"]; } }
-        
-        public static USU_Usuario PRP_Usuario { get { return HttpContext.Current.Session["Usuario"] == null ? null : (USU_Usuario)HttpContext.Current.Session["Usuario"]; } }
+        public static DadosUsuarioSessao PRP_UsuarioAutenticadoSite { get { return HttpContext.Current.Session["AutenticacaoSite"] == null ? null : (DadosUsuarioSessao)HttpContext.Current.Session["AutenticacaoSite"]; } }
 
         public static MollaLibraryAPI.PessoaFisica.Pessoa PRP_UsuarioFake { get { return HttpContext.Current.Session["AutenticacaoFake"] == null ? null : (MollaLibraryAPI.PessoaFisica.Pessoa)HttpContext.Current.Session["AutenticacaoFake"]; } }
         /// <summary>

@@ -12,14 +12,14 @@ namespace Aplicacao.Models.COMMON.API
     {
         private IMetodosAPI pessoa = null;
         protected MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa PRP_TipoPessoa { get; set; }
-        public MetodosAPI(MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa pTipoPessoa)
-        {
-            PRP_TipoPessoa = pTipoPessoa;
-            if (pTipoPessoa == MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa.Fisica)
-            {
-                pessoa = new PessoaFisica();
-            }
-        }
+        //public MetodosAPI(MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa pTipoPessoa)
+        //{
+        //    PRP_TipoPessoa = pTipoPessoa;
+        //    if (pTipoPessoa == MollaLibraryAPI.COMMON.EnunsAPP.TipoPessoa.Fisica)
+        //    {
+        //        pessoa = new PessoaFisica();
+        //    }
+        //}
 
         public virtual RetornoRequisicao MTD_AceiteRegulamento(string pLogin) => pessoa.MTD_AceiteRegulamento(pLogin);
 

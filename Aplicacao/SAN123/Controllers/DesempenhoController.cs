@@ -15,19 +15,14 @@ namespace Aplicacao.Controllers
         // GET: Desempenho
         public ActionResult Desempenho()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
-
             return View();
         }
 
-        [HttpGet]
-        public JsonResult GetDesempenho(string documentoUsuario)
-        {
-            return Json(_desempenhoService.GetDesempenho(documentoUsuario), JsonRequestBehavior.AllowGet);
-        }
+        //[HttpGet]
+        //public JsonResult GetDesempenho(string documentoUsuario)
+        //{
+        //    return Json(_desempenhoService.GetDesempenho(documentoUsuario), JsonRequestBehavior.AllowGet);
+        //}
 
     }
 }

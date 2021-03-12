@@ -15,20 +15,11 @@ namespace Aplicacao.Controllers
         // GET: Conteudo
         public ActionResult Campanha()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
-
             return View();
         }
         public ActionResult Home()
         {
-            //if(Session["USU_CPF"] == null)
-            //{
-                return RedirectToAction("Aguarde", "Conteudo");
-            //}
-           // return View();
+            return View();
         }
         public ActionResult Aguarde()
         {
@@ -36,20 +27,11 @@ namespace Aplicacao.Controllers
         }
         public ActionResult Novidades()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
 
             return View();
         }
         public ActionResult Destaques()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
-
             return View();
         }
     }

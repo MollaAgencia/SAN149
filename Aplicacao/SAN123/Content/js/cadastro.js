@@ -6,11 +6,11 @@
 $(document).on('click', '#btnlogin_Cadastro', function (event) {
     var stb_html = "";
     var parametros = {};
-    parametros.CPF = $('#cadastrocpf').val();
+    parametros.pCPF = $('#cadastrocpf').val();
 
     $.ajax({
         type: 'POST',
-        url: '/Login/MTD_CadastroParticipante',
+        url: '/Login/MTD_BuscaPreCadastro',
         data: JSON.stringify(parametros),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
@@ -19,38 +19,45 @@ $(document).on('click', '#btnlogin_Cadastro', function (event) {
             $('#btnlogin_Cadastro').removeClass('d-none').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Acessando...</span>');
             $('#MontaHTMLCadastro').addClass('d-none');
         },
-        success: function (returnValue) {
-            var jsonResult = JSON.parse(returnValue);
-            if (jsonResult[0].PRP_STATUS == false) {
-                stb_html += jsonResult[0].PRP_MENSAGEM;
-                $('#MontaHTMLCadastro').removeClass('d-none');
-                $('#btnlogin_Cadastro').addClass('d-none');
-                $('#btnlogin_Cadastro').removeClass('d-none').html('<span class="py-2">CADASTRE-SE AQUI</span>');
+        success: function (ret) {
+            if (ret.PRP_Requisicao.PRP_Status == true) {
+                if (ret.PRP_Requisicao.PRP_TipoMensagem == 1) {
+                    $('#cadas-CPF').val(ret.OBJ_Usuario.PRP_CPF);
+                    $('#cadas-nome').val(ret.OBJ_Usuario.PRP_NomeUsuario);
+                    $('#cadas-email').val(ret.OBJ_Usuario.PRP_EmailUsuario);
+                    $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);                   
+
+                    $('#cadastroModal').modal('show');
+                }
+                else if (PRP_Requisicao.PRP_TipoMensagem == 2) {
+                    $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                    $('#alert-cadastro').removeClass('d-none');
+                }
+                else if (PRP_Requisicao.PRP_TipoMensagem == 3) {
+                    $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                    ('#alert-cadastro').removeClass('d-none');
+                }
             } else {
-                $('#cadas-CPF_').val(jsonResult[0].CPFMASCK);
-                $('#cadas-nome').val(jsonResult[0].NOME);
-                $('#cadas-email').val(jsonResult[0].EMAIL);
-
-                $('#cadastroModal').modal("show");
+                $('#alert-cadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
+                ('#alert-cadastro').removeClass('d-none');
             }
-            $('#MontaHTMLCadastro').html(stb_html);
-
         }
     });
 });
 
 $(document).on('click', '#btn_cadastrar_MTD', function (event) {
 
-    var Celular = $('#cadas-celular').val();
-    var Senha = $('#cadas-senha').val();
+    var pCelular = $('#cadas-celular').val();
+    var pSenha = $('#cadas-senha').val();
     var confi = $('#cadas-conf-senha').val();
     var ConfCelular = $('#cadas_Confirmarcelular').val();
+    var pIdentificador = parseInt($('#hdnIdentificadorCadastro').val());
 
-    if (Celular != ConfCelular) {
+    if (pCelular != ConfCelular) {
         $('.alertCelular').removeClass('d-none');
         $('.alertCelular').html('<p class="alert alert-danger text-center">Celulares informados não são iguais, tente novamente</p>');
         return false;
-    } if (Celular == "") {
+    } if (pCelular == "") {
         $('.alertCelular').removeClass('d-none');
         $('.alertCelular').html('<p class="alert alert-danger text-center">Celular é um campo obrigatório, preencha o campo e tenta novamente.</p>');
         return false;
@@ -66,10 +73,10 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
     }
 
     var parametros = {};
-    if (Senha == confi) {
-        if (Senha.length > 0) {
+    if (pSenha == confi) {
+        if (pSenha.length > 0) {
             if (confi.length > 0) {
-                parametros = { Celular, Senha };
+                parametros = { pCelular, pSenha, pIdentificador};
                 $.ajax({
                     type: 'POST',
                     url: '/Login/MTD_Cadastra',
@@ -82,9 +89,8 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
                         $('#msg_informativa').addClass('d-none');
                         $('.alertError').addClass('d-none');
                     },
-                    success: function (returnValue) {
-                        var jsonResult = JSON.parse(returnValue);
-                        if (jsonResult.PRP_Status == true) {
+                    success: function (ret) {
+                        if (ret.PRP_Status == true) {
                             $('#cadastroModal').modal("hide");
                             Swal.fire(
                                 'Cadastro efetuado!',
@@ -92,9 +98,9 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
                                 location.href = '/Conteudo/Home';
                             });
 
-                        } else if (jsonResult.PRP_STATUS == false) {
+                        } else if (ret.PRP_Status == false) {
                             $('#msg_informativa').removeClass('d-none');
-                            $('#msg_informativa').val(jsonResult.PRP_Mensagem);
+                            $('#msg_informativa').val(ret.PRP_Mensagem);
                         }
                     }
                 });
@@ -120,8 +126,8 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
 
 $(document).on('click', '#btn_login_Acesso', function (event) {
     var parametros = {};
-    parametros.CPF = $('#logincpf_').val();
-    parametros.Senha = $('#loginsenha_').val();
+    parametros.pCPF = $('#logincpf_').val();
+    parametros.pSenha = $('#loginsenha_').val();
 
     $.ajax({
         type: 'POST',
@@ -137,15 +143,15 @@ $(document).on('click', '#btn_login_Acesso', function (event) {
         },
         success: function (returnValue) {
             var jsonResult = JSON.parse(returnValue);
-            if (jsonResult[0].PRP_STATUS == true) {
+            if (jsonResult.PRP_Status == true) {
                 $('#cadastroModal').modal("hide");
                 location.href = '/Conteudo/Home';
             } else {
                 Swal.fire(
                     'Login inválido'
-                    , jsonResult[0].PRP_MENSAGEM
+                    , jsonResult.PRP_Mensagem
                 ).then(function () {
-                    location.href = '/Login/Autenticacao';
+                    /*location.href = '/Login/Autenticacao';*/
                 });
             }
         }

@@ -15,18 +15,11 @@ namespace Aplicacao.Controllers
         // GET: Ranking
         public ActionResult Ranking()
         {
-            if (values.PRP_UsuarioAutenticadoSite == null)
-            {
-                return RedirectToAction("Autenticacao", "Login");
-            }
-
             return View();
         }
-
-        [HttpGet]
-        public JsonResult GetRanking(string documentoUsuario)
-        {
-            return Json(_rankingService.GetRanking(documentoUsuario), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult GetRanking(string documentoUsuario)
+        //{
+        //    return Json(_rankingService.GetRanking(documentoUsuario), JsonRequestBehavior.AllowGet);
+        //}
     }
 }
