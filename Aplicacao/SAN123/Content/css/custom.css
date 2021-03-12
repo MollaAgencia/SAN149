@@ -71,10 +71,14 @@ body{
 	border-top-left-radius: 0px!important;
 }
 /* --- home --- */
-.btn-gray{
-	background-color: #ccc!important;
-	color: #000!important;
-}
+	#header .header-nav-main nav > ul > li.open > a,
+	#header .header-nav-main nav > ul > li:hover > a {
+	    background: var(--danger);
+	}
+	.btn-gray{
+		background-color: #ccc!important;
+		color: #000!important;
+	}
 
 
 @media screen and (max-width: 768px) {

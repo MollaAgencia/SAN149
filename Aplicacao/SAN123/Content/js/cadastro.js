@@ -15,8 +15,7 @@ $(document).on('click', '#btnlogin_Cadastro', function (event) {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         beforeSend: function () {
-            $('#btnlogin_Cadastro').addClass('d-none');
-            $('#btnlogin_Cadastro').removeClass('d-none').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Acessando...</span>');
+            $('#btnlogin_Cadastro').addClass('disabled').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Acessando...</span>');
             $('#MontaHTMLCadastro').addClass('d-none');
         },
         success: function (ret) {
@@ -31,16 +30,16 @@ $(document).on('click', '#btnlogin_Cadastro', function (event) {
                     $('#cadastroModal').modal('show');
                 }
                 else if (ret.PRP_Requisicao.PRP_TipoMensagem == 2) {
-                    $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                    $('#MontaHTMLCadastro').removeClass('d-none');
+                    $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
+                    $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
                 }
                 else if (ret.PRP_Requisicao.PRP_TipoMensagem == 3) {
-                    $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                    ('#MontaHTMLCadastro').removeClass('d-none');
+                    $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
+                    $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
                 }
             } else {
-                $('#MontaHTMLCadastro').html(ret.PRP_Requisicao.PRP_Mensagem);
-                $('#MontaHTMLCadastro').removeClass('d-none');
+                $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
+                $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
             }
         }
     });
@@ -137,23 +136,15 @@ $(document).on('click', '#btn_login_Acesso', function (event) {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         beforeSend: function () {
-            $('#btn_login_Acesso').addClass('d-none');
-            $('#btn_login_Acesso').removeClass('d-none').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> acessando...</span>');
-            $('#Msg_informativa_Login').addClass('d-none');
-            $('.alertError').addClass('d-none');
+            $('#btn_login_Acesso').addClass('disabled').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> acessando...</span>');
         },
         success: function (returnValue) {
             var jsonResult = JSON.parse(returnValue);
             if (jsonResult.PRP_Status == true) {
-                $('#cadastroModal').modal("hide");
                 location.href = '/Conteudo/Home';
             } else {
-                Swal.fire(
-                    'Login inválido'
-                    , jsonResult.PRP_Mensagem
-                ).then(function () {
-                    /*location.href = '/Login/Autenticacao';*/
-                });
+                $('#btn_login_Acesso').removeClass('disabled').html('ENTRAR');
+                $('#Msg_informativa_Login').removeClass('d-none').html(jsonResult.PRP_Mensagem);
             }
         }
     })

@@ -12,9 +12,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Craques Sanofi</title>
-    <meta name="keywords" content="Craques Sanofi" />
-    <meta name="description" content="Craques Sanofi">
+    <title>Campanha Play To Win</title>
+    <meta name="keywords" content="Campanha Play To Win" />
+    <meta name="description" content="Campanha Play To Win">
     <meta name="author" content="agenciamolla.com.br">
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -51,7 +51,7 @@
     <input type="hidden" id="documento-usuario" value="@usuario.PRP_CPF" />
     <input type="hidden" id="id-usuario" value="@usuario.PRP_IdUsuario" />
     <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-55px', 'stickyChangeLogo': true}">
-        <div class="header-body border-bottom">
+        <div class="header-body bg-dark border-bottom">
             <div class="header-container container">
                 <div class="header-row">
                     <div class="header-column">
@@ -68,13 +68,13 @@
                             <nav class="header-nav-top">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                        <a class="nav-link pl-0 btn-contato" href="#" data-toggle="modal" data-target="#modal-contato"><i class="fas fa-angle-right"></i> Contato</a>
+                                        <a class="nav-link text-white pl-0 btn-contato" href="#" data-toggle="modal" data-target="#modal-contato"><i class="fas fa-angle-right"></i> Contato</a>
                                     </li>
                                     <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                        <a class="nav-link" href="#" data-toggle="modal" data-target="#regulamento-modal"><i class="fas fa-angle-right"></i> Regulamento</a>
+                                        <a class="nav-link text-white" href="#" target="_blank"><i class="fas fa-angle-right"></i> Regulamento</a>
                                     </li>
                                     <li class="nav-item dropdown nav-item-left-border d-none d-sm-block nav-item-left-border-remove nav-item-left-border-md-show">
-                                        <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link text-white" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src="" class="flag flag-us" alt=""> @usuario.PRP_NomeUsuario.Split(' ')[0]
                                             <i class="fas fa-angle-down"></i>
                                         </a>
@@ -91,23 +91,23 @@
                                 <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
                                     <nav class="collapse">
                                         <ul class="nav nav-pills" id="mainNav">
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Home">Home</a>
+                                            <li class="bg-danger rounded mr-0 mr-md-1">
+                                                <a class="text-white" href="~/Conteudo/Home">Home</a>
                                             </li>
-                                            <li class="dropdown dropdown-mega">
-                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Campanha">Campanha</a>
+                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                                <a class="text-white" href="~/Conteudo/Campanha">Campanha</a>
                                             </li>
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="~/Desempenho/Desempenho">Desempenho</a>
+                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                                <a class="text-white" href="~/Desempenho/Desempenho">Desempenho</a>
                                             </li>
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/ResgatePremios">Resgate de Prêmios</a>
+                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                                <a class="text-white" href="~/Conteudo/ResgatePremios">Resgate de Prêmios</a>
                                             </li>
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="~/Conteudo/Novidades">Fique por dentro</a>
+                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                                <a class="text-white" href="~/Conteudo/Novidades">Fique por dentro</a>
                                             </li>
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle emBreve" href="#">Destaques</a>
+                                            <li class="bg-info rounded ml-0 ml-md-1">
+                                                <a class="text-white emBreve" href="#">Campanha 2020</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -140,7 +140,7 @@
 
     <!-- modal Contato -->
     <div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title mt-0" id="ContatoModalLabel">Entre em Contato</h4>
@@ -162,7 +162,7 @@
                             <div class="form-group">
                                 <label class="mb-0">Mensagem</label>
                                 <div class="input-group">
-                                    <textarea name="" id="contato_mensagem" rows="4" style="resize: none;" class="form-control form-control-lg" valid="" valida-mensagem required></textarea>
+                                    <textarea name="" id="contato_mensagem" rows="3" style="resize: none;" class="form-control form-control-lg" valid="" valida-mensagem required></textarea>
                                 </div>
                                 <div class="alertError" alert-mensagem></div>
                             </div>
@@ -182,7 +182,7 @@
 
     <!-- Detalhes Perfil -->
     <div class="modal fade" id="modal_detalhesPerfil" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title text-blue" id="modalPerfil">Detalhes do meu Perfil</h4>
@@ -252,79 +252,6 @@
         </div>
     </div>
 
-    <!-- modal Regulamento -->
-    <div class="modal fade show" id="regulamento-modal" tabindex="-1" role="dialog" aria-labelledby="regulamento-titulo" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="regulamento-titulo">Regulamentos</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-
-                    <div id="accordion">
-                        <div class="card mb-2">
-                            <div class="card-header p-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link text-4 text-uppercase">Campanha Craques Sanofi</button>
-                                </h5>
-                            </div>
-                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body p-0">
-                                    <div style="max-height: 720px; height: 720px">
-                                        <iframe src="~/Content/pdf/Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf" width="100%" height="100%">
-                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
-                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf">Download PDF</a>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mb-2">
-                            <div class="card-header p-0" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link text-4 text-uppercase collapsed">Aditivo ao Regulamento Campanha Craques Sanofi</button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                <div class="card-body p-0">
-                                    <div style="max-height: 720px; height: 720px">
-                                        <iframe src="~/Content/pdf/Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf" width="100%" height="100%">
-                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
-                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf">Download PDF</a>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mb-2">
-                            <div class="card-header p-0" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link text-4 text-uppercase collapsed">Aditivo 2 ao Regulamento Campanha Craques Sanofi</button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                <div class="card-body p-0">
-                                    <div style="max-height: 720px; height: 720px">
-                                        <iframe src="~/Content/pdf/3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf" width="100%" height="100%">
-                                            Seu browser não suporta a visualização de PDF's. Por favor, faça o download do arquivo para visualizar
-                                            <a class="btn bg-sanofi-azul" href="~/Content/pdf/3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf">Download PDF</a>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Vendor -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/vendor/jquery.appear/jquery.appear.min.js"></script>
@@ -362,7 +289,13 @@
         $(".emBreve").bind('click',
             function () {
                 Swal.fire('Em breve!');
-            });
+            }
+        );
+        
+        // parar video quando a modal sumir
+        $("#modal-video-1").on('hidden.bs.modal', function (e) {
+            $("#modal-video-1 iframe").attr("src", $("#modal-video-1 iframe").attr("src"));
+        });
     </script>
 
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.

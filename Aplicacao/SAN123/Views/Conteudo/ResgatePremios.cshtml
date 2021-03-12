@@ -4,5 +4,523 @@
     Layout = "~/Views/Shared/_SiteSharedNew.cshtml";
 }
 
-<h2>ResgatePremios</h2>
+<div class="body">
+    <div role="main" id="page-desempenho" class="main">
+        <section class="section section-no-border section-light mb-0 mt-0s">
+            <div class="container">
+                <h1 class="font-weight-bold text-color-primary mb-3">Resgate de prêmios</h1>
+                <p class="text-5">E já que você está no controle... <br>Escolha o que quer ganhar na premiação semestral.</p>
+                <p class="text-3">O catálogo de prêmios será liberado somente para os campeões do 1º semestre.</p>
+            </div>
+        </section>
 
+        <section class="section bg-gray section-no-border m-0">
+        	<div class="container">
+	            <div class="text-center bg-primary rounded2 py-3 my-4">
+	                <div class="row text-white mx-auto align-items-center">
+	                    <div class="col text-center">
+	                        <p class="h5 mt-2 text-white">Moedas<br class="d-block d-sm-none d-md-none"> acumuladas</p>
+	                    </div>
+	                    <div class="col-4 text-center border-left border-right">
+	                        <p class="mb-0 text-5 text-white">R$ 00,00</p>
+	                    </div>
+	                    <div class="col text-center">
+	                        <div class="btn btn-secondary font-weight-bold" data-toggle="modal" data-target="#largeModal" id="ModalExtrato">CONFIRA SEU EXTRATO CLIQUE AQUI</div>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <div class="clearfixXXXXX">
+	                <div class="conteinar">
+	                    <div class="row mx-auto">
+	                        <div class="col-12 col-md-2 filtro">
+	                            <p class="mb-2 text-4 border-bottom">Filtro</p>
+	                            <button id="btn_todos" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">Todos</button>
+
+	                            <button id="btn_10a50" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 10,00 <br>à R$ 50,00</button>
+
+	                            <button id="btn_51a100" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 51,00 <br>à R$ 100,00</button>
+
+	                            <button id="btn_101a250" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 101,00 <br>à R$ 250,00</button>
+
+	                            <button id="btn_251a500" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 251,00 <br>à R$ 500,00</button>
+
+	                            <!-- <button id="btn_501a750" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 501,00 <br>à R$ 750,00</button>
+
+	                            <button id="btn_751a1000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 751,00 <br>à R$ 1000,00</button>
+
+	                            <button id="btn_1001a2000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 1001,00 <br>à R$ 2000,00</button>
+
+	                            <button id="btn_2001a3000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 2001,00 <br>à R$ 3000,00</button>
+
+	                            <button id="btn_3001a4000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 3001,00 <br>à R$ 4000,00</button>
+
+	                            <button id="btn_4001a5000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 4001,00 <br>à R$ 5000,00</button>
+
+	                            <button id="btn_5001a7000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 5001,00 <br>à R$ 7000,00</button>
+
+	                            <button id="btn_7001a10000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 7001,00 <br>à R$ 10000,00</button>
+
+	                            <button id="btn_10001a20000" type="button" class="btn btn-block btn-info mb-2 py-1 text-3 line-height-3">De R$ 10001,00 <br>à R$ 20000,00</button> -->
+	                        </div>
+
+	                        <div class="col-12 col-md">
+	                            <div class="row mx-auto">
+	                                <div class="col-md-3" data-filtro="15">
+	                                    <div class="card border-0 mx-0 mb-4 rounded2 shadow-sm" style="min-height:282px;">
+	                                        <img src="https://www.dshop.com.br/lg/images/products/E34111g.png" alt="" title="" class="card-img-top fit-cover rounded2">
+	                                        <div class="card-body px-2 py-2">
+	                                            <p id="nome" class="card-title small mb-0 p-0 line-height-4">Cabify Gift  </p>
+	                                            
+	                                            <p id="preco" class="card-text my-1 p-0"> <span class="font-weight-bold h4">15,00</span><small>moedas</small> </p>
+
+	                                            <button title="Resgate" class="btn btn-lg btn-block btn-primary mt-1 btnResgatar" disabled="disabled" type="button" data-chaveproduto="9E7ED50C8AF863A15F6CF8EF28C56EB5" data-valorproduto="15,00" data-valor="15" data-imagemdetalhe="" data-descricao="Vai de Cabify! Na Cabify...">
+	                                                Resgatar
+	                                            </button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-md-3" data-filtro="15">
+	                                    <div class="card border-0 mx-0 mb-4 rounded2 shadow-sm" style="min-height:282px;">
+	                                        <img src="https://www.dshop.com.br/lg/images/products/E34111g.png" alt="" title="" class="card-img-top fit-cover rounded2">
+	                                        <div class="card-body px-2 py-2">
+	                                            <p id="nome" class="card-title small mb-0 p-0 line-height-4">Cabify Gift  </p>
+	                                            
+	                                            <p id="preco" class="card-text my-1 p-0"> <span class="font-weight-bold h4">15,00</span><small>moedas</small> </p>
+
+	                                            <button title="Resgate" class="btn btn-lg btn-block btn-primary mt-1 btnResgatar" disabled="disabled" type="button" data-chaveproduto="9E7ED50C8AF863A15F6CF8EF28C56EB5" data-valorproduto="15,00" data-valor="15" data-imagemdetalhe="" data-descricao="Vai de Cabify! Na Cabify...">
+	                                                Resgatar
+	                                            </button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-md-3" data-filtro="15">
+	                                    <div class="card border-0 mx-0 mb-4 rounded2 shadow-sm" style="min-height:282px;">
+	                                        <img src="https://www.dshop.com.br/lg/images/products/E34111g.png" alt="" title="" class="card-img-top fit-cover rounded2">
+	                                        <div class="card-body px-2 py-2">
+	                                            <p id="nome" class="card-title small mb-0 p-0 line-height-4">Cabify Gift  </p>
+	                                            
+	                                            <p id="preco" class="card-text my-1 p-0"> <span class="font-weight-bold h4">15,00</span><small>moedas</small> </p>
+
+	                                            <button title="Resgate" class="btn btn-lg btn-block btn-primary mt-1 btnResgatar" disabled="disabled" type="button" data-chaveproduto="9E7ED50C8AF863A15F6CF8EF28C56EB5" data-valorproduto="15,00" data-valor="15" data-imagemdetalhe="" data-descricao="Vai de Cabify! Na Cabify...">
+	                                                Resgatar
+	                                            </button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-md-3" data-filtro="15">
+	                                    <div class="card border-0 mx-0 mb-4 rounded2 shadow-sm" style="min-height:282px;">
+	                                        <img src="https://www.dshop.com.br/lg/images/products/E34111g.png" alt="" title="" class="card-img-top fit-cover rounded2">
+	                                        <div class="card-body px-2 py-2">
+	                                            <p id="nome" class="card-title small mb-0 p-0 line-height-4">Cabify Gift  </p>
+	                                            
+	                                            <p id="preco" class="card-text my-1 p-0"> <span class="font-weight-bold h4">15,00</span><small>moedas</small> </p>
+
+	                                            <button title="Resgate" class="btn btn-lg btn-block btn-primary mt-1 btnResgatar" disabled="disabled" type="button" data-chaveproduto="9E7ED50C8AF863A15F6CF8EF28C56EB5" data-valorproduto="15,00" data-valor="15" data-imagemdetalhe="" data-descricao="Vai de Cabify! Na Cabify...">
+	                                                Resgatar
+	                                            </button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        </section>
+    </div>
+</div>
+
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+
+<!-- script filtro por valores -->
+<script>
+    $('#btn_todos').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+        
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro');
+        }).show();
+    });
+
+    $('#btn_10a50').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') <= 50;
+        }).show();
+    });
+
+    $('#btn_51a100').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 50 && $(this).data('filtro') <= 100;
+        }).show();
+    });
+
+    $('#btn_101a250').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 100 && $(this).data('filtro') <= 250;
+        }).show();
+    });
+
+    $('#btn_251a500').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 250 && $(this).data('filtro') <= 500;
+        }).show();
+    });
+
+    $('#btn_501a750').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 500 && $(this).data('filtro') <= 750;
+        }).show();
+    });
+
+    $('#btn_751a1000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 750 && $(this).data('filtro') <= 1000;
+        }).show();
+    });
+
+    $('#btn_1001a2000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 1000 && $(this).data('filtro') <= 2000;
+        }).show();
+    });
+
+    $('#btn_2001a3000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 2000 && $(this).data('filtro') <= 3000;
+        }).show();
+    });
+
+    $('#btn_3001a4000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 3000 && $(this).data('filtro') <= 4000;
+        }).show();
+    });
+
+    $('#btn_4001a5000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 4000 && $(this).data('filtro') <= 5000;
+        }).show();
+    });
+
+    $('#btn_5001a7000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 5000 && $(this).data('filtro') <= 7000;
+        }).show();
+    });
+
+    $('#btn_7001a10000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 7000 && $(this).data('filtro') <= 10000;
+        }).show();
+    });
+
+    $('#btn_10001a20000').click(function () {
+        $('.btn-info').css('background-color', '#17a2b8');
+        $(this).css('background-color', '#031b72');
+
+        $(".col-md-3").hide();
+        $(".col-md-3[data-filtro]").filter(function() {
+            return $(this).data('filtro') > 10000 && $(this).data('filtro') <= 20000;
+        }).show();
+    });
+</script>
+
+<!-- script resgate -->
+<!-- <script>
+    $(document).on('click', '#ModalExtrato', function (event) {
+        var stb_html = "";
+        var parametros = {};
+
+        $.ajax({
+            type: 'POST',
+            url: '/ResgatePremios/MTD_ConsultaEXTRATO',
+            data: JSON.stringify(parametros),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#Loading_').html('<i class="fa fa-3x fa-spinner fa-spin"></i><span class= ""> Aguarde...</span>');
+            },
+            success: function (returnValue) {
+                var jsonResult = JSON.parse(returnValue);
+                if (jsonResult[0].Valores != 0) {
+                    if (jsonResult.length > 0) {
+
+
+
+        
+                        stb_html += '<table class="table table-striped table-responsive table-responsive-lg">';
+                        stb_html += '<thead>';
+                        stb_html += '<tr>';
+                        stb_html += '<th nowrap>Nome Completo</th>';
+                        stb_html += '<th nowrap>Valores</th>';
+                        stb_html += '<th nowrap>Descrição</th>';
+                        stb_html += '<th nowrap>Data Pedido</th>';
+                        stb_html += '</tr>';
+                        stb_html += '</thead>';
+                        stb_html += '</tbody>';
+                        for (var i = 0; i < jsonResult.length; i++) {
+
+                            stb_html += '<tr>';
+                            stb_html += '<td nowrap>' + jsonResult[i].nomeUsuario + '</td>';
+                            stb_html += '<td nowrap>' + jsonResult[i].Valores + '</td>';
+                            stb_html += '<td nowrap>' + jsonResult[i].Display + '</td>';
+                            stb_html += '<td nowrap>' + jsonResult[i].DataPedido + '</td>';
+                            stb_html += '</tr>';
+
+                        };
+                        stb_html += '</tbody>';
+                        stb_html += '</table>';
+
+                    }
+
+
+                    $('#ConteudoExtrato').html(stb_html);
+                }
+                else if (jsonResult.length < 0) {
+                    $('#Loading_').attr('d-none');
+                    $('#ConteudoExtrato').html('<p>Você ainda não tem Extrato!</p>');
+                }
+                else {
+                    $('#Loading_').addClass('d-none');
+                    $('#ConteudoExtrato').html('<p class="alert alert-info text-center">Você ainda não fez nenhum resgate, verifique se possui saldo!</p>');
+                }
+            }
+        });
+    });
+
+
+    $(document).on('click', '.btnResgatar', function (event) {
+        $this = $(this);
+
+        $('#hd_Tipo').val('Virtual');
+        //$('#p_termoUso').text($this.attr('data-TermoUso'));
+        Procudo = $('#hd_produto').val($this.attr('data-chaveproduto'));
+        ValorReal = $('#hd_ValorReal').val($this.attr('data-valorproduto'));
+        Valor = $('#hd_Valor').val($this.attr('data-valor'));
+        Descricao = $('#hd_Descricao').val($this.attr('data-descricao'));
+        $('#p_modalResumoResgateDetalhe').text($this.attr('data-descricao'));
+        Fornecedor = $('#hd_Fornecedor').val($this.attr('data-fornecedor'));
+        ImgURL = $('#hd_ImgURL').val($this.attr('data-ImageURL'));
+        NomeProduto = $('#hd_NomeProduto').val($this.attr('data-NomeProduto'));
+        $('#modalValePresente').modal('show');
+        //var Verificacao = FUN_AdicionarItemCarrinho($(this));
+        //if (Verificacao) {
+
+        //}
+    });
+
+    $('#btn_Concordo').click(function (e) {
+        e.preventDefault();
+        if ($('#hd_Tipo').val() == 'Fisico') {
+
+            $('#nameCep,#nameEndereco,#nameNumero,#nameComplemento,#nameCidade,#nameEstado,#txt_bairro').val('');
+            $('#nameCep').focus();
+            $('#div_MensagemEnderecoMensagem').attr('hidden', 'hidden');
+
+            FUN_ListaEndereco();
+            $('#modalValeFisicoConcordo').modal('show');
+
+        }
+        else if ($('#hd_Tipo').val() == 'Virtual') {
+            $('#modalValePresenteConcordo').modal('show');
+            FUN_ConfirmacaoEmailLayout('I');
+        }
+    });
+    $('#btn_EmailCancelarEdicao').click(function (e) {
+        e.preventDefault();
+        FUN_ConfirmacaoEmailLayout('I');
+    });
+    $('#btn_ediarEmail').click(function (e) {
+        e.preventDefault();
+
+        FUN_ConfirmacaoEmailLayout('E');
+    });
+    $('#btn_salvarEmail').click(function (e) {
+        e.preventDefault();
+        FUN_EditarEmail();
+    });
+
+    function FUN_ConfirmacaoEmailLayout(Acao) {
+        if (Acao == 'I') {
+            $('#nameEmail').attr("disabled", 'disabled');
+            $('#btn_salvarEmail,#btn_EmailCancelarEdicao').attr("hidden", "hidden");
+
+            $('#btn_ContinuarResgate,#btn_ediarEmail').removeAttr('hidden');
+        }
+        else {
+            $('#nameEmail').removeAttr("disabled");
+            $('#btn_salvarEmail,#btn_EmailCancelarEdicao').removeAttr("hidden");
+
+            $('#btn_ContinuarResgate,#btn_ediarEmail').attr('hidden', 'hidden');
+        }
+    }
+
+    $('#btn_ContinuarResgate').click(function (e) {
+        e.preventDefault();
+
+        let descricao = $('#hd_Descricao').val();
+        let ImagemURL = $('#hd_ImgURL').val();
+        let DestinoDisplay = 'E-mail:';
+        let DestinoValor = $('#nameEmail').val();
+        let TermoUso = $('#hd_TermoUso').val();
+        let ValorPremio = $('#hd_Valor').val();
+
+        FUN_ConfirmaResgateLayout(descricao, ImagemURL, DestinoDisplay, DestinoValor, TermoUso, ValorPremio, '100', '15/10/2019 13:45:55');
+    });
+
+    function FUN_ConfirmaResgateLayout(descricao, ImagemURL, DestinoDisplay, DestinoValor, TermoUso, ValorPremio, SaldoAtual, SaldoAtualizadoEm) {
+
+        $('#img_modalResumoResgate').attr('src', ImagemURL);
+        $('#p_modalResumoResgateDetalhe w-75').text(descricao);
+        $('#p_modalResumoResgateDestinatario').html('<span class="text-center" style="font-size: 16px;font-family: inherit;color: #000;font-weight: 600;">Endereço de e-mail cadastrados:</span> ' + DestinoValor);
+        $('#p_modalResumoResgateTermoDeUso').text('Como utilizar: ' + TermoUso);
+        $('#p_modalResumoResgateValor').html('<span class="text-center" style="font-size: 16px;font-family: inherit;color: #000;font-weight: 600;">Valor do Voucher R$:</span> ' + ValorPremio);
+        $('#p_modalResumoResgateSaldoData').text('Saldo atualizado em: ' + SaldoAtualizadoEm);
+        $('#p_modalResumoResgateSaldo').html('<span class="text-center" style="font-size:15px">Saldo:</span> ' + SaldoAtual);
+
+        ///
+        $('#div_modalResumoResgate').modal('show');
+    }
+
+    function FUN_EditarEmail() {
+
+        let parametros = {};
+        parametros.pEmail = $('#nameEmail').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/ResgatePremios/MTD_AlteraEmail',
+            data: JSON.stringify(parametros),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#div_ModalEmailMensagem').html('<i class="fa fa-3x fa-spinner fa-spin"></i><span class= ""> Aguarde...</span>');
+            },
+            success: function (returnValue) {
+                var jsonResult = JSON.parse(returnValue);
+                console.log('FUN_EditarEmail Ajax.success :');
+                if (jsonResult.PRP_Status) {
+                    FUN_ConfirmacaoEmailLayout('I');
+                }
+                $('#div_ModalEmailMensagem').html(jsonResult.PRP_Mensagem);
+            }
+        });
+    }
+    $('#btn_EnderecoConfirmar').click(function () {
+        if (!$("input[type='radio'][name='exampleRadios']").is(':checked')) {
+            $('#div_MensagemEnderecoMensagem').removeAttr('hidden');
+            $('#div_MensagemEnderecoMensagem').html('<div class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Selecione um endereço antes de continuar.</div>');
+        }
+        else {
+
+
+            let descricao = $('#hd_Descricao').val();
+            let ImagemURL = $('#hd_ImgURL').val();
+            let DestinoDisplay = 'Endereço:';
+            let DestinoValor = $("input[type=radio][name='exampleRadios']:checked").data('enderecodestino');
+            let TermoUso = $('#hd_TermoUso').val();
+            let ValorPremio = $('#hd_Valor').val();
+            $('#modalValeFisicoConcordo').modal('hide');
+
+            FUN_ConfirmaResgateLayout(descricao, ImagemURL, DestinoDisplay, DestinoValor, TermoUso, ValorPremio, '100', '15/10/2019 13:45:55');
+
+
+
+        }
+
+
+    });
+    $('#btn_FinalizarResgate').click(function () {
+        FUN_FinalizarResgate();
+
+    });
+
+    function FUN_FinalizarResgate() {
+        let parametros = {};
+        parametros.code = $('#hd_produto').val();
+        parametros.pEnderecoCode = $("input[type=radio][name='exampleRadios']:checked").data('enderecoid');
+
+        $.ajax({
+            type: 'POST',
+            url: '/ResgatePremios/MTD_Resgatar',
+            data: JSON.stringify(parametros),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            beforeSend: function () {
+                //$('#div_MensagemEnderecoMensagem').removeAttr('hidden');
+                $('#div_MensagemConclusaoResgate').html('<div class="alert alert-info"><i class="fa fa-3x fa-spinner fa-spin"></i><span class= ""> Processando...</span></div>');
+                $('#btn_FinalizarResgate,#btn_fechar').attr('hidden', 'hidden');
+            },
+            success: function (returnValue) {
+                var jsonResult = JSON.parse(returnValue);
+                var objeto = JSON.parse(jsonResult);
+
+
+                if (objeto.PRP_Status) {
+                    $('#btn_fechar').removeAttr('hidden');
+                }
+                else {
+                    $('#btn_FinalizarResgate,#btn_fechar').removeAttr('hidden');
+                }
+
+                $('#div_MensagemConclusaoResgate').html(objeto.PRP_Mensagem);
+
+            }
+        });
+    }
+</script> -->

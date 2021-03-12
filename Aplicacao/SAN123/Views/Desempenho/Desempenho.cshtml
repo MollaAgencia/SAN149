@@ -2,22 +2,69 @@
     ViewBag.Title = "Desempenho";
     Layout = "~/Views/Shared/_SiteSharedNew.cshtml";
 }
+<style>
+    .table td, .table th {
+        padding: 6px;
+    }
+</style>
 <div class="body">
     <div role="main" id="page-desempenho" class="main">
         <section class="section section-no-border section-light mb-0 mt-0s">
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="font-weight-bold text-color-primary mb-0">Desempenho</h1>
-                        <!-- <h4 class="font-weight-bold text-color-quaternary">One is for you</h4> -->
-                        <p class="text-4">Confira sua performance na campanha. Arme sua jogada para marcar mais gols.</p>
-                    </div>
-                </div>
+                <h1 class="font-weight-bold text-color-primary mb-3">Desempenho</h1>
+                <p class="text-5">Confira sua performance na campanha.</p>
             </div>
         </section>
 
         <section class="section bg-gray section-no-border m-0">
-            <div class="container px-lg-5">
+            <div class="col-md-10 mx-auto">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="font-weight-bold">
+                          <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="2">PAYOUT</th>
+                            <th colspan="3">EXECUÇÃO</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>GRUPO COMPETIDOR</td>
+                            <td>ID</td>
+                            <td>TARGET</td>
+                            <td>NOME</td>
+                            <td>PAYOUT</td>
+                            <td>PONTOS</td>
+                            <td>OBJETIVO</td>
+                            <td>REALIZADO</td>
+                            <td>PONTOS</td>
+                            <td>PONTOS TOTAIS</td>
+                            <td>RANKING</td>
+                          </tr>
+                          <tr>
+                            <td>REP B2B</td>
+                            <td>1234567<br>7</td>
+                            <td>NÃO</td>
+                            <td>MARIA DA SILVA</td>
+                            <td>192,2%</td>
+                            <td>250</td>
+                            <td>85%</td>
+                            <td>85%</td>
+                            <td>250</td>
+                            <td>500</td>
+                            <td>1</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- <div class="container px-lg-5">
                 <div class="tabs text-center">
                     <ul class="nav nav-tabs nav-justified flex-column flex-md-row">
                         <li class="nav-item active">
@@ -98,10 +145,10 @@
                 </div>
 
                 <p class="mt-2 text-2 line-height-2 font-weight-bold">* Para fins de acompanhamento e apurações intermediárias, será sempre considerado o resultado acumulado até o período - denominado “Prêmio Calculado”. O Prêmio Calculado é o payout acumulado sem a aplicação dos tetos previstos na política de Remuneração Variável.</p>
-            </div>
+            </div> -->
         </section>
     </div>
 </div>
 
-<script src="~/Content/vendor/jquery/jquery.min.js"></script>
-<script src="~/Content/scripts/desempenho.js"></script>
+<!-- <script src="~/Content/vendor/jquery/jquery.min.js"></script> -->
+<!-- <script src="~/Content/scripts/desempenho.js"></script> -->
