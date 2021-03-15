@@ -31,10 +31,10 @@ namespace Aplicacao.Models.SITE.Login
 
             if (usuario != null && usuario.USU_Ativo)
             {
-                if (usuario.USU_PrimeiroAcesso == false && usuario.USU_Senha == null)
+                if (usuario.USU_PrimeiroAcesso == true)
                 {
-                    objRetorno.PRP_Status = true;
-                    objRetorno.PRP_Mensagem = "Usuário deve atualizar o cadastro";
+                    objRetorno.PRP_Status = false;
+                    objRetorno.PRP_Mensagem = "Para efetuar o login é necessário se cadastrar.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
                     objRetorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
                 }
                 else if (usuario.USU_Senha == pSenha.MTD_CriptografiaIrreversivel())
@@ -282,7 +282,7 @@ namespace Aplicacao.Models.SITE.Login
             Usuario retornoUsuario = new Usuario();
             try
             {
-                var objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_CPF == pCPF);
+                var objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_CPF == pCPF && x.USU_PrimeiroAcesso == true);
                 if (objUsuario != null)
                 {
                     DadosPreCadastro dadosUsuario = new DadosPreCadastro();
