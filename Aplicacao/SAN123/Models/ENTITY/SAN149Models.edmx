@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="db_SAN149Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DSP_Desemempenho">
+          <Key>
+            <PropertyRef Name="DSP_ID" />
+          </Key>
+          <Property Name="DSP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PER_ID" Type="int" Nullable="false" />
+          <Property Name="USU_ID" Type="int" Nullable="false" />
+          <Property Name="DSP_GrupoCompetidor" Type="nvarchar" MaxLength="500" />
+          <Property Name="DSP_Target" Type="bit" Nullable="false" />
+          <Property Name="DSP_PayOut" Type="float" Nullable="false" />
+          <Property Name="DSP_PontosPayOut" Type="bigint" Nullable="false" />
+          <Property Name="DSP_Objetivo" Type="float" Nullable="false" />
+          <Property Name="DSP_Realizado" Type="float" Nullable="false" />
+          <Property Name="DSP_Pontos" Type="bigint" Nullable="false" />
+          <Property Name="DSP_PontosTotais" Type="bigint" Nullable="false" />
+          <Property Name="DSP_PosicaoRanking" Type="int" Nullable="false" />
+          <Property Name="DSP_DataCarga" Type="datetime" Nullable="false" />
+          <Property Name="DSP_Ativo" Type="bit" Nullable="false" />
+          <Property Name="DSP_Anotacao" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PER_Periodos">
+          <Key>
+            <PropertyRef Name="PER_ID" />
+          </Key>
+          <Property Name="PER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PER_Mes" Type="int" Nullable="false" />
+          <Property Name="PER_Ano" Type="int" Nullable="false" />
+          <Property Name="PER_Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PER_Ativo" Type="bit" Nullable="false" />
+          <Property Name="PER_DataCadastro" Type="datetime" Nullable="false" />
+          <Property Name="PER_DataAlteracao" Type="datetime" />
+          <Property Name="PER_Anotacao" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="UNG_UnidadeNegocio">
           <Key>
             <PropertyRef Name="UNG_ID" />
@@ -40,6 +73,30 @@
           <Property Name="USU_DataAlteracao" Type="datetime" />
           <Property Name="USU_Anotacao" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="DSP_PER_FK">
+          <End Role="PER_Periodos" Type="Self.PER_Periodos" Multiplicity="1" />
+          <End Role="DSP_Desemempenho" Type="Self.DSP_Desemempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PER_Periodos">
+              <PropertyRef Name="PER_ID" />
+            </Principal>
+            <Dependent Role="DSP_Desemempenho">
+              <PropertyRef Name="PER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DSP_USU_FK">
+          <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="1" />
+          <End Role="DSP_Desemempenho" Type="Self.DSP_Desemempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="DSP_Desemempenho">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="USU_UNG_FK">
           <End Role="UNG_UnidadeNegocio" Type="Self.UNG_UnidadeNegocio" Multiplicity="1" />
           <End Role="USU_Usuario" Type="Self.USU_Usuario" Multiplicity="*" />
@@ -53,8 +110,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="db_SAN149ModelStoreContainer">
+          <EntitySet Name="DSP_Desemempenho" EntityType="Self.DSP_Desemempenho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PER_Periodos" EntityType="Self.PER_Periodos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNG_UnidadeNegocio" EntityType="Self.UNG_UnidadeNegocio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USU_Usuario" EntityType="Self.USU_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="DSP_PER_FK" Association="Self.DSP_PER_FK">
+            <End Role="PER_Periodos" EntitySet="PER_Periodos" />
+            <End Role="DSP_Desemempenho" EntitySet="DSP_Desemempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DSP_USU_FK" Association="Self.DSP_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="DSP_Desemempenho" EntitySet="DSP_Desemempenho" />
+          </AssociationSet>
           <AssociationSet Name="USU_UNG_FK" Association="Self.USU_UNG_FK">
             <End Role="UNG_UnidadeNegocio" EntitySet="UNG_UnidadeNegocio" />
             <End Role="USU_Usuario" EntitySet="USU_Usuario" />
@@ -79,12 +146,58 @@
         </EntityType>
         <EntityContainer Name="db_SAN149Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UNG_UnidadeNegocio" EntityType="Self.UNG_UnidadeNegocio" />
+          <EntitySet Name="DSP_Desemempenho" EntityType="db_SAN149Model.DSP_Desemempenho" />
+          <EntitySet Name="PER_Periodos" EntityType="db_SAN149Model.PER_Periodos" />
           <EntitySet Name="USU_Usuario" EntityType="db_SAN149Model.USU_Usuario" />
+          <AssociationSet Name="DSP_PER_FK" Association="db_SAN149Model.DSP_PER_FK">
+            <End Role="PER_Periodos" EntitySet="PER_Periodos" />
+            <End Role="DSP_Desemempenho" EntitySet="DSP_Desemempenho" />
+          </AssociationSet>
+          <AssociationSet Name="DSP_USU_FK" Association="db_SAN149Model.DSP_USU_FK">
+            <End Role="USU_Usuario" EntitySet="USU_Usuario" />
+            <End Role="DSP_Desemempenho" EntitySet="DSP_Desemempenho" />
+          </AssociationSet>
           <AssociationSet Name="USU_UNG_FK" Association="db_SAN149Model.USU_UNG_FK">
             <End Role="UNG_UnidadeNegocio" EntitySet="UNG_UnidadeNegocio" />
             <End Role="USU_Usuario" EntitySet="USU_Usuario" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DSP_Desemempenho">
+          <Key>
+            <PropertyRef Name="DSP_ID" />
+          </Key>
+          <Property Name="DSP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USU_ID" Type="Int32" Nullable="false" />
+          <Property Name="DSP_GrupoCompetidor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DSP_Target" Type="Boolean" Nullable="false" />
+          <Property Name="DSP_PayOut" Type="Double" Nullable="false" />
+          <Property Name="DSP_PontosPayOut" Type="Int64" Nullable="false" />
+          <Property Name="DSP_Objetivo" Type="Double" Nullable="false" />
+          <Property Name="DSP_Realizado" Type="Double" Nullable="false" />
+          <Property Name="DSP_Pontos" Type="Int64" Nullable="false" />
+          <Property Name="DSP_PontosTotais" Type="Int64" Nullable="false" />
+          <Property Name="DSP_PosicaoRanking" Type="Int32" Nullable="false" />
+          <Property Name="DSP_DataCarga" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DSP_Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="DSP_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PER_Periodos" Relationship="db_SAN149Model.DSP_PER_FK" FromRole="DSP_Desemempenho" ToRole="PER_Periodos" />
+          <NavigationProperty Name="USU_Usuario" Relationship="db_SAN149Model.DSP_USU_FK" FromRole="DSP_Desemempenho" ToRole="USU_Usuario" />
+        </EntityType>
+        <EntityType Name="PER_Periodos">
+          <Key>
+            <PropertyRef Name="PER_ID" />
+          </Key>
+          <Property Name="PER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PER_Mes" Type="Int32" Nullable="false" />
+          <Property Name="PER_Ano" Type="Int32" Nullable="false" />
+          <Property Name="PER_Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PER_Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="PER_DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PER_DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="PER_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DSP_Desemempenho" Relationship="db_SAN149Model.DSP_PER_FK" FromRole="PER_Periodos" ToRole="DSP_Desemempenho" />
+        </EntityType>
         <EntityType Name="USU_Usuario">
           <Key>
             <PropertyRef Name="USU_ID" />
@@ -107,8 +220,33 @@
           <Property Name="USU_DataCadastro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="USU_DataAlteracao" Type="DateTime" Precision="3" />
           <Property Name="USU_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DSP_Desemempenho" Relationship="db_SAN149Model.DSP_USU_FK" FromRole="USU_Usuario" ToRole="DSP_Desemempenho" />
           <NavigationProperty Name="UNG_UnidadeNegocio" Relationship="db_SAN149Model.USU_UNG_FK" FromRole="USU_Usuario" ToRole="UNG_UnidadeNegocio" />
         </EntityType>
+        <Association Name="DSP_PER_FK">
+          <End Type="db_SAN149Model.PER_Periodos" Role="PER_Periodos" Multiplicity="1" />
+          <End Type="db_SAN149Model.DSP_Desemempenho" Role="DSP_Desemempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PER_Periodos">
+              <PropertyRef Name="PER_ID" />
+            </Principal>
+            <Dependent Role="DSP_Desemempenho">
+              <PropertyRef Name="PER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DSP_USU_FK">
+          <End Type="db_SAN149Model.USU_Usuario" Role="USU_Usuario" Multiplicity="1" />
+          <End Type="db_SAN149Model.DSP_Desemempenho" Role="DSP_Desemempenho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USU_Usuario">
+              <PropertyRef Name="USU_ID" />
+            </Principal>
+            <Dependent Role="DSP_Desemempenho">
+              <PropertyRef Name="USU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="USU_UNG_FK">
           <End Type="db_SAN149Model.UNG_UnidadeNegocio" Role="UNG_UnidadeNegocio" Multiplicity="1" />
           <End Type="db_SAN149Model.USU_Usuario" Role="USU_Usuario" Multiplicity="*" />
@@ -137,6 +275,41 @@
                 <ScalarProperty Name="UNG_DataCadastro" ColumnName="UNG_DataCadastro" />
                 <ScalarProperty Name="UNG_DataAlteracao" ColumnName="UNG_DataAlteracao" />
                 <ScalarProperty Name="UNG_Anotacao" ColumnName="UNG_Anotacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSP_Desemempenho">
+            <EntityTypeMapping TypeName="db_SAN149Model.DSP_Desemempenho">
+              <MappingFragment StoreEntitySet="DSP_Desemempenho">
+                <ScalarProperty Name="DSP_Anotacao" ColumnName="DSP_Anotacao" />
+                <ScalarProperty Name="DSP_Ativo" ColumnName="DSP_Ativo" />
+                <ScalarProperty Name="DSP_DataCarga" ColumnName="DSP_DataCarga" />
+                <ScalarProperty Name="DSP_PosicaoRanking" ColumnName="DSP_PosicaoRanking" />
+                <ScalarProperty Name="DSP_PontosTotais" ColumnName="DSP_PontosTotais" />
+                <ScalarProperty Name="DSP_Pontos" ColumnName="DSP_Pontos" />
+                <ScalarProperty Name="DSP_Realizado" ColumnName="DSP_Realizado" />
+                <ScalarProperty Name="DSP_Objetivo" ColumnName="DSP_Objetivo" />
+                <ScalarProperty Name="DSP_PontosPayOut" ColumnName="DSP_PontosPayOut" />
+                <ScalarProperty Name="DSP_PayOut" ColumnName="DSP_PayOut" />
+                <ScalarProperty Name="DSP_Target" ColumnName="DSP_Target" />
+                <ScalarProperty Name="DSP_GrupoCompetidor" ColumnName="DSP_GrupoCompetidor" />
+                <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+                <ScalarProperty Name="PER_ID" ColumnName="PER_ID" />
+                <ScalarProperty Name="DSP_ID" ColumnName="DSP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PER_Periodos">
+            <EntityTypeMapping TypeName="db_SAN149Model.PER_Periodos">
+              <MappingFragment StoreEntitySet="PER_Periodos">
+                <ScalarProperty Name="PER_Anotacao" ColumnName="PER_Anotacao" />
+                <ScalarProperty Name="PER_DataAlteracao" ColumnName="PER_DataAlteracao" />
+                <ScalarProperty Name="PER_DataCadastro" ColumnName="PER_DataCadastro" />
+                <ScalarProperty Name="PER_Ativo" ColumnName="PER_Ativo" />
+                <ScalarProperty Name="PER_Nome" ColumnName="PER_Nome" />
+                <ScalarProperty Name="PER_Ano" ColumnName="PER_Ano" />
+                <ScalarProperty Name="PER_Mes" ColumnName="PER_Mes" />
+                <ScalarProperty Name="PER_ID" ColumnName="PER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

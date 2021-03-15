@@ -117,7 +117,7 @@ $('#btn-salvar').click(function () {
 
         $.ajax({
             type: 'POST',
-            url: '/Login/MTD_MeuPerfil',
+            url: '/Login/MTD_SalvarPerfil',
             data: JSON.stringify(param),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',

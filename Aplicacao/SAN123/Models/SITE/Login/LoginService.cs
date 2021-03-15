@@ -368,5 +368,44 @@ namespace Aplicacao.Models.SITE.Login
             }
             return ret;
         }
+        public RetornoRequisicao MTD_AtualizarDados(string PRP_Documento, string PRP_Nome, string PRP_Telefone, string PRP_Email, string PRP_Senha)
+        {
+            RetornoRequisicao ret = new RetornoRequisicao();
+            try
+            {
+                int idUsuario = values.PRP_UsuarioAutenticadoSite.PRP_IdUsuario;
+
+                USU_Usuario objUsuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID == idUsuario);
+
+                if (objUsuario != null)
+                {
+                    objUsuario.USU_Nome = PRP_Nome;
+                    objUsuario.USU_Celular = PRP_Telefone.MTD_ApenasNumeros();
+                    objUsuario.USU_Email = PRP_Email;
+                    if (PRP_Senha != "")
+                    {
+                        objUsuario.USU_Senha = PRP_Senha.MTD_CriptografiaIrreversivel();
+                    }
+                    EF.SaveChanges();
+                    ret.PRP_Status = true;
+                    ret.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
+                    ret.PRP_Mensagem = "Dados atualizados com sucesso.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
+                }
+                else
+                {
+                    ret.PRP_Status = false;
+                    ret.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
+                    ret.PRP_Mensagem = "Erro ao salvar, dados do usuário não conferem.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
+                }
+
+            }
+            catch (Exception)
+            {
+                ret.PRP_Status = false;
+                ret.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
+                ret.PRP_Mensagem = "Erro ao processar sua requisição.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
+            }
+            return ret;            
+        }
     }
 }

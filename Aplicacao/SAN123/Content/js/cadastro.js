@@ -129,6 +129,17 @@ $(document).on('click', '#btn_login_Acesso', function (event) {
     parametros.pCPF = $('#logincpf_').val();
     parametros.pSenha = $('#loginsenha_').val();
 
+    if ($('#logincpf_').val() == "") {
+        $('#Msg_informativa_Login').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>Informe o seu Login.</span></div>").removeClass('d-none');
+        $('#logincpf_').focus();
+        return false;
+    }
+    if ($('#loginsenha_').val() == "") {
+        $('#Msg_informativa_Login').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>informe a sua Senha.</span></div>").removeClass('d-none');
+        $('#loginsenha_').focus();
+        return false;
+    }
+
     $.ajax({
         type: 'POST',
         url: '/Login/MTD_AcessoLogin',

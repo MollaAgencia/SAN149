@@ -561,7 +561,6 @@
     <Compile Include="Controllers\ConteudoController.cs" />
     <Compile Include="Controllers\DesempenhoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="Controllers\ResgatePremiosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -576,6 +575,12 @@
     <Compile Include="Models\COMMON\EnumAPP.cs" />
     <Compile Include="Models\COMMON\ExtentionMethods.cs" />
     <Compile Include="Models\COMMON\Values.cs" />
+    <Compile Include="Models\ENTITY\DSP_Desemempenho.cs">
+      <DependentUpon>SAN149Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ENTITY\PER_Periodos.cs">
+      <DependentUpon>SAN149Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ENTITY\SAN149Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -605,8 +610,6 @@
     <Compile Include="Models\SITE\Login\EsqueciSenha.cs" />
     <Compile Include="Models\SITE\Login\LoginService.cs" />
     <Compile Include="Models\SITE\Login\Usuario.cs" />
-    <Compile Include="Models\SITE\Ranking\Ranking.cs" />
-    <Compile Include="Models\SITE\Ranking\RankingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

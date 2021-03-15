@@ -14,6 +14,12 @@ namespace Aplicacao.Models.ENTITY
     
     public partial class USU_Usuario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public USU_Usuario()
+        {
+            this.DSP_Desemempenho = new HashSet<DSP_Desemempenho>();
+        }
+    
         public int USU_ID { get; set; }
         public int UNG_ID { get; set; }
         public string USU_Nome { get; set; }
@@ -33,6 +39,8 @@ namespace Aplicacao.Models.ENTITY
         public Nullable<System.DateTime> USU_DataAlteracao { get; set; }
         public string USU_Anotacao { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DSP_Desemempenho> DSP_Desemempenho { get; set; }
         public virtual UNG_UnidadeNegocio UNG_UnidadeNegocio { get; set; }
     }
 }

@@ -6,7 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b94691d014114ad8993f4093b0796f04" Name="Diagram1">
         <EntityTypeShape EntityType="db_SAN149Model.UNG_UnidadeNegocio" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_SAN149Model.USU_Usuario" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="db_SAN149Model.DSP_Desemempenho" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="db_SAN149Model.PER_Periodos" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="db_SAN149Model.USU_Usuario" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="db_SAN149Model.DSP_PER_FK" />
+        <AssociationConnector Association="db_SAN149Model.DSP_USU_FK" />
         <AssociationConnector Association="db_SAN149Model.USU_UNG_FK" />
       </Diagram>
     </edmx:Diagrams>

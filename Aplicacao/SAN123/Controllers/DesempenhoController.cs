@@ -17,6 +17,10 @@ namespace Aplicacao.Controllers
         {
             return View();
         }
-
+        public JsonResult MTD_Desempenho()
+        {
+            RetornoDesempenho ret = new DesempenhoService().MTD_RetornoDesempenho();
+            return Json(ret, JsonRequestBehavior.AllowGet);
+        }
     }
 }

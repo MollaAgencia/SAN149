@@ -6,45 +6,28 @@ using MollaLibrary.COMMON;
 
 namespace Aplicacao.Models.SITE.Desempenho
 {
-    public class DesempenhoRetorno
+    public class RetornoDesempenho
     {
-        public DesempenhoRetorno()
+        public RetornoDesempenho()
         {
-            Fases = new List<DesempenhoFase>();
+            PRP_RetornoRequisicao = new RetornoRequisicao();
+            OBJ_Desempenho = new DesempenhoHelper();
         }
-
-        public List<DesempenhoFase> Fases { get; set; }
-        public RetornoRequisicao RetornoRequisicao { get; set; }
+        public DesempenhoHelper OBJ_Desempenho { get; set; }
+        public RetornoRequisicao PRP_RetornoRequisicao { get; set; }
     }
-
-    public class DesempenhoFase
+    public class DesempenhoHelper
     {
-        public DesempenhoFase()
-        {
-            Desempenhos = new List<Desempenho>();
-        }
-
-        public string Fase { get; set; }
-        public List<Desempenho> Desempenhos { get; set; }
-    }
-
-    public class Desempenho
-    {
-        public Desempenho()
-        {
-            DesempenhoDetalhes = new List<DesempenhoDetalhe>();
-        }
-
-        public string Kpi { get; set; }
-        public List<DesempenhoDetalhe> DesempenhoDetalhes { get; set; }
-
-    }
-
-    public class DesempenhoDetalhe
-    {
-        public string Descricao { get; set; }
-        public string Prefixo { get; set; }
-        public string Sufixo { get; set; }
-        public double Valor { get; set; }
+        public string PRP_GrupoCompetidor { get; set; }
+        public string PRP_CodSac { get; set; }
+        public string PRP_Target { get; set; }
+        public string PRP_Nome { get; set; }
+        public double PRP_PayOut { get; set; }
+        public long PRP_PontosPayOut { get; set; }
+        public double PRP_Objetivo { get; set; }
+        public double PRP_Realizado { get; set; }
+        public double PRP_PontosExec { get; set; }
+        public long PRP_Pontostotais { get; set; }
+        public int PRP_PisicaoRanking { get; set; }
     }
 }
