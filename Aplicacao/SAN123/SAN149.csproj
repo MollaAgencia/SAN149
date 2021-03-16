@@ -176,6 +176,16 @@
     <Content Include="Content\img\banner-03.jpg" />
     <Content Include="Content\img\banner-04.jpg" />
     <Content Include="Content\img\banner-05.jpg" />
+    <Content Include="Content\img\banner-mobile-01.png" />
+    <Content Include="Content\img\banner-mobile-02.png" />
+    <Content Include="Content\img\banner-mobile-03.png" />
+    <Content Include="Content\img\banner-mobile-04.png" />
+    <Content Include="Content\img\banner-mobile-05.png" />
+    <Content Include="Content\img\banner-tablet-01.png" />
+    <Content Include="Content\img\banner-tablet-02.png" />
+    <Content Include="Content\img\banner-tablet-03.png" />
+    <Content Include="Content\img\banner-tablet-04.png" />
+    <Content Include="Content\img\banner-tablet-05.png" />
     <Content Include="Content\img\banner_desktop.png" />
     <Content Include="Content\img\banner_desktop_01.png" />
     <Content Include="Content\img\banner_mobile.jpg" />
