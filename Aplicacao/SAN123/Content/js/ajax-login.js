@@ -36,17 +36,17 @@ $(document).on('click', '#btn_EsqueceuSenhaReset', function (event) {
 
 
     var parametros = {};
-    parametros.senha = $('#pnovaSenhaReset').val();
+    parametros.pNovaSenha = $('#pnovaSenhaReset').val();
     parametros.confSenha = $('#confSenhaReset').val();
 
-    if (parametros.senha != parametros.confSenha) {
+    if (parametros.pNovaSenha != parametros.confSenha) {
         $('#MensagemErro').html('<p class="text-center alert alert-info">Necessário que as senhas sejam iguais!</p>');
         return false;
     }
 
     $.ajax({
         type: 'POST',
-        url: '/Login/MTD_AtualizaSenha',
+        url: '/Login/AlterarSenha',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(parametros),
@@ -55,8 +55,7 @@ $(document).on('click', '#btn_EsqueceuSenhaReset', function (event) {
             $('#btn_login_Reset').html('<i class="fa fa-1x fa-spinner fa-spin"></i><span> Processando...</span>');
         },
         success: function (returnValue) {
-            var jsonResult = JSON.parse(returnValue);
-            if (jsonResult.PRP_Status == true) {
+            if (returnValue.PRP_Status == true) {
                 $('#btn_login_Reset').addClass('d-none');
                 swal.fire({
                     title: "Atenção",

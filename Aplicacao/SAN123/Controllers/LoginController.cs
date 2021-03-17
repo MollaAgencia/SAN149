@@ -71,7 +71,6 @@ namespace Aplicacao.Controllers
 
         public JsonResult MTD_EsqueciSenha(string pCpf) => Json(Newtonsoft.Json.JsonConvert.SerializeObject(new LoginService().MTD_EsqueciSenhaEnvio(pCpf.MTD_ApenasNumeros())));
 
-        [HttpPost]
         public ActionResult EsqueciSenha(string chave)
         {
             if (TempData["PPR_Requisicao"] == null)
@@ -109,7 +108,7 @@ namespace Aplicacao.Controllers
             return View();
         }
 
-        public ActionResult AlterarSenha(string pNovaSenha)
+        public JsonResult AlterarSenha(string pNovaSenha)
         {
             MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
             try
@@ -129,7 +128,7 @@ namespace Aplicacao.Controllers
 
                     LoginService metodos = new LoginService();
 
-                    var usuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID.Equals(Dados.PRP_UsuarioID));
+                    var usuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID == Dados.PRP_UsuarioID);
 
                     usuario.USU_Senha = pNovaSenha.MTD_CriptografiaIrreversivel();
                     usuario.USU_DataAlteracao = DateTime.Now.MTD_DataHoraBrasil();
@@ -148,7 +147,7 @@ namespace Aplicacao.Controllers
             }
 
             TempData["PPR_Requisicao"] = requisicao;
-            return RedirectToAction("EsqueciSenha");
+            return Json(requisicao, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
