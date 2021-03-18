@@ -27,6 +27,7 @@ namespace Aplicacao.Models.SITE.Login
         public int PRP_IdBU { get; set; }
         public string PRP_NomeBU { get; set; }
         public string PRP_Cod_Sac { get; set; }
+        public bool PRP_SenhaHasValue { get; set; }
     }
     public class DadosUsuarioSessao
     {

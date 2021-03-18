@@ -52,9 +52,9 @@ namespace Aplicacao.Controllers
             return Json(MollaLibrary.Web.JsonUtil.Serialize(_Requisicao));
         }
         [HttpPost]
-        public JsonResult MTD_BuscaPreCadastro(string pCPF)
+        public JsonResult MTD_BuscaCadastro(string pCPF)
         {
-            Usuario retornoUsuario = new LoginService().MTD_GetPreCadastro(pCPF.MTD_ApenasNumeros());
+            Usuario retornoUsuario = new LoginService().MTD_GetCadastro(pCPF.MTD_ApenasNumeros());
 
             return Json(retornoUsuario, JsonRequestBehavior.AllowGet);
         }

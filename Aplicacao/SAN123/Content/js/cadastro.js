@@ -3,42 +3,62 @@
 
 
 
-$(document).on('click', '#btnlogin_Cadastro', function (event) {
+$(document).on('click', '#btnVerificarCadasro', function (event) {
     var stb_html = "";
     var parametros = {};
     parametros.pCPF = $('#cadastrocpf').val();
-
+    if ($('#cadastrocpf').val() == "") {
+        $('#MontaHTMLCadastro').html("<span class='py-2'><i class='fa fa-1x fa-spinner fa-spin'></i> Informe o CPF para prosseguir</span>").removeClass('d-none');
+        $('#cadastrocpf').focus();
+        return false;
+    }
     $.ajax({
         type: 'POST',
-        url: '/Login/MTD_BuscaPreCadastro',
+        url: '/Login/MTD_BuscaCadastro',
         data: JSON.stringify(parametros),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         beforeSend: function () {
-            $('#btnlogin_Cadastro').addClass('disabled').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Acessando...</span>');
-            $('#MontaHTMLCadastro').addClass('d-none');
+            $('#btnVerificarCadasro').addClass('d-none')
+            $('#MontaHTMLCadastro').html("<span class='py-2'><i class='fa fa-1x fa-spinner fa-spin'></i> Verificando cadastro...</span>").removeClass('d-none');
+            
         },
         success: function (ret) {
             if (ret.PRP_Requisicao.PRP_Status == true) {
-                if (ret.PRP_Requisicao.PRP_TipoMensagem == 1) {
+                if (ret.OBJ_Usuario.PRP_PrimeiroAcesso == true) {
+                    //USUÁRIO PRÉ CADASTRADO, EFETUANDO O PRIMEIRO ACESSO.
                     $('#cadas-CPF').val(ret.OBJ_Usuario.PRP_CPF);
                     $('#cadas-nome').val(ret.OBJ_Usuario.PRP_NomeUsuario);
                     $('#cadas-email').val(ret.OBJ_Usuario.PRP_EmailUsuario);
                     $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);
                     $('#cadas-unidadeNegocio').val(ret.OBJ_Usuario.PRP_NomeBU);
-
+                    $('#primeiro-acesso').addClass('d-none');
                     $('#cadastroModal').modal('show');
                 }
-                else if (ret.PRP_Requisicao.PRP_TipoMensagem == 2) {
-                    $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
-                    $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
+                else if (ret.OBJ_Usuario.PRP_SenhaHasValue == false && ret.OBJ_Usuario.PRP_PrimeiroAcesso == false) {
+                    //CADASTRO ATIVO IMPORTADO DE BASE ANTERIOR, NECESSÁRIO RENOVAR SENHA
+                    $('#cadas-CPF').val(ret.OBJ_Usuario.PRP_CPF);
+                    $('#cadas-nome').val(ret.OBJ_Usuario.PRP_NomeUsuario);
+                    $('#cadas-email').val(ret.OBJ_Usuario.PRP_EmailUsuario);
+                    $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);
+                    $('#cadas-unidadeNegocio').val(ret.OBJ_Usuario.PRP_NomeBU);
+                    $('#cadas-celular').val(ret.OBJ_Usuario.PRP_Celular).prop('disabled', true);
+                    $('#cadas_Confirmarcelular').val(ret.OBJ_Usuario.PRP_Celular).prop('disabled', true);
+                    $('#divConfCelular').addClass('d-none');
+                    $('#primeiro-acesso').addClass('d-none');
+                    $('#cadastroModal').modal('show');
                 }
-                else if (ret.PRP_Requisicao.PRP_TipoMensagem == 3) {
-                    $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
-                    $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
+                else {
+                    //CADASTRO ATIVO COM SENHA EM CIRPTOGRAFIA PADRÃO. SOMENTE EFETUAR LOGIN
+                    $('#divSenha').removeClass('d-none');
+                    $('#btnEfetuarLogin').removeClass('d-none');
+                    $('#btnVerificarCadasro').addClass('d-none');
+                    $('#cadastrocpf').prop('disabled', true);
+                    $('#MontaHTMLCadastro').empty().addClass('d-none');
                 }
-            } else {
-                $('#btnlogin_Cadastro').removeClass('disabled').html('CADASTRE-SE AQUI');
+            }
+            else {
+                $('#btnVerificarCadasro').removeClass('d-none')
                 $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
             }
         }
@@ -76,7 +96,7 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
     if (pSenha == confi) {
         if (pSenha.length > 0) {
             if (confi.length > 0) {
-                parametros = { pCelular, pSenha, pIdentificador};
+                parametros = { pCelular, pSenha, pIdentificador };
                 $.ajax({
                     type: 'POST',
                     url: '/Login/MTD_Cadastra',
@@ -99,8 +119,8 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
                             });
 
                         } else if (ret.PRP_Status == false) {
-                            $('#msg_informativa').removeClass('d-none');
-                            $('#msg_informativa').val(ret.PRP_Mensagem);
+                            $('#MontaHTMLCadastro').removeClass('d-none');
+                            $('#MontaHTMLCadastro').val(ret.PRP_Mensagem);
                         }
                     }
                 });
@@ -124,19 +144,19 @@ $(document).on('click', '#btn_cadastrar_MTD', function (event) {
 });
 
 
-$(document).on('click', '#btn_login_Acesso', function (event) {
+$(document).on('click', '#btnEfetuarLogin', function (event) {
     var parametros = {};
-    parametros.pCPF = $('#logincpf_').val();
-    parametros.pSenha = $('#loginsenha_').val();
+    parametros.pCPF = $('#cadastrocpf').val();
+    parametros.pSenha = $('#txtSenha').val();
 
-    if ($('#logincpf_').val() == "") {
-        $('#Msg_informativa_Login').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>Informe o seu Login.</span></div>").removeClass('d-none');
-        $('#logincpf_').focus();
+    if ($('#cadastrocpf').val() == "") {
+        $('#MontaHTMLCadastro').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>Informe o seu Login.</span></div>").removeClass('d-none');
+        $('#cadastrocpf').focus();
         return false;
     }
-    if ($('#loginsenha_').val() == "") {
-        $('#Msg_informativa_Login').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>informe a sua Senha.</span></div>").removeClass('d-none');
-        $('#loginsenha_').focus();
+    if ($('#txtSenha').val() == "") {
+        $('#MontaHTMLCadastro').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>informe a sua Senha.</span></div>").removeClass('d-none');
+        $('#txtSenha').focus();
         return false;
     }
 
@@ -147,15 +167,15 @@ $(document).on('click', '#btn_login_Acesso', function (event) {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         beforeSend: function () {
-            $('#btn_login_Acesso').addClass('disabled').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> acessando...</span>');
+            $('#btnEfetuarLogin').addClass('disabled').html('<span class="py-2"><i class="fa fa-1x fa-spinner fa-spin"></i> acessando...</span>');
         },
         success: function (returnValue) {
             var jsonResult = JSON.parse(returnValue);
             if (jsonResult.PRP_Status == true) {
                 location.href = '/Conteudo/Home';
             } else {
-                $('#btn_login_Acesso').removeClass('disabled').html('ENTRAR');
-                $('#Msg_informativa_Login').removeClass('d-none').html(jsonResult.PRP_Mensagem);
+                $('#btnEfetuarLogin').removeClass('disabled').html('ENTRAR');
+                $('#MontaHTMLCadastro').removeClass('d-none').html(jsonResult.PRP_Mensagem);
             }
         }
     })
