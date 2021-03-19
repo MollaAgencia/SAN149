@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+    $('#cadas_Confirmarcelular').bind('paste', function (e) {
+        e.preventDefault();
+    });
+    $('#cadas-conf-senha').bind('paste', function (e) {
+        e.preventDefault();
+    });
 });
 
 
@@ -7,7 +13,7 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
     var stb_html = "";
     var parametros = {};
     parametros.pCPF = $('#cadastrocpf').val();
-    if ($('#cadastrocpf').val() == "") {
+    if ($('#cadastrocpf').val() == "") { 
         $('#MontaHTMLCadastro').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>Informe o CPF para prosseguir</div>").removeClass('d-none');
         $('#cadastrocpf').focus();
         return false;

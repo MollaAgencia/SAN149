@@ -86,6 +86,7 @@ namespace Aplicacao.Models.SITE.Login
                 objSessao.PRP_NomeUsuario = objUsuario.USU_Nome;
                 objSessao.PRP_Email = objUsuario.USU_Email;
                 objSessao.PRP_CodSac = objUsuario.USU_CodSac;
+                objSessao.PRP_CodNetFlix = objUsuario.USU_CodNetFlix;
 
                 SessionVar.Set("AutenticacaoSite", objSessao);
                 retorno.PRP_Status = true;

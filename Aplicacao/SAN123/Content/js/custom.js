@@ -134,7 +134,7 @@ $('#btn-salvar').click(function () {
 
                 var retorno = JSON.parse(json);
 
-                console.log(retorno);
+                console.log(retorno);   
 
                 if (retorno.PRP_Status) {
                     $('#perfil-nome').val(perfilNome);

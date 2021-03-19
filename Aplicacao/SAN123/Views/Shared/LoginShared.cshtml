@@ -10,6 +10,7 @@
     <meta name="description" content="Sanofi">
     <meta name="author" content="agenciamolla.com.br">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9NEFWXQYFC"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/Content/vendor/animate/animate.min.css">
@@ -23,7 +24,7 @@
     <script src="~/Content/vendor/modernizr/modernizr.min.js"></script>
 </head>
 <body id="login">
-    <div> 
+    <div>
         @RenderBody()
     </div>
 
@@ -45,5 +46,14 @@
     <script src="~/Content/js/ajax-login.js"></script>
     <!-- Theme Initialization Files -->
     <script src="~/Content/js/theme.init.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+
+
+        gtag('config', 'G-9NEFWXQYFC');
+    </script>
 </body>
 </html>

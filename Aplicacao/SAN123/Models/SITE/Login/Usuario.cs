@@ -26,7 +26,7 @@ namespace Aplicacao.Models.SITE.Login
         public bool PRP_PrimeiroAcesso { get; set; }
         public int PRP_IdBU { get; set; }
         public string PRP_NomeBU { get; set; }
-        public string PRP_Cod_Sac { get; set; }
+        public string PRP_Cod_Sac { get; set; }        
         public bool PRP_SenhaHasValue { get; set; }
     }
     public class DadosUsuarioSessao
@@ -39,5 +39,6 @@ namespace Aplicacao.Models.SITE.Login
         public string PRP_Email { get; set; }
         public int PRP_IdBU { get; set; }
         public string PRP_NomeBU { get; set; }
+        public string PRP_CodNetFlix { get; set; }
     }
 }
