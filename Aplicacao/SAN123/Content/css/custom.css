@@ -22,10 +22,15 @@
 #login {
     background: url(../img/BG_SAN149.png) no-repeat center center;
     background-size: cover;
+    height: 100vh;
 }
 
 #login .btn-dark{
 	background-color: #01325a;
+}
+
+.bg-gray {
+    background-color: #ccc;
 }
 
 .bg-sanofi {
@@ -70,6 +75,11 @@ body{
 .card-body{
 	border-top-left-radius: 0px!important;
 }
+
+.header-body{
+	top: 0px!important; 
+}
+
 /* --- home --- */
 	#header .header-nav-main nav > ul > li.open > a,
 	#header .header-nav-main nav > ul > li:hover > a {
@@ -80,8 +90,19 @@ body{
 		color: #000!important;
 	}
 
+	.banners .d-lg-block{
+		margin-top: -60px;
+	}
+
 
 @media screen and (max-width: 768px) {
+	.banners .d-md-block{
+		margin-top: -10px;
+	}
+	#header .header-nav-main:before{
+		background-color: #212529;
+	}
+
 	.card-sign input{
 		height: 40px;
 		font-size: 16px; 
@@ -107,6 +128,14 @@ body{
 @media screen and (max-width: 425px) {
 	.body-sign{
 		height: auto;
+	}
+
+	.header-logo img{
+		max-width: 200px;
+		top: 0px!important;
+	}
+	.banners .d-block{
+		margin-top: -50px;
 	}
 
 	.primeiro-acesso .card-body{

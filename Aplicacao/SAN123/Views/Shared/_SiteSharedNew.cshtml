@@ -50,7 +50,7 @@
 <body>
     <input type="hidden" id="documento-usuario" value="@usuario.PRP_CPF" />
     <input type="hidden" id="id-usuario" value="@usuario.PRP_IdUsuario" />
-    <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 108, 'stickySetTop': '-40px', 'stickyChangeLogo': true}">
+    <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': false, 'stickyEnableOnMobile': false, 'stickyStartAt': 108, 'stickySetTop': '0px', 'stickyChangeLogo': false}">
         <div class="header-body bg-dark border-bottom">
             <div class="header-container container">
                 <div class="header-row">
@@ -58,7 +58,7 @@
                         <div class="header-row">
                             <div class="header-logo">
                                 <a href="~/Conteudo/Home">
-                                    <img alt="" width="90" height="90" data-sticky-width="62" data-sticky-height="62" data-sticky-top="30" src="~/Content/img/logo.png">
+                                    <img width="300" src="~/Content/img/logo-sanofi-play.png">
                                 </a>
                             </div>
                         </div>
@@ -89,21 +89,21 @@
                         <div class="header-row">
                             <div class="header-nav pt-1">
                                 <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
-                                    <nav class="collapse">
+                                    <nav class="collapse bg-dark">
                                         <ul class="nav nav-pills" id="mainNav">
-                                            <li class="bg-danger rounded mr-0 mr-md-1">
+                                            <li class="bg-danger rounded mr-0 mx-md-1 mb-2 mb-lg-0">
                                                 <a class="text-white" href="~/Conteudo/Home">Home</a>
                                             </li>
-                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                            <li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
                                                 <a class="text-white" href="~/Conteudo/Campanha">Campanha</a>
                                             </li>
-                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                            <li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
                                                 <a class="text-white" href="~/Desempenho/Desempenho">Desempenho</a>
                                             </li>
-                                            <li class="bg-danger rounded mx-0 mx-md-1">
-                                                <a class="text-white" href="~/Conteudo/ResgatePremios">Resgate de Prêmios</a>
+                                            <li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
+                                                <a class="text-white emBreve" href="#">Resgate de Prêmios</a> <!-- ~/Conteudo/ResgatePremios -->
                                             </li>
-                                            <li class="bg-danger rounded mx-0 mx-md-1">
+                                            <li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
                                                 <a class="text-white" href="~/Conteudo/Novidades">Fique por dentro</a>
                                             </li>
                                             <li class="bg-info rounded ml-0 ml-md-1">
@@ -133,17 +133,17 @@
     </div>
 
     @*<footer id="footer" class="bg-color-quaternary py-4">
-            <div class="container">
-                <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
-            </div>
-        </footer>*@
+        <div class="container">
+            <img src="~/Content/img/logo-sanofi-footer.png" width="200" class="d-block mx-auto">
+        </div>
+    </footer>*@
 
     <!-- modal Contato -->
     <div class="modal fade" id="modal-contato" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title mt-0" id="ContatoModalLabel">Entre em Contato</h4>
+                    <h4 class="modal-title mt-0" id="ContatoModalLabel">Fale com a gente!</h4>
                     <button type="button" name="btn-fecha-contato" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -159,8 +159,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md">
-                            <div class="form-group">
-                                <label class="mb-0">Mensagem</label>
+                            <div class="form-group mb-0">
+                                <label class="mb-0 text-4">Mensagem</label>
                                 <div class="input-group">
                                     <textarea name="" id="contato_mensagem" rows="3" style="resize: none;" class="form-control form-control-lg" valid="" valida-mensagem required></textarea>
                                 </div>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div id="alert_contato" class="text-center mt-4"></div>
+                    <div id="alert_contato" class="text-center d-none"></div>
 
                 </div>
                 <div class="modal-footer">

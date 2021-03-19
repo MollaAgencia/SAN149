@@ -6,19 +6,20 @@
 <div class="container px-md-0">
     <div class="row">
         <!-- primeiro acesso -->
-        <div class="col-md-12 px-md-0 px-xl-3 primeiro-acesso">
-            <section class="body-sign">
+        <div class="col-md-12 px-md-0 px-xl-3 primeiro-acesso mt-5">
+            <img src="~/Content/img/logo-sanofi-play.png" class="img-fluid d-block mx-auto mt-1 px-3 px-lg-0" style="max-width:570px;">
+            <section class="body-sign h-25">
                 <div class="center-sign">
                     <div id="primeiro-acesso" class="panel card-sign ">
                         <div class="card-title-sign text-center">
                             <h2 class="title text-uppercase font-weight-bold mb-0 text-5 p-2" style="letter-spacing: 5px;background-color:#012746; color:#00efe9;">Efetuar login</h2>
                         </div>
-                        <div class="card-body" style="background-color:#003056;">
+                        <div class="card-body py-4" style="background-color:#003056;">
                             <div id="form-login">
-                                <div class="form-group mb-2">
-                                    <label for="cadastrocpf">CPF:</label>
+                                <div class="form-group">
+                                    <label for="cadastrocpf" class="text-white text-4 mb-1">CPF:</label>
                                     <div class="input-group">
-                                        <input name="" id="cadastrocpf" type="text" placeholder="DIGITE SEU CPF" class="form-control form-control-lg" mask-cpf maxlength="14">
+                                        <input name="" id="cadastrocpf" type="text" placeholder="Digite seu cpf" class="form-control form-control-lg" mask-cpf maxlength="14">
                                         <span class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fas fa-user"></i>
@@ -27,9 +28,9 @@
                                     </div>
                                 </div>
                                 <div id="divSenha" class="form-group mb-2 d-none">
-                                    <label for="cadastrocpf">Senha:</label>
+                                    <label for="cadastrocpf" class="text-white text-4 mb-1">Senha:</label>
                                     <div class="input-group">
-                                        <input name="" id="txtSenha" type="password" placeholder="DIGITE A SUA SENHA" class="form-control form-control-lg">
+                                        <input name="" id="txtSenha" type="password" placeholder="Digite sua senha" class="form-control form-control-lg">
                                         <span class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fas fa-user"></i>
@@ -37,15 +38,18 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 text-right">
-                                        <div id="btnVerificarCadasro" class="btn font-weight-bold text-5 text-uppercase form-control mt-2" style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">VERIFICAR</div>
-                                        <div id="btnEfetuarLogin" class="btn font-weight-bold text-5 text-uppercase form-control mt-2 d-none" style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">EFETUAR LOGIN</div>
-                                    </div>
-                                    <div id="div_Alert" class="text-center col-12">
-                                        <div id="MontaHTMLCadastro"></div>
-                                    </div>
-                                </div>                                
+                                <div class="col-12 text-right">
+                                    <div id="btnVerificarCadasro" class="btn font-weight-bold text-5 text-uppercase form-control mt-2" style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">VERIFICAR</div>
+                                    
+                                    <div id="btnEfetuarLogin" class="btn font-weight-bold text-5 text-uppercase form-control mt-2 d-none" style="padding: 0px 10px;background-color:#00fff7;color:#02334d;">EFETUAR LOGIN</div>
+                                </div>
+                                <div id="div_Alert" class="text-center col-12">
+                                    <div id="MontaHTMLCadastro"></div>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <p class="text-4 text-white mb-0" style="line-height:20px">Teve algum desafio para logar? <br> clique <a href="#" data-toggle="modal" data-target="#modalcontato_" class="text-white"><u>aqui e fale com a gente!</u></a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,7 +60,7 @@
 </div>
 
 <!-- modal Contato -->
-<div class="modal fade" id="modalcontato_" tabindex="-1" role="dialog" aria-labelledby="ContatoModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalcontato_" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="ContatoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -167,7 +171,7 @@
 </div>
 
 <!-- modal Cadastro -->
-<div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+<div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="cadastroModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -271,7 +275,7 @@
 </div>
 
 <!-- modal EsqueciSenha -->
-<div class="modal fade" id="EsqueciSenhaModal" tabindex="-1" role="dialog" aria-labelledby="EsqueciSenhaModalLabel" aria-hidden="true">
+<div class="modal fade" id="EsqueciSenhaModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="EsqueciSenhaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -310,7 +314,7 @@
 </div>
 
 <!-- modal Regulamento -->
-<div class="modal fade show" id="regulamento-modal" tabindex="-1" role="dialog" aria-labelledby="regulamento-titulo" aria-hidden="true">
+<div class="modal fade show" id="regulamento-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="regulamento-titulo" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

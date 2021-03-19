@@ -61,48 +61,50 @@ function ValidaVazios() {
 $('#btn-editar').click(function () {
     modoEdicao = true;
     manipularCampos();
+    $("#alert-perfil").addClass("d-none");
 });
 
 $('#modal_detalhesPerfil').on('hide.bs.modal',
     function (e) {
-        if (modoEdicao) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
+    if (modoEdicao) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
 
-            const swalWithCustomizedButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-dark text-white',
-                    cancelButton: 'btn btn-danger text-white ml-4'
-                },
-                buttonsStyling: false
+        const swalWithCustomizedButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-dark text-white',
+                cancelButton: 'btn btn-danger text-white ml-4'
+            },
+            buttonsStyling: false
+        });
+
+        swalWithCustomizedButtons.fire({
+            title: "Ops!",
+            text: "Quer mesmo sair do modo edição, e fechar?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "SIM",
+            cancelButtonText: "NÃO"
+        })
+            .then((result) => {
+                if (result.value) {
+
+                    modoEdicao = false;
+                    manipularCampos();
+                    $('#modal_detalhesPerfil').modal('hide');
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+
+                }
             });
-
-            swalWithCustomizedButtons.fire({
-                title: "Ops!",
-                text: "Quer mesmo sair do modo edição, e fechar?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "SIM",
-                cancelButtonText: "NÃO"
-            })
-                .then((result) => {
-                    if (result.value) {
-
-                        modoEdicao = false;
-                        manipularCampos();
-                        $('#modal_detalhesPerfil').modal('hide');
-
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-
-
-                    }
-                });
         }
     });
 
 $('#btn-cancelar').click(function () {
     modoEdicao = false;
     manipularCampos();
+    $("#alert-perfil").addClass("d-none");
 });
 
 $('#btn-salvar').click(function () {
@@ -124,7 +126,7 @@ $('#btn-salvar').click(function () {
             beforeSend: function () {
                 $("#alert-perfil")
                     .removeClass("d-none")
-                    .html("<span class='alert alert-info'><i class='fa fa-1x fa-spinner fa-spin'></i> Processando... </span>");
+                    .html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'><i class='fa fa-1x fa-spinner fa-spin'></i> Processando... </div>");
                 $(this).prop('disabled', true);
                 $('#div-campos-cadastro').prop('disabled', true);
             },
@@ -141,13 +143,13 @@ $('#btn-salvar').click(function () {
                     $('#perfil-senha').val(perfilSenha);
                 }
 
-                $("#alert-perfil").removeClass("d-none").html(retorno.PRP_Mensagem);
+                $("#alert-perfil").removeClass("d-none").html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>" + retorno.PRP_Mensagem + "</div>");
             },
             error: function () {
 
                 $("#alert-perfil")
                     .removeClass("d-none")
-                    .html("<span class='alert alert-danger'>Erro na conexão com o Servidor. Tente novamente mais tarde.</span>");
+                    .html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>Erro na conexão com o Servidor. Tente novamente mais tarde.</div>");
 
             },
             complete: function () {
@@ -159,7 +161,7 @@ $('#btn-salvar').click(function () {
     } else {
         $("#alert-perfil")
             .removeClass("d-none")
-            .html("<span class='alert alert-warning d-flex'>Ainda existem campos inválidos ou vazios. Preencha-os corretamente para continuar</span>");
+            .html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>Ainda existem campos inválidos ou vazios. Preencha-os corretamente para continuar</div>");
     }
 });
 
@@ -170,9 +172,17 @@ $('button[name="btn_contato"]').bind('click', function (event) {
     event.preventDefault();
 
     $('#contato_mensagem').trigger('change');
+    
+    if ($('#contato_mensagem').val() == "") {
+        $('#alert_contato').removeClass('d-none').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'> Deixe sua mensagem.</div>");
+        $('#contato_mensagem').focus();
+        return false;
+    }
+
     var parametros = {};
     parametros.pIdUsuario = parseInt($('#id-usuario').val());
     parametros.pMensagem = $('#contato_mensagem').val();
+
 
     $.ajax({
         type: 'POST',
@@ -182,23 +192,17 @@ $('button[name="btn_contato"]').bind('click', function (event) {
         dataType: 'json',
         beforeSend: function () {
             $('button[name="btn_contato"]').addClass('disabled');
-            $('#alert_contato')
-                .removeClass('d-none')
-                .html('<span class="alert alert-info"><i class="fa fa-1x fa-spinner fa-spin"></i> Enviando...</span>');
+            $('#alert_contato').removeClass('d-none').html('<div class="px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2 line-height-2"><i class="fa fa-1x fa-spinner fa-spin"></i> Enviando...</div>');
         },
         success: function (returnValue) {
             console.log(returnValue);
             var jsonResult = JSON.parse(returnValue);
             if (jsonResult.PRP_Status === true) {
-                $('#alert_contato').removeClass('d-none')
-                    .html(
-                        '<p class="alert alert-success py-2 m-0">Mensagem enviada!<br>Aguarde o retorno via e-mail ou telefone.</p>');
+                $('#alert_contato').removeClass('d-none').html('<div class="px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2 line-height-2">Mensagem enviada!<br>Aguarde o retorno via e-mail ou telefone.</div>');
                 $('button[name="btn_contato"]').removeAttr('disabled', 'disabled');
             } else {
                 $('button[name="btn_contato"]').addClass('disabled');
-                $('#alert_contato').removeClass('d-none')
-                    .html(
-                        '<p class="alert alert-warning py-2 m-0">Erro ao enviar mensagem!<br>Favor tentar novamente.</p>');
+                $('#alert_contato').removeClass('d-none').html('<div class="px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2 line-height-2">Erro ao enviar mensagem!<br>Favor tentar novamente.</div>');
             }
         }
     });

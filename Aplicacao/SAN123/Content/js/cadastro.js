@@ -8,7 +8,7 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
     var parametros = {};
     parametros.pCPF = $('#cadastrocpf').val();
     if ($('#cadastrocpf').val() == "") {
-        $('#MontaHTMLCadastro').html("<span class='py-2'><i class='fa fa-1x fa-spinner fa-spin'></i> Informe o CPF para prosseguir</span>").removeClass('d-none');
+        $('#MontaHTMLCadastro').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>Informe o CPF para prosseguir</div>").removeClass('d-none');
         $('#cadastrocpf').focus();
         return false;
     }
@@ -20,8 +20,7 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
         dataType: 'json',
         beforeSend: function () {
             $('#btnVerificarCadasro').addClass('d-none')
-            $('#MontaHTMLCadastro').html("<span class='py-2'><i class='fa fa-1x fa-spinner fa-spin'></i> Verificando cadastro...</span>").removeClass('d-none');
-            
+            $('#MontaHTMLCadastro').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block'><i class='fa fa-1x fa-spinner fa-spin'></i> Verificando cadastro...</div>").removeClass('d-none');
         },
         success: function (ret) {
             if (ret.PRP_Requisicao.PRP_Status == true) {
@@ -58,13 +57,13 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
                     $('#divSenha').removeClass('d-none');
                     $('#btnEfetuarLogin').removeClass('d-none');
                     $('#btnVerificarCadasro').addClass('d-none');
-                    $('#cadastrocpf').prop('disabled', true);
+                    // $('#cadastrocpf').prop('disabled', true);
                     $('#MontaHTMLCadastro').empty().addClass('d-none');
                 }
             }
             else {
                 $('#btnVerificarCadasro').removeClass('d-none')
-                $('#MontaHTMLCadastro').removeClass('d-none').html(ret.PRP_Requisicao.PRP_Mensagem);
+                $('#MontaHTMLCadastro').removeClass('d-none').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>" + ret.PRP_Requisicao.PRP_Mensagem + "</div>");
             }
         }
     });
@@ -162,12 +161,12 @@ $(document).on('click', '#btnEfetuarLogin', function (event) {
     parametros.pSenha = $('#txtSenha').val();
 
     if ($('#cadastrocpf').val() == "") {
-        $('#MontaHTMLCadastro').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>Informe o seu Login.</span></div>").removeClass('d-none');
+        $('#MontaHTMLCadastro').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'><i class='fa fa-info-circle fa-lg'></i> <span>Informe seu CPF.</span></div>").removeClass('d-none');
         $('#cadastrocpf').focus();
         return false;
     }
     if ($('#txtSenha').val() == "") {
-        $('#MontaHTMLCadastro').html("<div class='alert alert-danger'><i class='fa fa-info-circle fa-lg'></i> <span>informe a sua Senha.</span></div>").removeClass('d-none');
+        $('#MontaHTMLCadastro').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'><i class='fa fa-info-circle fa-lg'></i> <span>Informe sua senha.</span></div>").removeClass('d-none');
         $('#txtSenha').focus();
         return false;
     }
@@ -187,7 +186,7 @@ $(document).on('click', '#btnEfetuarLogin', function (event) {
                 location.href = '/Conteudo/Home';
             } else {
                 $('#btnEfetuarLogin').removeClass('disabled').html('ENTRAR');
-                $('#MontaHTMLCadastro').removeClass('d-none').html(jsonResult.PRP_Mensagem);
+                $('#MontaHTMLCadastro').removeClass('d-none').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>" + jsonResult.PRP_Mensagem + "</div>");
             }
         }
     })

@@ -58,7 +58,7 @@ namespace Aplicacao.Models.SITE.Login
                 else
                 {
                     objRetorno.PRP_Status = false;
-                    objRetorno.PRP_Mensagem = "Senha incorreta".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
+                    objRetorno.PRP_Mensagem = "Senha incorreta"; //.MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Info);
                     objRetorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
                 }
             }
@@ -305,7 +305,7 @@ namespace Aplicacao.Models.SITE.Login
                 else
                 {
                     retornoUsuario.PRP_Requisicao.PRP_Status = false;
-                    retornoUsuario.PRP_Requisicao.PRP_Mensagem = "CPF não localizado em nossa base.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
+                    retornoUsuario.PRP_Requisicao.PRP_Mensagem = "CPF não localizado em nossa base."; //.MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
                     retornoUsuario.PRP_Requisicao.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Danger;
                 }
             }
@@ -373,7 +373,7 @@ namespace Aplicacao.Models.SITE.Login
                     EF.SaveChanges();
                     ret.PRP_Status = true;
                     ret.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
-                    ret.PRP_Mensagem = "Dados atualizados com sucesso.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
+                    ret.PRP_Mensagem = "Dados atualizados com sucesso."; //.MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
                 }
                 else
                 {
