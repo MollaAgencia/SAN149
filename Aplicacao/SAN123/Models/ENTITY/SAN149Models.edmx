@@ -72,6 +72,7 @@
           <Property Name="USU_DataCadastro" Type="datetime" Nullable="false" />
           <Property Name="USU_DataAlteracao" Type="datetime" />
           <Property Name="USU_Anotacao" Type="nvarchar(max)" />
+          <Property Name="USU_CodNetFlix" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="DSP_PER_FK">
           <End Role="PER_Periodos" Type="Self.PER_Periodos" Multiplicity="1" />
@@ -222,6 +223,7 @@
           <Property Name="USU_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DSP_Desemempenho" Relationship="db_SAN149Model.DSP_USU_FK" FromRole="USU_Usuario" ToRole="DSP_Desemempenho" />
           <NavigationProperty Name="UNG_UnidadeNegocio" Relationship="db_SAN149Model.USU_UNG_FK" FromRole="USU_Usuario" ToRole="UNG_UnidadeNegocio" />
+          <Property Name="USU_CodNetFlix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="DSP_PER_FK">
           <End Type="db_SAN149Model.PER_Periodos" Role="PER_Periodos" Multiplicity="1" />
@@ -316,6 +318,7 @@
           <EntitySetMapping Name="USU_Usuario">
             <EntityTypeMapping TypeName="db_SAN149Model.USU_Usuario">
               <MappingFragment StoreEntitySet="USU_Usuario">
+                <ScalarProperty Name="USU_CodNetFlix" ColumnName="USU_CodNetFlix" />
                 <ScalarProperty Name="USU_Anotacao" ColumnName="USU_Anotacao" />
                 <ScalarProperty Name="USU_DataAlteracao" ColumnName="USU_DataAlteracao" />
                 <ScalarProperty Name="USU_DataCadastro" ColumnName="USU_DataCadastro" />

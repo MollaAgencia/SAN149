@@ -34,6 +34,7 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
                     $('#cadas-unidadeNegocio').val(ret.OBJ_Usuario.PRP_NomeBU);
                     $('#primeiro-acesso').addClass('d-none');
                     $('#cadastroModal').modal('show');
+                    $('#cadastroModalLabel').text("Complete o seu cadastro");
                 }
                 else if (ret.OBJ_Usuario.PRP_SenhaHasValue == false && ret.OBJ_Usuario.PRP_PrimeiroAcesso == false) {
                     //CADASTRO ATIVO IMPORTADO DE BASE ANTERIOR, NECESSÁRIO RENOVAR SENHA
@@ -43,10 +44,14 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
                     $('#hdnIdentificadorCadastro').val(ret.OBJ_Usuario.PRP_IdUsuario);
                     $('#cadas-unidadeNegocio').val(ret.OBJ_Usuario.PRP_NomeBU);
                     $('#cadas-celular').val(ret.OBJ_Usuario.PRP_Celular).prop('disabled', true);
+                    $('#exibeCelular').val(ret.OBJ_Usuario.PRP_Celular).prop('disabled', true);
                     $('#cadas_Confirmarcelular').val(ret.OBJ_Usuario.PRP_Celular).prop('disabled', true);
                     $('#divConfCelular').addClass('d-none');
+                    $('#divCelular').addClass('d-none');
+                    $('#divExibeCelular').removeClass('d-none');
                     $('#primeiro-acesso').addClass('d-none');
                     $('#cadastroModal').modal('show');
+                    $('#cadastroModalLabel').text("Atualize a sua senha");
                 }
                 else {
                     //CADASTRO ATIVO COM SENHA EM CIRPTOGRAFIA PADRÃO. SOMENTE EFETUAR LOGIN
@@ -64,6 +69,13 @@ $(document).on('click', '#btnVerificarCadasro', function (event) {
         }
     });
 });
+
+function fnRestarCardInicio() {
+    $('#primeiro-acesso').removeClass('d-none');
+    $('#cadastroModal').modal('hide');
+    $('#btnVerificarCadasro').removeClass('d-none')
+    $('#MontaHTMLCadastro').empty();
+}
 
 $(document).on('click', '#btn_cadastrar_MTD', function (event) {
 

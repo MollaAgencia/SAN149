@@ -172,7 +172,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="cadastroModalLabel">Este é o seu primeiro acesso. Efetue o seu cadastro.</h4>
-                <button id="btn-fechar-cadastro-modal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button id="btn-fechar-cadastro-modal" type="button" class="close" onclick="fnRestarCardInicio();" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <div id="form-cadastro"></div>
@@ -207,10 +207,17 @@
                         <div class="alertError" alert-email></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div id="divCelular" class="form-group col">
                             <label class="mb-0">Celular <span class="required text-4">*</span></label>
                             <div class="input-group">
                                 <input name="" id="cadas-celular" type="text" class="form-control form-control-lg" maxlength="15" valida-telefone mask-telefone required>
+                            </div>
+                            <div class="alertCelular" alert-email></div>
+                        </div>
+                        <div id="divExibeCelular" class="form-group col d-none">
+                            <label class="mb-0">Celular</label>
+                            <div class="input-group">
+                                <input name="" id="exibeCelular" type="text" class="form-control form-control-lg" maxlength="15" valida-telefone mask-telefone required>
                             </div>
                             <div class="alertCelular" alert-email></div>
                         </div>
@@ -256,7 +263,7 @@
             </div>
             <div class="modal-footer">
                 <div id="msg_informativa"></div>
-                <button type="button" id="btn-fechar-cadastro" class="btn btn-danger text-white" data-dismiss="modal">FECHAR</button>
+                <button type="button" id="btn-fechar-cadastro" class="btn btn-danger text-white" onclick="fnRestarCardInicio();">FECHAR</button>
                 <div id="btn_cadastrar_MTD" class="btn btn-dark text-white">CONFIRMAR</div>
             </div>
         </div>

@@ -38,6 +38,7 @@ namespace Aplicacao.Models.ENTITY
         public System.DateTime USU_DataCadastro { get; set; }
         public Nullable<System.DateTime> USU_DataAlteracao { get; set; }
         public string USU_Anotacao { get; set; }
+        public string USU_CodNetFlix { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DSP_Desemempenho> DSP_Desemempenho { get; set; }
