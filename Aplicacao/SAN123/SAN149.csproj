@@ -478,6 +478,7 @@
     <Content Include="Models\ENTITY\SAN149Models.edmx.diagram">
       <DependentUpon>SAN149Models.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\pdf\RANKING_2020_FINAL.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\ENTITY\SAN149Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
