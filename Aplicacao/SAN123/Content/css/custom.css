@@ -139,7 +139,7 @@ body{
 	}
 
 	.primeiro-acesso .card-body{
-		max-height: 170px!important;
+		/*max-height: 170px!important;*/
 	}
 	.card-sign .card-body .text-5{
 		padding-top: 5px!important;

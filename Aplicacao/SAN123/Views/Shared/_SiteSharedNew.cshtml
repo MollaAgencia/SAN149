@@ -54,10 +54,30 @@
     <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': false, 'stickyEnableOnMobile': false, 'stickyStartAt': 108, 'stickySetTop': '0px', 'stickyChangeLogo': false}">
         <div class="header-body bg-dark border-bottom">
             <div class="header-container container">
+                <div class="d-block d-md-none">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item nav-item-anim-icon d-block d-md-block">
+                            <a class="nav-link text-white pl-0 btn-contato" href="#" data-toggle="modal" data-target="#modal-contato"><i class="fas fa-angle-right"></i> Contato</a>
+                        </li>
+                        <li class="nav-item nav-item-anim-icon d-block d-md-block">
+                            <a class="nav-link text-white" href="#" target="_blank"><i class="fas fa-angle-right"></i> Regulamento</a>
+                        </li>
+                        <li class="nav-item dropdown nav-item-left-border d-block d-sm-block nav-item-left-border-remove nav-item-left-border-md-show">
+                            <a class="nav-link text-white" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="" class="flag flag-us" alt=""> @usuario.PRP_NomeUsuario.Split(' ')[0]
+                                <i class="fas fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownLanguage">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal_detalhesPerfil">Perfil</a>
+                                <a class="dropdown-item" href="~/Login/Autenticacao">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="header-row">
                     <div class="header-column">
                         <div class="header-row">
-                            <div class="header-logo">
+                            <div class="header-logo mt-0 mt-md-3">
                                 <a href="~/Conteudo/Home">
                                     <img width="300" src="~/Content/img/logo-sanofi-play.png">
                                 </a>
@@ -65,7 +85,7 @@
                         </div>
                     </div>
                     <div class="header-column justify-content-end">
-                        <div class="header-row pt-3">
+                        <div class="header-row pt-md-3">
                             <nav class="header-nav-top">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item nav-item-anim-icon d-none d-md-block">
