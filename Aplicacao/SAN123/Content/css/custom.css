@@ -25,6 +25,11 @@
     height: 100vh;
 }
 
+.primeiro-acesso img.mt-1{
+	max-width: 520px;
+	width: 100%;
+}
+
 #login .btn-dark{
 	background-color: #01325a;
 }
@@ -111,8 +116,16 @@ body{
 		font-size: 16px; 	
 	}
 	
+	.primeiro-acesso img.mt-1{
+		margin-top: -10px!important;
+		max-width: 450px;
+		width: 100%;
+	}
+	.body-sign .center-sign {
+	    padding-top: 0px;
+	}
 	.card-sign .card-body{
-		height: 260px!important;
+		min-height: 260px!important;
 	}
 	.card-sign .card-body .text-5{
 		padding-top: 3px!important;
