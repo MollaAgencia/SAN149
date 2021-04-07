@@ -185,6 +185,7 @@
     <Content Include="Content\img\banner-tablet-03.png" />
     <Content Include="Content\img\banner-tablet-04.png" />
     <Content Include="Content\img\banner-tablet-05.png" />
+    <Content Include="Content\img\banner-vencedores.jpg" />
     <Content Include="Content\img\banner_desktop.png" />
     <Content Include="Content\img\banner_desktop_01.png" />
     <Content Include="Content\img\banner_site-celular.png" />
@@ -464,10 +465,6 @@
     <Content Include="Content\vendor\pdfobject\package-lock.json" />
     <Content Include="Content\vendor\pdfobject\package.json" />
     <Content Include="Content\vendor\pdfobject\readme.md" />
-    <Content Include="Content\pdf\Regulamento.pdf" />
-    <Content Include="Content\pdf\Aditivo-Regulamento-Campanha-Incentivo-2020-Craques-Sanofi-Q3-20.pdf" />
-    <Content Include="Content\pdf\Regulamento-Campanha-Incentivo-2020_Craques-Sanofi.pdf" />
-    <Content Include="Content\pdf\3_Aditivo_Regulamento_Campanha_Incentivo_2020_Craques_Sanofi_Q4.pdf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -478,7 +475,8 @@
     <Content Include="Models\ENTITY\SAN149Models.edmx.diagram">
       <DependentUpon>SAN149Models.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\pdf\RANKING_2020_FINAL.pdf" />
+    <Content Include="Content\pdf\Regulamento-Campanha-Incentivo-Play-to-Win.pdf" />
+    <Content Include="Content\pdf\Divulgacao-Vencedores-Craques.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\ENTITY\SAN149Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -209,7 +209,7 @@ namespace Aplicacao.Models.COMMON.Email
 
                 EnviarEmail.mtd_EnviarEmail();
                 requisicao.PRP_Status = true;
-                requisicao.PRP_Mensagem = $"Email enviado com sucesso para {PRP_EmailDestinatario}".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
+                requisicao.PRP_Mensagem = $"E-mail enviado com sucesso para {PRP_EmailDestinatario}".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
                 requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Success;
 
 
@@ -275,7 +275,7 @@ namespace Aplicacao.Models.COMMON.Email
 
                 EnviarEmail.mtd_EnviarEmail();
                 requisicao.PRP_Status = true;
-                requisicao.PRP_Mensagem = $"Email enviado com sucesso para {PRP_EmailDestinatario}".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
+                requisicao.PRP_Mensagem = $"E-mail enviado com sucesso para {PRP_EmailDestinatario}".MTD_MensagemHTML(MollaLibrary.EnunsApp.enum_TipoMensagem.Success);
 
 
             }

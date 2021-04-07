@@ -4,6 +4,9 @@
     background-color: #012746;
 }
 
+.text-blue{
+	color: #01325a!important;
+}
 
 #busca_cadastro {
     margin-left: -30px;

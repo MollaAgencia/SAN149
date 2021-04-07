@@ -92,7 +92,7 @@
                                         <a class="nav-link text-white pl-0 btn-contato" href="#" data-toggle="modal" data-target="#modal-contato"><i class="fas fa-angle-right"></i> Contato</a>
                                     </li>
                                     <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                                        <a class="nav-link text-white" href="#" target="_blank"><i class="fas fa-angle-right"></i> Regulamento</a>
+                                        <a class="nav-link text-white" href="~/Content/pdf/Regulamento-Campanha-Incentivo-Play-to-Win.pdf" target="_blank"><i class="fas fa-angle-right"></i> Regulamento</a>
                                     </li>
                                     <li class="nav-item dropdown nav-item-left-border d-none d-sm-block nav-item-left-border-remove nav-item-left-border-md-show">
                                         <a class="nav-link text-white" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -119,7 +119,7 @@
                                                 <a class="text-white" href="~/Conteudo/Campanha">Campanha</a>
                                             </li>
                                             <li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
-                                                <a class="text-white" href="~/Desempenho/Desempenho">Desempenho</a>
+                                                <a class="text-white" href="~/Desempenho/Desempenho">Ranking</a>
                                             </li>
                                             @*CONTEÚDO DESABLILITADO TEMPORARIAMENTE*@
                                             <!--<li class="bg-danger rounded mx-0 mx-md-1 mb-2 mb-lg-0">
@@ -175,7 +175,7 @@
                                 Olá, @usuario.PRP_NomeUsuario.<br />
                                 Estamos aqui para te apoiar. <br />
                                 Por isso, deixe sua mensagem pra gente. Em até 48h retornaremos pra você.<br />
-                                Importante: cadastre o e-mail <strong>contato@campanhaplaytowin.com.br</strong> para ele não caio no spam
+                                Importante: cadastre o e-mail <strong>contato@campanhaplaytowin.com.br</strong> para ele não cair no spam.
                             </p>
                         </div>
                     </div>
@@ -214,6 +214,13 @@
                     <div class="row">
                         <div class="col-12 col-md">
                             <div class="form-group">
+                                <label class="mb-0 line-height-2">Para acessar o seu código Netflix, copie e cole o link <br class="d-none d-md-block"> do campo abaixo no navegador.</label>
+                                <div class="input-group">
+                                    <input name="" value="@usuario.PRP_CodNetFlix" type="text" valid="true" class="form-control form-control-lg" required disabled>
+                                </div>
+                                <div class="alertError" alert-celular></div>
+                            </div>
+                            <div class="form-group">
                                 <label class="mb-0">CPF</label>
                                 <div class="input-group">
                                     <input name="" id="perfil-cpf" value="@usuario.PRP_CPF" type="text" valid="true" class="form-control form-control-lg" mask-cpf required disabled>
@@ -235,7 +242,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="mb-0">Email</label>
+                                <label class="mb-0">E-mail</label>
                                 <div class="input-group">
                                     <input name="" id="perfil-email" value="@usuario.PRP_Email" type="text" valid="true" class="form-control form-control-lg" valida-email required disabled>
                                 </div>
@@ -245,13 +252,6 @@
                                 <label class="mb-0">Unidade de Negócio</label>
                                 <div class="input-group">
                                     <input name="" id="perfil-Bu" value="@usuario.PRP_NomeBU" type="text" valid="true" class="form-control form-control-lg" required disabled>
-                                </div>
-                                <div class="alertError" alert-celular></div>
-                            </div>
-                            <div class="form-group">
-                                <label class="mb-0">Para acessar o seu código Netflix, copie e cole o link do campo abaixo no navegador</label>
-                                <div class="input-group">
-                                    <input name="" value="@usuario.PRP_CodNetFlix" type="text" valid="true" class="form-control form-control-lg" required disabled>
                                 </div>
                                 <div class="alertError" alert-celular></div>
                             </div>

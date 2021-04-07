@@ -65,7 +65,7 @@ namespace Aplicacao.Models.SITE.Login
             else
             {
                 objRetorno.PRP_Status = false;
-                objRetorno.PRP_Mensagem = "Usuário não encontrado ".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
+                objRetorno.PRP_Mensagem = "Usuário não encontrado "; //.MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Alert);
                 objRetorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Alert;
             }
             return objRetorno;
