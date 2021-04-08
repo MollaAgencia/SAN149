@@ -1,15 +1,20 @@
 ﻿@model MollaLibrary.COMMON.RetornoRequisicao
 @using MollaLibrary.ExtendMethods;
-
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
 
+    <link rel="shortcut icon" href="~/Content/img/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/Content/img/favicon.png">
+
     <!-- Favicon -->
     @*<link rel="shortcut icon" href="~/Content/img/favicon.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="~/Content/img/favicon.png">*@
+        <link rel="apple-touch-icon" href="~/Content/img/favicon.png">*@
 
     <title>AcessoFake</title>
 
@@ -55,7 +60,7 @@
                                 <div class="input-group">
 
                                     @Html.DropDownList("PRP_Usuarios", null, new { @class = "custom-select form-control", id = "sel_Usuarios" })
-                                    
+
                                 </div>
                             </div>
 
@@ -122,7 +127,5 @@
             });
         });
     </script>
-
-
 </body>
 </html>

@@ -51,7 +51,7 @@ namespace Aplicacao.Models.COMMON
         /// </summary>
         public static DadosUsuarioSessao PRP_UsuarioAutenticadoSite { get { return HttpContext.Current.Session["AutenticacaoSite"] == null ? null : (DadosUsuarioSessao)HttpContext.Current.Session["AutenticacaoSite"]; } }
 
-        public static MollaLibraryAPI.PessoaFisica.Pessoa PRP_UsuarioFake { get { return HttpContext.Current.Session["AutenticacaoFake"] == null ? null : (MollaLibraryAPI.PessoaFisica.Pessoa)HttpContext.Current.Session["AutenticacaoFake"]; } }
+        public static DadosUsuarioSessao PRP_UsuarioFake { get { return HttpContext.Current.Session["AutenticacaoFake"] == null ? null : (DadosUsuarioSessao)HttpContext.Current.Session["AutenticacaoFake"]; } }
         /// <summary>
         /// Dados complementares do usuário autenticado.
         /// </summary>

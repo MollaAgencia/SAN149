@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Aplicacao.Models.COMMON;
 using Aplicacao.Models.ENTITY;
 using Aplicacao.Models.SITE.Login;
 using MollaLibrary.COMMON;
@@ -67,7 +68,30 @@ namespace Aplicacao.Controllers
             return Json(ret, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult MTD_AcessoLogin(string pCpf, string pSenha) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Autenticacao(pCpf, pSenha, out bool pAcessoFake)));
+        //public JsonResult MTD_AcessoLogin(string pCpf, string pSenha) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_Autenticacao(pCpf, pSenha, out bool pAcessoFake)));
+
+
+        public JsonResult MTD_AcessoLogin(string pCpf, string pSenha)
+        {
+            bool acessoFake = false;
+            RetornoRequisicao ret = new LoginService().MTD_Autenticacao(pCpf, pSenha, out acessoFake);
+            string text = "";
+
+            if (ret.PRP_Status && acessoFake == false)
+            {
+                text = new UrlHelper(Request.RequestContext).Action("Home", new { controller = "Conteudo", Area = "" });
+            }
+            else if (ret.PRP_Status)
+            {
+                text = new UrlHelper(Request.RequestContext).Action("AcessoFake", new { controller = "Login", Area = "" });
+            }
+            dynamic objRetorno = new System.Dynamic.ExpandoObject();
+            objRetorno.PRP_Requisicao = ret;
+            objRetorno.URL = text;
+            string stJson = Newtonsoft.Json.JsonConvert.SerializeObject(objRetorno, Newtonsoft.Json.Formatting.Indented);
+
+            return Json(stJson);
+        }
 
         public JsonResult MTD_EsqueciSenha(string pCpf) => Json(Newtonsoft.Json.JsonConvert.SerializeObject(new LoginService().MTD_EsqueciSenhaEnvio(pCpf.MTD_ApenasNumeros())));
 
@@ -156,5 +180,68 @@ namespace Aplicacao.Controllers
         public JsonResult MTD_ContatoUsuario(int pIdUsuario, string pMensagem) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_ContatoUsuario(pIdUsuario, pMensagem)));
         [HttpPost]
         public JsonResult MTD_SalvarPerfil(string PRP_Documento, string PRP_Nome, string PRP_Telefone,  string PRP_Email, string PRP_Senha) => Json(MollaLibrary.Web.JsonUtil.Serialize(new LoginService().MTD_AtualizarDados(PRP_Documento, PRP_Nome, PRP_Telefone, PRP_Email, PRP_Senha)));
+        public ActionResult AcessoFake()
+        {
+            MollaLibrary.COMMON.RetornoRequisicao requisicao = null;
+            if (TempData["Retorno"] != null)
+            {
+                requisicao = (MollaLibrary.COMMON.RetornoRequisicao)TempData["Retorno"];
+            }
+            else if (values.PRP_UsuarioFake == null)
+            {
+                return RedirectToAction("Autenticacao");
+            }
+            else
+            {
+                requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
+                requisicao.PRP_Status = true;
+            }
+
+            ViewBag.PRP_Usuarios = new SelectList(_loginService.MTD_ListaUsuarios(), "PRP_value", "PRP_Display", "0");
+
+            return View(requisicao);
+        }
+        [HttpPost]
+        public ActionResult AcessoFakeRedirecionar(string Usuarios)
+        {
+            /**********************************************************************************
+             * Adicionar logica para o acesso fake
+             **********************************************************************************/
+
+            int idUsuario = int.Parse(Usuarios);
+            MollaLibrary.COMMON.RetornoRequisicao requisicao = new MollaLibrary.COMMON.RetornoRequisicao();
+
+            try
+            {
+                if (values.PRP_UsuarioFake != null)
+                {
+                    db_SAN149Entities EF = new db_SAN149Entities();
+                    var usuario = EF.USU_Usuario.FirstOrDefault(x => x.USU_ID.Equals(idUsuario));
+                    if (usuario == null)
+                    {
+                        requisicao.PRP_Mensagem = "O usuário solicitado não foi encontrado";
+                        requisicao.PRP_Status = false;
+                        requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Info;
+                        TempData["requisicao"] = requisicao;
+                    }
+                    else
+                    {
+                        _loginService.MTD_AlimentarSessao(usuario);
+
+                        return RedirectToAction("Home", new { controller = "Conteudo" });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                requisicao.PRP_Mensagem = "Erro ao configurar o acesso fake";
+                requisicao.PRP_Status = false;
+                requisicao.PRP_TipoMensagem = MollaLibrary.EnunsApp.enum_TipoMensagem.Danger;
+                TempData["requisicao"] = requisicao;
+            }
+
+            return View("AcessoFake");
+        }
     }
 }

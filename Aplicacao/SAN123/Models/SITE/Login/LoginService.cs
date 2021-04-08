@@ -71,7 +71,7 @@ namespace Aplicacao.Models.SITE.Login
             return objRetorno;
         }
 
-        private RetornoRequisicao MTD_AlimentarSessao(USU_Usuario objUsuario)
+        public RetornoRequisicao MTD_AlimentarSessao(USU_Usuario objUsuario)
         {
             RetornoRequisicao retorno = new RetornoRequisicao();
 
@@ -87,8 +87,15 @@ namespace Aplicacao.Models.SITE.Login
                 objSessao.PRP_Email = objUsuario.USU_Email;
                 objSessao.PRP_CodSac = objUsuario.USU_CodSac;
                 objSessao.PRP_CodNetFlix = objUsuario.USU_CodNetFlix;
-
-                SessionVar.Set("AutenticacaoSite", objSessao);
+                if (objUsuario.USU_AcessoFake == true)
+                {
+                    SessionVar.Set("AutenticacaoFake", objSessao);
+                }
+                else
+                {
+                    SessionVar.Set("AutenticacaoSite", objSessao);
+                }
+                
                 retorno.PRP_Status = true;
                 retorno.PRP_Mensagem = "Autenticaçao efetuada com sucesso.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Success);
                 retorno.PRP_TipoMensagem = EnunsApp.enum_TipoMensagem.Success;
@@ -391,6 +398,23 @@ namespace Aplicacao.Models.SITE.Login
                 ret.PRP_Mensagem = "Erro ao processar sua requisição.".MTD_MensagemHTML(EnunsApp.enum_TipoMensagem.Danger);
             }
             return ret;
+        }
+        public List<DropDownList> MTD_ListaUsuarios()
+        {
+
+            var objRetorno = new List<DropDownList>();
+            objRetorno.Add(new DropDownList { PRP_Display = "Selecione", PRP_value = "0" });
+            var listaUsuario = EF.USU_Usuario.Where(x => x.USU_AcessoFake == false && x.USU_PrimeiroAcesso == false && x.USU_Ativo == true).ToList();
+
+            foreach (var objUsario in listaUsuario)
+            {
+                objRetorno.Add(new DropDownList
+                {
+                    PRP_Display = objUsario.USU_Nome,
+                    PRP_value = objUsario.USU_ID.ToString()
+                });
+            }
+            return objRetorno;
         }
     }
 }
