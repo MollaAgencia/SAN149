@@ -19,7 +19,16 @@ namespace Aplicacao.Models.SITE.Desempenho
             RetornoDesempenho ret = new RetornoDesempenho();
             try
             {
-                var desempenhoUsuario = EF.DSP_Desemempenho.FirstOrDefault(x => x.USU_ID == idUsuario && x.DSP_Ativo == true);
+                DSP_Desemempenho desempenhoUsuario = new DSP_Desemempenho();
+                if (values.PRP_UsuarioFake != null)
+                {
+                    desempenhoUsuario = EF.DSP_Desemempenho.FirstOrDefault(x => x.USU_ID == idUsuario && x.DSP_Ativo == true);
+                }
+                else
+                {
+                    desempenhoUsuario = EF.DSP_Desemempenho.FirstOrDefault(x => x.USU_ID == idUsuario && x.DSP_Ativo == true && x.DSP_Ambiente == "P");
+                }
+                
                 if (desempenhoUsuario != null)
                 {
                     ret.OBJ_Desempenho.PRP_Nome = desempenhoUsuario.USU_Usuario.USU_Nome;

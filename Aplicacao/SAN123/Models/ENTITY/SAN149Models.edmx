@@ -24,6 +24,7 @@
           <Property Name="DSP_DataCarga" Type="datetime" Nullable="false" />
           <Property Name="DSP_Ativo" Type="bit" Nullable="false" />
           <Property Name="DSP_Anotacao" Type="nvarchar(max)" />
+          <Property Name="DSP_Ambiente" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="PER_Periodos">
           <Key>
@@ -184,6 +185,7 @@
           <Property Name="DSP_Anotacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PER_Periodos" Relationship="db_SAN149Model.DSP_PER_FK" FromRole="DSP_Desemempenho" ToRole="PER_Periodos" />
           <NavigationProperty Name="USU_Usuario" Relationship="db_SAN149Model.DSP_USU_FK" FromRole="DSP_Desemempenho" ToRole="USU_Usuario" />
+          <Property Name="DSP_Ambiente" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PER_Periodos">
           <Key>
@@ -283,6 +285,7 @@
           <EntitySetMapping Name="DSP_Desemempenho">
             <EntityTypeMapping TypeName="db_SAN149Model.DSP_Desemempenho">
               <MappingFragment StoreEntitySet="DSP_Desemempenho">
+                <ScalarProperty Name="DSP_Ambiente" ColumnName="DSP_Ambiente" />
                 <ScalarProperty Name="DSP_Anotacao" ColumnName="DSP_Anotacao" />
                 <ScalarProperty Name="DSP_Ativo" ColumnName="DSP_Ativo" />
                 <ScalarProperty Name="DSP_DataCarga" ColumnName="DSP_DataCarga" />

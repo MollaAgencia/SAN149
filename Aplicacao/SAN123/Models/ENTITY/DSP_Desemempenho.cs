@@ -29,6 +29,7 @@ namespace Aplicacao.Models.ENTITY
         public System.DateTime DSP_DataCarga { get; set; }
         public bool DSP_Ativo { get; set; }
         public string DSP_Anotacao { get; set; }
+        public string DSP_Ambiente { get; set; }
     
         public virtual PER_Periodos PER_Periodos { get; set; }
         public virtual USU_Usuario USU_Usuario { get; set; }
