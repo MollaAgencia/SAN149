@@ -192,7 +192,7 @@ $(document).on('click', '#btnEfetuarLogin', function (event) {
                 location.href = jsonResult.URL;
             } else {
                 $('#btnEfetuarLogin').removeClass('disabled').html('ENTRAR');
-                $('#MontaHTMLCadastro').removeClass('d-none').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>" + jsonResult.PRP_Mensagem + "</div>");
+                $('#MontaHTMLCadastro').removeClass('d-none').html("<div class='px-3 py-2 bg-gray text-dark rounded d-inline-block mt-2'>" + jsonResult.PRP_Requisicao.PRP_Mensagem + "</div>");
             }
         }
     })

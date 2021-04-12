@@ -26,7 +26,7 @@ function fnGetDesempenho() {
 function fnPreencherDesempenho(dadosDesempenho) {
     var linha = "<td>" + dadosDesempenho.PRP_GrupoCompetidor + "</td>" +
                 "<td>" + dadosDesempenho.PRP_CodSac + " </td>" +
-                "<td>" + dadosDesempenho.PRP_Target + "</td>" +
+                //"<td>" + dadosDesempenho.PRP_Target + "</td>" +
                 "<td>" + dadosDesempenho.PRP_Nome + " </td>" +
                 "<td>" + dadosDesempenho.PRP_PayOut + "%</td>" +
                 "<td>" + dadosDesempenho.PRP_PontosPayOut + "</td>" +
